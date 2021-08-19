@@ -1,30 +1,40 @@
+
+/* for video */
+.for-video{
+    width: 100%;   
+    position: relative;
+}
+.for-video video{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
 /* title-area */
 #become-a-seller{
     width: 100%;
 }
 .inner-become-seller{
     width: 100%;
-    height: 100vh;
-    background-image: url(img/bgbg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    position: relative;
+    padding-left: 0px; 
+    padding-right: 0px; 
 }
 .become-a-seller-title{
-    height: 100vh;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
+    top: 30%;
+    width: 99%;
 }
 .become-a-seller-title h1{
     font-size: 50px;
     color: #fff;    
     letter-spacing: 2px;
+    z-index: 1;
 }
 .become-a-seller-title p{
     font-size: 30px;
@@ -55,6 +65,9 @@
     background-color: rgba(255, 255, 255, 0.4);;
     padding: 25px;
 }
+
+
+
 /* banner lower part */
 
 .time, .transaction, .price{
@@ -63,10 +76,13 @@
 .time p, .transaction p, .price p{
     font-size: 30px;
     font-weight: 500;
+    z-index: 1;
+    color: #000;
 }
 .time span, .transaction span, .price span{
     font-size: 40px;
     font-weight: 500;
+    color: #000;
 }
 
 
@@ -333,6 +349,22 @@
     .how-it-work {
         padding: 15px;
     }
+    .become-a-seller-title p {
+        font-size: 22px;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+    .become-a-seller-title h1 {
+        font-size: 44px;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+    .time span, .transaction span, .price span {
+        font-size: 34px;
+    }
+    .time p, .transaction p, .price p {
+        font-size: 22px;
+    }
 }
 @media screen and (max-width: 768px) {
     .service-area{
@@ -343,7 +375,7 @@
     }
     .title-details{
         display: block;
-        bottom: -74%;
+        top: 100%;
         text-align: center;
     }
     .time, .transaction, .price{
@@ -393,9 +425,23 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .become-a-seller-title h1 {
+        font-size: 30px;
+    }
+    .become-a-seller-title p {
+        font-size: 18px;
+    }
+    .become-a-seller-title button {
+        font-size: 12px;
+    }
+}
+
+
 @media screen and (max-width: 445px) {
     .become-a-seller-title h1 {
-        font-size: 40px;        
+        font-size: 25px;        
     }
     .become-a-seller-title p {
         font-size: 14px;
@@ -404,7 +450,8 @@
         font-size: 14px;
     }
     .inner-become-seller{
-        height: 85vh;
+        height: 100vh;
+        margin-bottom: 0px !important;
     }
     .title-details{
         bottom: -79%;
@@ -431,4 +478,28 @@
         width: 92%;
     }
 }
-
+@media screen and (max-width: 370px){
+    .become-a-seller-title{
+        top:27%;
+    }
+    .become-a-seller-title p {
+        font-size: 11px;
+    }
+    .become-a-seller-title h1 {
+        font-size: 20px;
+    }
+    .become-a-seller-title button {
+        border: none;
+        font-size: 12px;
+        padding: 6px 9px;
+    }
+    .time span, .transaction span, .price span {
+        font-size: 27px;
+    }
+    .inner-become-seller {
+        height: 90vh;
+    }
+    .time, .transaction, .price {
+        margin-bottom: 10px;
+    }
+}

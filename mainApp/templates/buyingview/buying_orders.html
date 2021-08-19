@@ -13,32 +13,23 @@
           <li class="guiz-awards-time title">GRAND TOTAL</li>
           <li class="guiz-awards-time text-center title">ACTION</li>
         </ul>
-
-
+{% if orders %}
+  {% for order in orders %}
         <ul class="guiz-awards-row">
-          <li class="guiz-awards-star font-size">I will convert PSD to HTML</li>
-          <li class="guiz-awards-title font-size">Rabbith Arko</li>
-          <li class="guiz-awards-track font-size">Sakib Ovi</li>
-          <li class="guiz-awards-time font-size">100</li>
+          <li class="guiz-awards-star font-size">{{ order.package }}</li>
+          <li class="guiz-awards-title font-size">{{ order.first_name }}</li>
+          <li class="guiz-awards-track font-size">{{ order.package.gig.user }}</li>
+          <li class="guiz-awards-time font-size">{{ order.grand_total }}</li>
           
           <li class="guiz-awards-time font-size">
             <div class="button container">
-                <button>Make Payment</button>
+                <a href="{% url 'OrderDetails' order.id %}"><button>    Make Payment   </button></a>
             </div>
           </li>
         </ul>
-
-        <ul class="guiz-awards-row">
-          <li class="guiz-awards-star font-size">I will convert PSD to HTML</li>
-          <li class="guiz-awards-title font-size">Rabbith Arko</li>
-          <li class="guiz-awards-track font-size">Sakib Ovi</li>
-          <li class="guiz-awards-time font-size">100</li>
-          <li class="guiz-awards-time font-size">
-            <div class="button container">
-                <button>Make Payment</button>
-            </div>
-          </li>
-        </ul>              
+  {% endfor %}
+{% else %}{% endif %}
+             
         
       </div>
       

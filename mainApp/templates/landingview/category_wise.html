@@ -1,241 +1,514 @@
-
 {% load static %}
-{% include 'landingview/header.html' %}
+{% load custom_filter %}
+{% include 'buyingview/header.html' %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <!-- section selection -->
 
-<!-- For mobile view top banner  -->
+    {% comment %} <div class="container">
+      <div class="sectionSelection">
+        <p><a href="#">Fivourr <i class="fas fa-chevron-right"></i> GRAPHICS & DESIGN  <i class="fas fa-chevron-right"></i></a></p>
+      </div>
+    </div> {% endcomment %}
 
-    <div class="mob-view-banner">
-        <div class="banner-overlay"></div>
-        <img src="{% static 'img/bg-4.jpg' %}" alt="">
-    <div class="banner-text">
-        <h1 class="h3">{{ sub_cats.parent_market }}</h1>
-        <p>Update and upgrade your business online</p>
-    </div>
-    </div>
+   <!-- Title -->
+    {% comment %} <div class="container">
+        <div class="title-wrapper">
+            <h1>{{ gigs.service.title }}</h1>
+        </div>
+        <div class="explanation-video">
+            <p class="sc-subtitle">Stand out from the crowd with a logo that fits your brand personality.</p>
+            <button class="FKiIhUG _1x76oPA H69bvrM co-white btn-play without-border bg-co-green-700">
+                <span class="_1AB8XqH play-icon">
+                    <i class="fas fa-play"></i>
+                </span>"How Fiverr Works"
+            </button>
+        </div>
+    </div> {% endcomment %}
 
-
-
-<!-- For heading  -->
-    <div id="heading" class="container">
-        <h1>{{ sub_cats.parent_market }}</h1>
-        <p>Update and upgrade your business online</p>
-        <i class="fas fa-play-circle"></i>
-        <a href=""> How Fiverr Works</a>
-    </div>
-
-<!-- service section -->
-
-<div id="service-section">
-    <div class="inner-service-section container">
-        <div class="row">
-
-            <div class="left-service col-md-3">
-                <h1 class="h6" >Digital Marketing</h1>
-                <hr>
-                <ul class="catagory-list">
-                {% for c in cats %}
-                    <li>
-                        <a href="">{{ c.title }}</a>
-                        <i class="fas fa-chevron-right"></i>
-                        <div class="line"></div>
-                    </li>
-
-                {% endfor %}
-
-                </ul>
-            </div>
-
-
-
-            <div class="right-service col-lg-9">
-                <div class="row lab-view">
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
+    <!-- Select logo style -->
+    <section class="SelectLogoStyle">
+        <div class="container">
+            <div class="title">
+                {% comment %} <h6>Select logo style</h6> {% endcomment %}
+                </br>
+            </div><br>
+            <div class="row justify-content-center logoStyle">
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                   <div class="imgPara">
+                    <div class="logoImages">
+                        <img src="images/flat_minimalist.svg" alt="flat">
+                        <p class="text-body-2 text-center"><a href="#">Minimalist</a></p>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
+                   </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/hand_drawn.svg" alt="hand">
+                            <p class="text-body-2 text-center"><a href="#">3D</a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/mascot_cartoon.svg" alt="masscot">
+                            <p class="text-body-2"><a href="#">Mascot</a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/retro.svg" alt="retro">
+                            <p class="text-body-2"><a href="#">Signature</a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/signaturesvg.svg" alt="sing">
+                            <p class="text-body-2"><a href="#">Hand-Drawn</a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                   <div class="imgPara">
+                    <div class="logoImages">
+                        <img src="images/three_dimentional.svg" alt="three">
+                        <p class="text-body-2"><a href="#">Vintage</a></p>
+                    </div>
+                   </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/watercolor_feminine.svg" alt="water">
+                            <p class="text-body-2"><a href="#">Watercolor</a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/view_all.svg" alt="flat">
+                            <p class="text-body-2"><a href="#"><a href="#">View All</a></a></p>
                         </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
                     </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
+    </section><br><br>
 
+    <!-- top  bar -->
+
+    <!-- show result gigs -->
+  <div class="container">
+    <div class="showingResultgigs">
+      <ul>
+        <li>
+          <div class="dropdown">
+            <button class="btn dropdownButoon text-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="btn dropdownButoon text-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Service Options
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="btn dropdownButoon text-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Seller Details
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="btn dropdownButoon text-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Budget
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="btn dropdownButoon text-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Delivery Time
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Pro Services </label>
+          </div>
+        </li>
+        <li>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Subscription Services </label>
+        </div>
+        </li>
+        <li>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Online  Sellers </label>
+        </div>
+        </li>
+      </ul>
+    </div>
+</div><br>
+
+
+    <!-- services available section   -->
+  <div class="container">
+    <div class="services-available">
+      <ul>
+        <li>
+          COUNT FUNCTION
+        </li>
+        <li>
+         <div class="dropdown sortby-dropdown">
+            <button class="btn dropdownButoon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>Sort by</span>  <span class="fw-bold">Relevance</span>
+            </button>
+            <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+    <!-- gigs for mobile view -->
+
+    <div class="container">
+
+
+{% for gig in catwise_gigs %}
+      <div class="gigsMobileView">
+
+        <div class="mob-card">
+            <div class="mob-card-img">
+                <img src="{{ gig.image.url }}" alt="">
+            </div>
+
+            <div class="mob-card-title">
+                <h4>{{ gig.gig_title }}</h4>
+            <div class="seller-status">
+                <span><i class="fas fa-star"></i></span>
+                <span>{{ gig.gig_rating }}</i></span>
+                <span>({{ gig.click }})</i></span>
+            </div>
+
+            </div>
+        </div>
+
+
+        <div class="mob-card-footer">
+            <img src="{{ gig.user.extendeduser.profile_picture.url }}" alt="">
+            <span >{{ gig.user }}</span>
+
+            <p>STARTING AT</p>
+            <strong>${{ gig.gigmanager_set.all|gig_price_start }}</strong>
+        </div>
+
+
+        <div class="liner"></div>
+    </div>
+
+
+        
+    </div>
+    {% endfor %}
+
+    <!-- gigs -->
+
+    <div class="container">
+      <div class="row gigs">
+{% for gig in catwise_gigs %}
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">
+          <div class="card">
+            <a href="{% url 'gig_details' gig.id %}">
+                  <img src="{{ gig.image.url }}" class="card-img-top" alt="...">
+            </a>
+              <div class="card-body">
+                  <h5 class="card-title">{{ gig.user }}</h5>
+
+                  <p class="card-text">{{ gig.gig_title }}</p>
+
+                  <div class="level">
+                      <i class="fas fa-star"></i>
+                      <strong>{{ gig.gig_rating }}</strong>
+
+                      <span class="for-right">Level {{ gig.user.extendeduser.level }} Seller</span>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <i class="fas fa-heart"></i>
+                  <span class="for-right">Starting at $ <span style="color: #32a84a; font-weight: 700;">{{ gig.gigmanager_set.all|gig_price_start }}</span></span>
+              </div>
+          </div>
+      </div>
+{% endfor %}
+
+  </div>
+ </div>
+
+
+
+    <div class="container">
+        <hr>
+    </div>
+
+    <!-- explore more logo design services -->
+
+    <section class="exploreMore">
+        <div class="container">
+            <div class="exploreText text-center">
+                <h2>Explore More Logo Design Services</h2>
+            </div><br>
+            <div class="row justify-content-center exploreRow">
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Logo maker</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">3D Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Minimalist Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Hand-Drawn Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Mascot Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Freestyle Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Vintage Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Signature Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Watercolor Logo Design</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <hr>
+    </div>
+
+    <!-- logo design FAQs -->
+
+    <section class="faq">
+        <div class="container">
+            <div class="fqatitle text-center">
+                <h2>Logo Design FAQs</h2>
+            </div><br><br>
+            <div class="row justify-content-between">
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>What is logo design?</h6>
+                    <p>Logo design is the art of creating a visually stunning mark for a brand or company. A logo usually consists of a symbol, brandmark, or image that represents or symbolizes the company. a logo should stand out and be easily recognized.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                   <div class="totalfaqs">
+                    <h6>What makes a good logo?</h6>
+                    <p>A good logo should be visually appealing, distinctive, memorable, simple in form, and stand out from the crowd. It should match the brand's aesthetics and message. and above all, a great logo should have exceptional conceptualization and execution.</p>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>How to hire top logo designers?</h6>
+                    <p>Once you’ve identified a pool of logo designers based on style and availability, evaluate your candidates in terms of their level and type of experience, especially in your niche or field. also, browse through their gig gallery and portfolio for specific examples of prior work.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                   <div class="totalfaqs">
+                    <h6>How much does logo design cost?</h6>
+                    <p>The cost of a professional logo design can vary depending on expertise, experience and other factors. designing a great logo involves much more than a simple sketch; it also comprises market research, artistic skill & technical knowledge, brand design, and revisions.</p>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>Do I need to prepare anything for my logo design?</h6>
+                    <p>It's always a good idea to have a few things prepared beforehand. as a business, you should know your brand identity, your company's message, and aesthetics. It's also best to set a budget and write a detailed logo design brief in advance. this will help your logo designer create the perfect logo for you!</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>What qualities should I look for in a logo designer?</h6>
+                    <p>When looking for a professional logo designer, you should choose someone who will best fit your business. a professional logo designer should exhibit personality, passion, and professionalism. You want someone who has experience in your niche, research skills, flexibility, responds quickly, provides outstanding examples, and shares the design process with you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+        <hr>
+    </div><br>
+
+    <!-- logo designn related guide -->
+
+    <section class="logoRelatedGuide">
+        <div class="container">
+            <div class="guidetext">
+                <h2>Logo Design Related Guides</h2>
+            </div>
+            <div class="seeMoreGuide">
+                <a href="#">See more guides <i class="fas fa-chevron-right"></i></a>
+            </div>
+            <div class="row justify-content-center guideRow">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="{% static 'images/logoguide1.jpg' %}" alt="" class="img-fluid"></a><br><br>
+                    <h6>How to design a logo: 11 steps to getting a logo made for your business</h6>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="{% static 'images/logoguide1.jpg' %}" alt="" class="img-fluid" ></a><br><br>
+                    <h6>Style guide: what it is and how to create one for your brand</h6>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="{% static 'images/logoguide1.jpg' %}" alt="" class="img-fluid"></a><br><br>
+                    <h6>The what, why, and how of branding</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br>
+
+    <!-- footer -->
+
+    <!-- <section class="footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                    <div class="topFooter">
+                        <p class="active">
+                          Top Categories
+                        </p>
+                        <a href="#">
+                          <p>Write And Translation</p>
+                          <p>Graphic nd Design</p>
+                          <p>Digital Marketing</p>
+                          <p>Banquetes</p>
+                          <p>Video & Animation</p>
+                        </a>
+                      </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                    <div class="topFooter">
+                        <p class="active">
+                          Tools
+                        </p>
+                        <a href="#">
+                          <p>Software Development</p>
+                          <p> Music & Audio</p>
+                          <p>Business</p>
+                          <p>Legal Advice</p>
+                          <p>Programming & Tech</p>
+                        </a>
+                      </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                    <div class="topFooter">
+                        <p class="active">
+                          About
+                        </p>
+                        <a href="#">
+                          <p>About Us</p>
+                          <p>How It Works</p>
+                          <p>Privacy Policy</p>
+                          <p>Terms Of Service</p>
+                          <p>Press & News</p>
+                        </a>
+                      </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                    <div class="topFooter">
+                        <p class="active">
+                          Support
+                        </p>
+                        <a href="#">
+                          <p>Contact Us</p>
+                          <p>Trust & Safety</p>
+                          <p>FAQ</p>
+                        </a>
+                      </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                    <div class="topFooter">
+                        <p class="active">
+                          Follow Us
+                        </p>
+                        <a href="#">
+                          <i class="fab fa-facebook-f">&emsp;<i>Facebook</i></i><br>
+                          <i class="fab fa-twitter">&emsp;<i>Twitter</i></i><br>
+                          <i class="fab fa-instagram">&emsp;<i>Instagram</i></i><br>
+                          <i class="fab fa-linkedin-in">&emsp;<i>Linkedin</i></i>
+                        </a>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="{% static 'js/services.js' %}">
+
+    </script>
+  </body>
+</html>

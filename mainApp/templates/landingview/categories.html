@@ -50,187 +50,20 @@
             <div class="right-service col-lg-9">
                 <div class="row lab-view">
 
-
+                {% for c in cats %}
                     <div class="col-4 catagory">
-                    <a href="">
+                    <a href="{% url 'category-wise' c.slug %}">
 
                         <div class="card-img-top">
                             <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
+                            <img src="{{ c.icon.url }}" alt="">
                         </div>
 
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
+                        <h1 class="h6 mt-2">{{ c.title }}</h1>
                     </a>
                     </div>
 
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 01.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Social Media Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 02.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Search Engine Marketing (SEM)</h1>
-                    </a>
-                    </div>
-
-
-
-
-                    <div class="col-4 catagory">
-                    <a href="">
-
-                        <div class="card-img-top">
-                            <div class="overlay"></div>
-                            <img src="img/catagory 03.jpg" alt="">
-                        </div>
-
-                        <h1 class="h6 mt-2">Email Marketing</h1>
-                    </a>
-                    </div>
-
-
-
-
+                {% endfor %}
 
                 </div>
             </div>

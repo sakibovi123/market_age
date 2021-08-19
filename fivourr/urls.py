@@ -47,7 +47,7 @@ urlpatterns = [
     ## Service wise gigs url
     path('gigs/<int:id>/', views.service_wise_gigs, name="service_wise_gigs"),
     # Category wise page
-    path("category-wise/", views.categoryWisePage, name="category-wise"),
+    path("category-wise/<slug:slug>/", views.category_wise_gigs, name="category-wise"),
     # Manage order page url
     path("manage-order/", views.manageOrder, name="manage-order"),
     # Gigs page url
@@ -110,6 +110,10 @@ urlpatterns = [
     # Buyer Orders Page Url
     
     path('buyer_orders/', views.get_buyer_orders_url, name="BuyerOrders"),
+    
+    # Order Details Page URL
+    
+    path('order_details/<int:id>/', views.get_order_details_url, name="OrderDetails"),
     
 ]
 if settings.DEBUG:

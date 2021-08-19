@@ -44,7 +44,7 @@ def view_all_category(request):
         'cats': cats
     }
 
-    return render(request, 'landingview/categories.html')
+    return render(request, 'landingview/categories.html', args)
 
 
 @login_required(login_url='user_login')
@@ -69,6 +69,7 @@ def buying_view(request):
 
 
 def gig_details(request, id):
+    cats = Category.objects.all()
     gigs = Gig.objects.filter(id=id).first()
 
     def get_ip(request):
@@ -101,6 +102,7 @@ def gig_details(request, id):
         'gigs': gigs,
         'c': c,
         'related_gigs': related_gigs,
+        'cats': cats
     }
     return render(request, 'buyingview/gigs_details.html', args)
 
@@ -292,6 +294,8 @@ def checkout(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         user = request.user
+        # seller work
+        
         packages = GigManager.get_gig(list(cart.keys()))
 
         for package in packages:
@@ -301,7 +305,7 @@ def checkout(request):
                 user=user,
                 package=package,
                 price=package.price,
-                quantity=cart.get(str(package.id))
+                quantity=cart.get(str(package.id)),
             )
 
             checkout.save()
@@ -315,22 +319,27 @@ def checkout(request):
     return render(request, 'buyingview/checkout.html', args)
 
 
+# buyer order page views
 @login_required(login_url='user_login')
 def get_buyer_orders_url(request):
-    orders = Checkout.objects.filter(user=request.user)
+    orders = Checkout.objects.filter(user=request.user).order_by('-id')
     args = {
         'orders': orders
     }
     return render(request, 'buyingview/buying_orders.html', args)
 
 
+# category wise Page
 @login_required(login_url='user_login')
-def category_wise_gigs(request, category_id):
+def category_wise_gigs(request, slug):
     cats = Category.objects.all()
-    sub_cats = Subcategory.objects.filter(parent_market_id=category_id)
+    category = Category.objects.all()
+    catwise_gigs = Gig.objects.filter(category__slug=slug)
+    all_gigs = Gig.objects.all()
     # sub_cats = Subcategory.objects.all()
 
-    args = {'sub_cats': sub_cats, 'cats': cats}
+    args = {'catwise_gigs': catwise_gigs, 'category': category,
+            "all_gigs": all_gigs, 'cats': cats}
 
     return render(request, 'landingview/category_wise.html', args)
 
@@ -359,3 +368,16 @@ def post_a_request(request):
 
 def get_become_a_seller_page(request):
     return render(request, 'landingview/become_a_seller.html')
+
+
+
+# Order Details Page
+@login_required(login_url='user_login')
+def get_order_details_url(request, id):
+    order_details = Checkout.objects.get(pk=id)
+    
+    args = {
+        'order_details': order_details
+    }
+    
+    return render(request, 'buyingview/order_details.html', args)

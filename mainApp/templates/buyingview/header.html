@@ -257,7 +257,7 @@
         <div class="catagory-selection container">
             <ul class="catagory-name" id="navbarSupportedContent">
             {% for cat in cats %}
-                <li><a href="">{{ cat.title }}</a></li>
+                <li><a href="{% url 'category-wise' cat.slug %}">{{ cat.title }}</a></li>
             {% endfor %}
             <li><a href="{% url 'Categories' %}">View More</a></li>
                 {% comment %} <li><a href="">Disital Marketing</a></li>
