@@ -318,9 +318,6 @@ def checkout(request):
 @login_required(login_url='user_login')
 def get_buyer_orders_url(request):
     orders = Checkout.objects.filter(user=request.user)
-    
-    
-     
     args = {
         'orders': orders
     }

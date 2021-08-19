@@ -37,12 +37,6 @@ def get_subtotal_cart_total(package_id, cart):
 	return subtotal
 
 
-@register.filter(name="get_service_fee")
-def get_service_fee():
-    service_fee = int(25 /100)
-    
-    return service_fee
-
 
 
 @register.filter(name="total_with_service_fee")
@@ -50,5 +44,5 @@ def get_total_with_service_fee(package_id, cart):
     total = 0
     service_fee = 0.25
     for p in package_id:
-        total = cart_total(p, cart) + float("{:.2f}".format(service_fee))
+        total += cart_total(p, cart) + Decimal(service_fee)
     return total

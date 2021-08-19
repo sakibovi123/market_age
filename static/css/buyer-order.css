@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+
+.quiz-window-header {
+  padding: 20px 15px;
+  text-align:center;
+  position: relative;
+}
+.quiz-window-title {
+  font-size: 26px;
+}
+.quiz-window-close {
+  position: absolute;
+  top:20px;
+  right:20px;
+  padding:0;
+  background:none;
+  border:0;
+  width: 30px;
+  height: 30px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 24px;
+  color: #777;
+  cursor:pointer;
+}
+.quiz-window-body {
+  background-color: #f9f9f9;
+  padding: 15px;
+}
+.guiz-awards-row {
+  margin:0;
+  padding: 10px 10px;
+  list-style: none;
+}
+.guiz-awards-row:after {
+  content: '';
+  display: table;
+  clear:both;
+}
+.guiz-awards-row-even {
+  background-color: #fff;
+}
+.guiz-awards-row li {
+  display:inline-block;
+  vertical-align: top;
+  float: left;
+}
+.guiz-awards-header {
+  text-align: center;
+  padding: 20px 40px;
+}
+.guiz-awards-star, .guiz-awards-track, .guiz-awards-time{
+  min-width: 54px;
+  text-align: justify;
+  width: 16%;
+  padding: 0px 10px;
+}
+.font-size{
+    font-size: 15px !important;
+}
+.guiz-awards-star{
+    width: 35%;
+}
+.guiz-awards-title {
+  width: 20%;
+  font-size: 18px;
+  font-weight: normal;
+}
+.guiz-awards-track, .guiz-awards-time {
+  width: 15%;
+  min-width: 80px;
+  font-size: 18px;
+}
+
+
+.guiz-awards-buttons {
+  background: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.button{
+    width: 100%;
+}
+.button button{
+    width: 100%;
+    border: none;
+    padding: 3px;
+    background-color: #1DBF73;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 5px;
+}
+.button button::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 100%;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .1);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all .5s ease-in-out;
+}
+
+.title{
+    font-size: 15px;
+    font-weight: 500;
+}
+.button button:hover:after{
+    left: 0;
+    z-index: -1;
+}
+.button button:hover{
+    left: 0;
+    z-index: 2;
+}
+
+@media screen and (max-width: 991px) {
+    .guiz-awards-star {
+        width: 31%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .guiz-awards-star {
+        width: 30%;
+    }
+    .guiz-awards-title {
+        width: 15% !important;
+    }
+    .button{
+        padding-left: 0px;
+        width: 120%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .quiz-window-body{
+        width: 1000px;        
+    }
+}
