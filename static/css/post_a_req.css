@@ -1,0 +1,251 @@
+#post_req{
+    background-color: #fafafa;
+}
+.card{
+    padding: 35px;
+}
+.text-area-title p{
+    font-size: 16px;
+    font-weight: 600;
+}
+.textarea textarea{
+    width: 100%;
+    height: 200px;
+    max-height: 100%;
+    padding: 10px;
+    outline: none;
+}
+.custom-file-upload{
+    background-color: #E4E5E7;
+    width: 150px;
+    padding: 8px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.category-input select{
+    width: 220px;
+    outline: none;
+    padding: 8px;
+    color: #707070;
+    font-weight: 600;
+}
+.like-checked{
+    color: aqua;
+    background-color: blanchedalmond;
+}
+div.like-checked:focus{
+    color: black;
+    background-color: #E4E5E7;
+}
+
+
+.for-hover{
+    display: none;
+    transition: all 1s all ease;
+}
+
+.hover-active:hover + .for-hover{
+    display: block;
+}
+
+.inner-hover-part{
+    background-color: #ECFCFF;
+    padding: 20px;
+}
+.hover-part-title{
+    display: flex;
+    align-items: center;
+}
+.hover-part-title i{
+    font-size: 22px;
+    background-color: #CDF5FB;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+.hover-part-title p, .hover-part-middle span{
+    padding-top: 12px;
+    font-weight: 700;
+    color: #197780;
+}
+.hover-des p, .hover-part-middle p{
+    text-align: justify;
+    font-weight: 500;
+}
+.middle-div-on-hover{
+    display: none;
+}
+.for-hover-middle{
+    overflow: hidden;
+    
+}
+.for-hover-middle:hover + .middle-div-on-hover {
+    display: block;
+}
+.like-checked{
+    width: 120px;
+    text-align: center;
+    padding: 10px;
+    background-color: #fbfbfc;
+    color: #000;
+    font-weight: 600;
+    z-index: 1;
+}
+.like-checked:hover{
+    background-color: #E4E5E7;
+}
+.like-checked{
+    border: 1px solid rgb(201, 199, 199);
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+}
+.delivery-days{
+    position: relative;
+}
+.over-input{
+    width: 18%;
+    right: -10px;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    padding: 10px;
+    outline: none;
+    border: none;
+}
+.input input{
+    padding: 10px;
+    outline: none;
+}
+.button-position{
+    text-align: right;
+}
+.button{
+    background-color: #1ab86e;
+    padding: 8px 18px;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    transition: all .3s ;
+}
+.button:hover{
+    background-color: #1b8f59;
+}
+.lower-div-for-hover{
+    display: none;
+}
+.lower-hover:hover + .lower-div-for-hover{
+    display: block;
+}
+
+/* for the distraction from sakib  */
+
+.requiredField{
+    font-size: 20px;
+    margin: 20px 0px 20px 0px;
+    font-weight: 500;
+}
+.form-control-file{
+    border: none;
+}
+.textarea{
+    height: 100%;
+    max-height: 300px;
+}
+.form{
+    background-color: #fafafa;
+    padding: 20px;
+}
+
+
+
+
+
+
+@media screen (min-width: 1200px) {
+    .over-input{
+        width: 16%
+    }
+}
+@media screen (max-width: 1200px) {
+    .category-input select {
+        width: 195px !important;        
+    }
+    .over-input{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .lower-hover:hover + .lower-div-for-hover{
+        display: none;
+    }
+    .for-hover-middle:hover + .middle-div-on-hover {
+        display: none;
+    }
+    .hover-active:hover + .for-hover{
+        display: none;
+    }
+    .category-input select {
+        width: 250px !important;
+        
+    }
+}
+@media screen and (max-width: 768px) {
+    .category-input select {
+        width: 200px !important;
+        
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .category-input select {
+        width: 200px !important;   
+    }
+    .like-checked {
+        width: 24%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .category-input select {  
+        width: 170px !important;
+    }
+    .like-checked {
+        width: 24%;
+    }
+}
+@media screen and (max-width: 428px) {
+    .category-input select {  
+        width: 140px !important;
+    }
+    .like-checked {
+        width: 24%;
+    }
+}
+@media screen and (max-width: 365px) {
+    .category-input select {  
+        width: 130px !important;
+    }
+    .like-checked {
+        width: 24%;
+    }
+}
+@media screen and (max-width: 338px) {
+    .category-input select {  
+        width: 110px !important;
+    }
+    .like-checked {
+        width: 24%;
+    }
+}

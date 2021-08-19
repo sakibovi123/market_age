@@ -1,0 +1,359 @@
+{% load static %}
+  <body>
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+   <!-- google font -->
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+   <!-- Iconify -->
+   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+ 
+ 
+   <link rel="stylesheet" href="{% static 'css/userdashboard.css' %}">
+      {% include "wasekPart/header.html" %}
+
+      <!-- main content -->
+
+  <!-- rating part -->
+  </br>
+  <section class="mainContent">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 sideColumn">
+          <div class="firstColumn">
+            <div class="imageRate">
+              <div class="imageRateInner">
+                <span>Online</span>
+                <img src="{{ user.extendeduser.profile_picture.url }}" alt="goku" class="rounded-circle">
+                <strong>&nbsp;{{ request.user }}</strong>
+              </div>
+              <div class="rateIcon">
+                <i class="fas fa-star"></i> {{ user.extendeduser.rating }}
+              </div>
+            </div>
+            <hr>
+            <div class="rateStatus">
+              <div class="rateStatusAll">
+                <p>Inbox response rate</p>
+                <div class="statusBar">
+                  <progress id="file" value="100">100%</progress> 100%
+                </div>
+              </div>
+              <div class="rateStatusAll">
+                <p>Inbox response time</p>
+                <div class="statusBar">
+                  <progress id="file" value="100">100%</progress><strong> &nbsp;&nbsp;N/A</strong>
+                </div>
+              </div>
+              <div class="rateStatusAll">
+                <p>Order response rate</p>
+                <div class="statusBar">
+                  <progress id="file" value="100">100%</progress> 100%
+                </div>
+              </div>
+              <div class="rateStatusAll">
+                <p>Delivered on time</p>
+                <div class="statusBar">
+                  <progress id="file" value="100">100%</progress> 100%
+                </div>
+              </div>
+              <div class="rateStatusAll">
+                <p>Order completion</p>
+                <div class="statusBar">
+                  <progress value="100">100%</progress> 100%
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="earned">
+              <p class="earnMonth">Earned in july</p>
+              <p class="dollar"><strong>$100000</strong></p>
+            </div>
+          </div><br>
+
+          <!-- inbox -->
+
+          <div class="inbox">
+            <div class="secondColumn">
+              <ul>
+                <li class="fw-bold">Inbox</li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </div>
+            <hr>
+            {% comment %} all users chat inbox {% endcomment %}
+            {% for user in users %}
+            <a href="">
+            <div class="inbox-details">
+              <div class="inbox-user-detail">
+              
+                <img src="{{ user.extendeduser.profile_picture.url }}" alt="goku" class="rounded-circle">
+                <div>
+                  <p class="fw-bold" style="font-size: 13px;">{{ user }}</p>
+                  <p style="font-size: 13px;">Me: Lorem Ipsum Dolor</p>
+                </div>
+              </div>
+              <div class="user-active-time">
+                <p style="font-size: 13px;">Just Now</p>
+              </div>
+            </div>
+            <hr>
+            </a>
+            {% endfor %}
+            {% comment %} all users list {% endcomment %}
+            
+          </div><br>
+
+          <!-- social netiwork link -->
+
+          <div class="thirdColumn">
+            <div class="socialNetwork">
+              <p>Link your social networks <span class="badge bg-secondary rounded-circle">?</span></p>
+            </div>
+            <div class="socialIcon">
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fas fa-basketball-ball"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fab fa-stack-overflow"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fab fa-facebook-f"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+              <div class="socialIcon1">
+                <button type="button" class="icon-button">
+                  <span class="fontIcon">
+                    <i class="fab fa-vimeo-v"></i>
+                  </span>
+                  <span class="icon-button__bagde">
+                    <strong>+</strong>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div><br>
+        </div><br>
+
+
+        <!-- active order container -->
+
+        <div class="col-12 col-sm-12 col-md-8 col-lg-9 mainColumn">
+          <div class="activeOrders">
+            <ul>
+              <li>
+                <h6 id="active_text">Active Orders - 0 ($0)</h6>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button class="btn active-dropdown dropdown-toggle activeBtn" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="true">
+                    Active orders (0)
+                  </button>
+                  <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
+                    <li id="activeOrder"><a class="dropdown-item" href="#">Active Orders (0)</a></li>
+                    <hr>
+                    <li id="completed"><a class="dropdown-item" href="#">Completed</a></li>
+                    <hr>
+                    <li id="canceled"><a class="dropdown-item" href="#">Canceled</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div><br>
+          <div id="complete_order_show" class="complete-order">
+            <div class="seller-detail">
+              <div class="seller-name">
+                <img class="complete-order-firstimage" src="images/goku.png" alt="goku">
+                <img src="images/goku.png" alt="" class="rounded-circle">
+                <p>Seller Name</p>
+              </div>
+              <div class="price">
+                <p class="text-muted">Price</p>
+                <p>$100000</p>
+              </div>
+              <div class="status">
+                <p class="text-muted">Status</p>
+                <p><span class="badge bg-secondary">Completed</span></p>
+              </div>
+              <div class="view">
+                <p><a href="#">View</a></p>
+              </div>
+            </div>
+          </div>
+          <div id="cancel_order" class=" ">
+            <div class="seller-detail">
+              <div class="seller-name">
+                <img class="complete-order-firstimage" src="images/goku.png" alt="goku">
+                <img src="images/goku.png" alt="" class="rounded-circle">
+                <p>Seller Name</p>
+              </div>
+              <div class="price">
+                <p class="text-muted">Price</p>
+                <p>$100000</p>
+              </div>
+              <div class="status">
+                <p class="text-muted">Status</p>
+                <p><span class="badge bg-secondary">Cancel</span></p>
+              </div>
+              <div class="view">
+                <p><a href="#">View</a></p>
+              </div>
+            </div>
+          </div>
+          <br><br><br>
+
+          <div id="upgrade_text" class="upgradeText">
+            <h6>Upgrade your Business</h6>
+            <hr>
+          </div>
+          <div class="container">
+            <div id="upgrade_business" class="row upgradeBusiness">
+              <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="secondUpgradeText">
+                  <h5>How to build your success on Fiverr in 3 steps</h5>
+                  <p>The key to your success on Fiverr is the brand you build for yourself through <br> your Fiverr
+                    reputation. We gathered some tips and resources to help you <br> become a leading seller on Fiverr.
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="upgradeImg">
+                  <img src="{% static 'images/upgrade.png' %}" alt="business" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div><br>
+
+
+          <div id="top_seller" class="topSeller">
+            <div class="topSeller text-center">
+              <h4>Take these steps to become a top seller on Fiverr</h4>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="firstInsideIcon">
+                    <img src="{% static 'images/inside1.png' %}" alt="">
+                    <strong>Get noticed</strong>
+                  </div><br>
+                  <div class="description">
+                    Tap into the power of social media by <b> sharing your Gig,</b> and <a href="#"> get expert help</a>
+                    to grow your impact.
+                  </div><br><br>
+                  <button type="button" class="btn btn-light1">Share your Gigs</button><br>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="firstInsideIcon">
+                    <img src="{% static 'images/inside2.png' %}" alt="">
+                    <strong>Get more skills & exposure</strong>
+                  </div><br>
+                  <div class="description">
+                    Tap into the power of social media by <b> sharing your Gig,</b> and <a href="#"> get expert help</a>
+                    to grow your impact.
+                  </div><br><br>
+                  <button type="button" class="btn btn-light2">Explore Learn</button><br>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="firstInsideIcon">
+                    <img src="{% static 'images/inside3.png' %}" alt="">
+                    <strong>Become a successful seller</strong>
+                  </div><br>
+                  <div class="description">
+                    Tap into the power of social media by <b> sharing your Gig,</b> and <a href="#"> get expert help</a>
+                    to grow your impact.
+                  </div><br><br>
+                  <button type="button" class="btn btn-light3">Watch Free Course</button><br>
+
+                </div>
+              </div>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- slider part -->
+
+
+  <div class="container">
+    <div id="slider_row" class="row slider-row">
+      <div class="col top-slider">
+        <div class="main-top-slider">
+          <img src="{% static 'images/bannerdash1.jpg' %}" alt="">
+          <h2 class="text-white">This is the slider title you can add any title here </h2>
+          <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+
+
+        <div class="main-top-slider">
+          <img src="{% static 'images/bannerdash1.jpg' %}" alt="">
+          <h2 class="text-white">This is the slider title you can add any title here</h2>
+          <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+
+
+        <div class="main-top-slider">
+          <img src="{% static 'images/bannerdash1.jpg' %}" alt="">
+          <h2 class="text-white">This is the slider title you can add any title here</h2>
+          <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <script src="{% static 'js/sellerdashboard.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,802 @@
+{% extends "wasekPart/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/manage_order.css' %}">
+<link rel="stylesheet" href="{% static 'css/manage_gigs.css' %}">
+
+<script src="{% static 'js/manage_gigs.js' %}" defer></script>
+
+<div class="manage__order container">
+
+    <!-- Order header section starts -->
+    <div class="order__headerSection mb-4">
+        <h1>Gigs</h1>
+
+        <div class="form-check form-switch gigs__acceptCustomer">
+            <label class="form-check-label gigs__headerText" for="flexSwitchCheckDefault">Accepting Customer
+                Orders</label>
+            <input class="form-check-input gigs__radioButton" type="checkbox" id="flexSwitchCheckDefault" checked>
+        </div>
+    </div>
+    <!-- Order header section ends -->
+
+    <!-- Order links section starts  -->
+    <div class="order__links">
+        <ul>
+            <button class="ordered__btn active__btn active__link">
+                <li>Active <span class="circle__badge">
+                        <span>1</span>
+                    </span></li>
+            </button>
+            <button class="ordered__btn pending__btn">
+                <li>Pending Approval <span class="circle__badge">
+                        <span>3</span>
+                    </span></li>
+            </button>
+            <button class="ordered__btn modification__btn">
+                <li>Required Modification <span class="circle__badge">
+                        <span>3</span>
+                    </span></li>
+            </button>
+            <button class="ordered__btn draft__btn">
+                <li>Draft <span class="circle__badge">
+                        <span>2</span>
+                    </span></li>
+            </button>
+            <button class="ordered__btn denied__btn">
+                <li>Denied <span class="circle__badge">
+                        <span>7</span>
+                    </span></li>
+            </button>
+            <button class="ordered__btn paused__btn">
+                <li>Paused <span class="circle__badge">
+                        <span>5</span>
+                    </span></li>
+            </button>
+            <li class="create__newGig">
+                <a href="#">Create a new gig</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dropdown mobile__orderLinks">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Gigs Status
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Active <span class="circle__badge">
+                        <span>1</span>
+                    </span></a></li>
+            <li><a class="dropdown-item" href="#">Pending approval <span class="circle__badge">
+                        <span>3</span>
+                    </span></a></li>
+            <li><a class="dropdown-item" href="#">Required Modification <span class="circle__badge">
+                        <span>3</span>
+                    </span></a></li>
+            <li><a class="dropdown-item" href="#">Draft <span class="circle__badge">
+                        <span>2</span>
+                    </span></a></li>
+            <li><a class="dropdown-item" href="#">Denied <span class="circle__badge">
+                        <span>7</span>
+                    </span></a></li>
+            <li><a class="dropdown-item" href="#">Paused <span class="circle__badge">
+                        <span>5</span>
+                    </span></a></li>
+        </ul>
+
+        <div class="mobile__createGig">
+            <a href="#">Create a new gig</a>
+        </div>
+    </div>
+    <div class="border__line"></div>
+    <!-- Order links section ends  -->
+
+    <!-- Order priority section starts -->
+    <div class="card priority__order gigs__order py-3 px-2 mt-4">
+        <p class="table__gigsText">active gigs</p>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                last 30 days
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">last 7 days</a></li>
+                <li><a class="dropdown-item" href="#">last 14 days</a></li>
+                <li><a class="dropdown-item" href="#">last 30 days</a></li>
+                <li><a class="dropdown-item" href="#">last 2 months</a></li>
+                <li><a class="dropdown-item" href="#">last 3 months</a></li>
+                <li><a class="dropdown-item" href="#">last 6 months</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Order priority section ends -->
+
+    <!-- Order table section starts -->
+    <div class="table-responsive manage__orderTable">
+        <!-- Active table section starts -->
+        <table class="table table-hover bg-white activated__table show__activeTable">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark active</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Active table section ends -->
+
+        <!-- Pending approval table section starts -->
+        <table class="table table-hover bg-white pending__table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark pending</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Pending approval table section starts -->
+
+        <!-- Required modification table section starts -->
+        <table class="table table-hover bg-white required__table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark required</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Required modification table section ends -->
+
+        <!-- Draft table section starts -->
+        <table class="table table-hover bg-white draft__table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark draft</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Draft table section ends -->
+
+        <!-- Denied table section starts -->
+        <table class="table table-hover bg-white denied__table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark denied</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Denied table section ends -->
+
+        <!-- Paused table section starts -->
+        <table class="table table-hover bg-white paused__table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-muted ps-3">gig</th>
+                    <th scope="col" class="text-muted">impressions</th>
+                    <th scope="col" class="text-muted">clicks</th>
+                    <th scope="col" class="text-muted">orders</th>
+                    <th scope="col" class="text-muted">cancellations</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ps-3" colspan="2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint suscipit animi sequi
+                        quibusdam provident fuga iure laudantium tempora tenetur! Error!</td>
+                    <td>Mark paused</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, magni? Molestias
+                        doloribus pariatur non doloremque repudiandae modi dicta ipsa ut?</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input gigs__optionCheck" type="checkbox" value=""
+                                            id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="ps-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore necessitatibus
+                        dolore asperiores voluptate harum, excepturi fugiat eveniet in vel culpa?</td>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td class="gigs__tableDropdown">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Preview</a></li>
+                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Pause</a></li>
+                                <li><a class="dropdown-item" href="#">Share</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li><a class="dropdown-item" href="#">Edit Video</a></li>
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Live portfolio
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Paused table section ends -->
+    </div>
+    <a class="gig__statusMean" href="#">What does your Gig<span>&reg;</span> status mean?</a>
+    <!-- Order table section ends -->
+</div>
+
+{% endblock %}

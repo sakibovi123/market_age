@@ -1,0 +1,440 @@
+{% extends "wasekPart/base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/manage_order.css' %}" />
+
+<script src="{% static 'js/manage_order.js' %}" defer></script>
+
+<div class="manage__order container">
+  <!-- Order header section starts -->
+  <div class="order__headerSection mb-4">
+    <h1>Manage Orders</h1>
+
+    <form method="get" class="order__searchForm">
+      <input type="text" placeholder="Search My History..." />
+      <span class="iconify" data-icon="bx:bx-search" data-inline="false"></span>
+    </form>
+  </div>
+  <!-- Order header section ends -->
+
+  <!-- Order links section starts  -->
+  <div class="order__links">
+    <ul>
+      <button class="ordered__btn priority__btn active__link">
+        <li>
+          Prority
+          <span class="circle__badge">
+            <span>1</span>
+          </span>
+        </li>
+      </button>
+      <button class="ordered__btn active__btn">
+        <li>
+          Active
+          <span class="circle__badge">
+            <span>10</span>
+          </span>
+        </li>
+      </button>
+      <button class="ordered__btn late__btn">
+        <li>
+          Late <span class="circle__badge"><span>2</span> </span>
+        </li>
+      </button>
+      <button class="ordered__btn delivered__btn">
+        <li>
+          Delivered
+          <span class="circle__badge">
+            <span>4</span>
+          </span>
+        </li>
+      </button>
+      <button class="ordered__btn ordered__btn completed__btn">
+        <li>
+          Completed
+          <span class="circle__badge">
+            <span>6</span>
+          </span>
+        </li>
+      </button>
+      <button class="ordered__btn cancelled__btn">
+        <li>
+          Cancelled
+          <span class="circle__badge">
+            <span>5</span>
+          </span>
+        </li>
+      </button>
+      <button class="ordered__btn starred__link">
+        <li>
+          Starred
+          <span class="circle__badge">
+            <span>1</span>
+          </span>
+        </li>
+      </button>
+    </ul>
+  </div>
+  <!-- Order links section ends  -->
+
+  <!-- Order header section starts -->
+  <div class="card priority__order py-3 px-2 mt-4">
+    <p class="table__orderText">Prority orders</p>
+  </div>
+  <!-- Order header section ends -->
+
+  <!-- Order table section starts -->
+  <div class="table-responsive manage__orderTable">
+      <!-- Priotiry table section starts -->
+    <table class="table table-hover bg-white priority__table show__activeTable">
+      <thead>
+        <tr>
+          <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+          <th scope="col" class="text-muted">gig</th>
+          <th scope="col" class="text-muted">due on</th>
+          <th scope="col" class="text-muted">total</th>
+          <th scope="col" class="text-muted">note</th>
+          <th scope="col" class="text-muted">status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ps-3" colspan="2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Necessitatibus quae sit temporibus mollitia iusto suscipit.
+          </td>
+          <td>Mark priority</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td class="ps-3" colspan="2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+            doloribus.
+          </td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>@fat</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td class="ps-3" colspan="2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+            dicta unde illum exercitationem harum non!
+          </td>
+          <td>Larry the Bird</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Priotiry table section ends -->
+
+    <!-- Active table section starts -->
+    <table class="table table-hover bg-white activated__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark active</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Active table section ends -->
+
+      <!-- Late table section starts -->
+      <table class="table table-hover bg-white late__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark late</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Late table section ends -->
+
+      <!-- Delivered table section starts -->
+      <table class="table table-hover bg-white delivered__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark delivered</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Delivered table section ends -->
+
+      <!-- Completed table section starts -->
+      <table class="table table-hover bg-white completed__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark completed</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Completed table section ends -->
+
+      <!-- Cancelled table section starts -->
+      <table class="table table-hover bg-white cancelled__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark cancelled</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Cancelled table section ends -->
+
+      <!-- Starred table section starts -->
+      <table class="table table-hover bg-white starred__table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
+            <th scope="col" class="text-muted">gig</th>
+            <th scope="col" class="text-muted">due on</th>
+            <th scope="col" class="text-muted">total</th>
+            <th scope="col" class="text-muted">note</th>
+            <th scope="col" class="text-muted">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+            </td>
+            <td>Mark starred</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              doloribus.
+            </td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td class="ps-3" colspan="2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
+              dicta unde illum exercitationem harum non!
+            </td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Starred table section ends -->
+  </div>
+  <!-- Order table section ends -->
+</div>
+
+{% endblock %}

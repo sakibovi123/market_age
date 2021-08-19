@@ -1,0 +1,201 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/wasek_header.css' %}">
+
+<div class="nav__header">
+    <!-- Left header section starts -->
+    <div class="left__header">
+        <ul>
+            <a href="{% url 'seller_dashboard' %}">
+                <li>
+                    <img class="header__img" src="{% static 'images/logo.png' %}" alt="">
+                </li>
+            </a>
+            <a href="#">
+                <li>Dashboard</li>
+            </a>
+            <a href="{% url 'inbox' %}">
+                <li>Messages</li>
+            </a>
+            <a href="{% url 'manage-order' %}">
+                <li>Orders</li>
+            </a>
+            <a href="{% url 'manage-gigs' %}">
+                <li>Gigs</li>
+            </a>
+            <a href="#">
+                <li>Analytics</li>
+            </a>
+            <a href="#">
+                <li>Earnings</li>
+            </a>
+            <a href="#">
+                <li>Community</li>
+            </a>
+            <a href="#">
+                <li>More</li>
+            </a>
+        </ul>
+    </div>
+    <!-- Left header section ends -->
+
+    <!-- Right header section starts -->
+    <div class="right__header">
+        <ul>
+            <a href="{% url 'buying_view' %}">
+                <li>Switch to Buying</li>
+            </a>
+            <li class="avatar__img dropdown">
+                <!-- User profile image -->
+                <img class="dropdown-toggle" type="button" id="user__alternateOption" data-bs-toggle="dropdown"
+                    aria-expanded="false" src="{% static 'images/user_img.jpg' %}" alt="">
+                <!-- User login icon show -->
+                <div class="online__dot"></div>
+                <!-- User alternate options section starts -->
+                <ul class="dropdown-menu user__options" aria-labelledby="user__alternateOption">
+                    <li><a class="dropdown-item" href="{% url 'account' %}">Profile</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="#">Refer &amp; Get up to $100</a></li> {% endcomment %}
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
+                    <li>
+                        <div>English <span class="iconify" data-icon="bi:globe" data-inline="false"></span></div>
+                    </li>
+                    <li>
+                        <div>USD - $</div>
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'support' %}">Help &amp; Support</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <div>
+                            <a href="{% url 'logoutview' %}">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- User alternate options section ends -->
+            </li>
+        </ul>
+    </div>
+    <!-- Right header section ends -->
+</div>
+
+<!-- Mobile navbar section starts -->
+<nav class="mobile__navbar">
+    <div class="hamburger__menu">
+        <span class="iconify" data-icon="radix-icons:hamburger-menu" data-inline="false"></span>
+    </div>
+    <div class="logo__img">
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" alt="">
+        </a>
+    </div>
+    <div class="signin__page">
+        <a href="#">Join</a>
+    </div>
+
+    <!-- For fixed black background -->
+    <div class="bg__fixed"></div>
+
+    <div class="mobile__navLinks">
+
+        <div class="top__section">
+            <div class="nav__close">
+                <span class="iconify" data-icon="carbon:close-outline" data-inline="false"></span>
+            </div>
+            <div class="user__profile">
+                <div class="mobile__userImg">
+                    <a href="#">
+                        <img src="{% static 'images/user_img.jpg' %}" alt="">
+                    </a>
+                </div>
+                <p>Wasek Samin</p>
+            </div>
+        </div>
+        <div class="all__options">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Inbox</a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Lists</a>
+                </li>
+                <li class="browse__cat">
+                    <div>Browse Categories</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="browse__cat">
+                    <div>Explore</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="fivourr__pro">
+                    <a href="#">Fivourr Pro</a>
+                </li>
+                <li class="fivourr__business">
+                    <a href="#">Fiverr Busines</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">Buying</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Manage Requests</a>
+                </li>
+                <li>
+                    <a href="#">Post a Request</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">Selling</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Manage Sales</a>
+                </li>
+                <li>
+                    <a href="#">Revenues</a>
+                </li>
+                <li>
+                    <a href="#">Learn Online Courses</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">General</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+                <li class="browse__cat cat__alt">
+                    <div>English <span class="iconify" data-icon="bi:globe" data-inline="false"></span></div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="browse__cat cat__alt">
+                    <div>USD - $</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Mobile navbar section ends -->
+
+<script src="{% static 'js/mobile_navbar.js' %}"></script>

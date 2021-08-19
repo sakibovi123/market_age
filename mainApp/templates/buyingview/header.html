@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fivvour</title>
+
+
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+    <!-- swiper slider -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!--main css for buyer-view -->
+     <link rel="stylesheet" href=  "{% static 'css/buyer-stylesheet.css' %}" />
+     <link rel="stylesheet" href=  "{% static 'css/buyer-style-responsive.css' %}" />
+
+
+    <!--main css for gigs details -->
+    <link rel="stylesheet" href=" {% static 'css/gigsviewstyle.css' %}" >
+    <link rel="stylesheet" href=" {% static 'css/responsiveGigsviewArko.css' %}" >
+    <link rel="stylesheet" href=" {% static 'css/buyer_view_footer.css' %}" >
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+
+
+    <!--main css for become a seller -->
+    <link rel="stylesheet" href=  "{% static 'css/become-a-seller.css' %}" />
+
+
+    
+
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+
+</head>
+<body>
+
+  <!-- Mobile navbar section starts -->
+
+  <nav class="mobile__navbar on-mobile ">
+    <div class="overlay"></div>
+    <div class="hamburger__menu">
+      <span class="iconify hambuger_color" data-icon="radix-icons:hamburger-menu" data-inline="false"></span>
+    </div>
+
+
+
+
+    <div class="logo__img">
+      <a href="#">
+        <img src="{% static 'images/logo.png' %}" alt="">
+      </a>
+    </div>
+
+
+
+
+    <div class="mobile__navLinks">
+
+      <i class="fas fa-times nav__close"></i>
+
+      <div class="buyer_profile_img">
+        <img src="img/bg-3.jpg" alt="">
+        <span>Buyer Name</span>
+      </div>
+
+<div class="details">
+      <ul>
+
+        <li>
+          <a href="#">Home</a>
+        </li>
+
+        <li>
+          <a href="#">Inbox</a>
+        </li>
+
+        <li>
+          <a href="#">Dashboard</a>
+        </li>
+
+        <li>
+          <a href="#">List</a>
+        </li>
+
+
+        <li class="browse__cat">
+            <div>Browse Categories</div>
+            <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+        </li>
+
+        <li class="browse__cat">
+          <div>Explore</div>
+          <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+        </li>
+
+        <li class="fivourr__pro">
+          <a href="#">Fivourr Pro</a>
+        </li>
+
+        <li class="fivourr__business">
+          <a href="#">Fiverr Busines</a>
+        </li>
+      </ul>
+
+
+
+
+      <ul class="buying">
+        <li>
+          <p class="bold">Buying</p>
+          <hr>
+        </li>
+
+        <li>
+          <p>Manager Requests</p>
+        </li>
+
+        <li>
+          <p>Post a Request</p>
+        </li>
+
+      </ul>
+
+
+
+      <ul class="selling">
+        <li>
+          <p class="bold">Selling</p>
+          <hr>
+        </li>
+
+        <li>
+          <p>Manager Requests</p>
+        </li>
+
+        <li>
+          <p>Post a Request</p>
+        </li>
+
+        <li>
+          <p>Learn - Online Courses</p>
+        </li>
+
+      </ul>
+
+
+
+      <ul class="general">
+
+        <li>
+          <p class="bold">General</p>
+          <hr>
+        </li>
+
+        <li>
+          <p>Logout</p>
+        </li>
+
+        <li>
+          <p>English
+            <span class="iconify" data-icon="bi:globe" data-inline="false"></span>
+            <span class="iconify float-right" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span>
+          </p>
+        </li>
+
+        <li>
+          <p>USD - $<span class="iconify float-right" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></p>
+        </li>
+
+        <li>
+          <p>Open in App</p>
+        </li>
+
+      </ul>
+
+
+
+</div>
+    </div>
+  </nav>
+  <!-- Mobile navbar section ends -->
+
+
+
+    <header id="home-page">
+        <nav class="navbar navbar-expand-lg navbar-light nav-bar-hide-on-mob">
+            <div class="container">
+
+                <a class="navbar-brand" href="{% url 'buying_view' %}">
+                    <span>
+                        <img src="{% static 'images/logo.png' %}" alt="" style="height: 50px; width:150px;">
+                    </span>
+                </a>
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"           aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+            <form class="d-flex input-group collapse navbar-expand-md" id="navbarSupportedContent">
+
+                    <i class="fas fa-search"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+                <ul class="navbar-nav ms-auto mb-lg-0">
+
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Fiver Pro</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Explore</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Lists</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Orders</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{% url 'seller_dashboard' %}">Switch to Selling</a>
+                  </li>
+
+
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+
+        <div class="dag container-fluid"></div>
+        <div class="catagory-selection container">
+            <ul class="catagory-name" id="navbarSupportedContent">
+            {% for cat in cats %}
+                <li><a href="">{{ cat.title }}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'Categories' %}">View More</a></li>
+                {% comment %} <li><a href="">Disital Marketing</a></li>
+                <li><a href="">Writing & Translation</a></li>
+                <li><a href="">Video & Animation</a></li>
+                <li><a href="">Music & Audio</a></li>
+                <li><a href="">Programming & Tech</a></li>
+                <li><a href="">Data</a></li>
+                <li><a href="">Business</a></li>
+                <li><a href="">Lifestyle</a></li> {% endcomment %}
+            </ul>
+        </div>
+        <div class="dag container-fluid"></div>
+    </header>
+
+
+
+

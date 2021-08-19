@@ -1,0 +1,323 @@
+{% load static %}
+{% include 'landingview/header.html' %}
+
+
+        <div class="imageSlider azim">
+            {% for s in landing_slider %}
+          <div class="firstImage">
+            <img src="{{ s.slider_img.url }}" alt="" class="img-fluid">
+          </div>
+          {% endfor %}
+
+        </div>
+
+
+
+    <!-----trusted section-->
+
+    <section class="trusted">
+      <div class="trusted-by-wrapper lohp-row">
+        <div class="trusted-by max-width-container">
+          <span class="trustedByText">Trusted By: </span>
+          <ul>
+            <li><i class="fab fa-facebook"></i></li>
+            <li><i class="fab fa-google"></i></li>
+            <li><i class="fab fa-cc-paypal"></i></li>
+            <li><i class="fab fa-instagram"></i></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-----multi card carousel-->
+
+
+    <section class="multiCarousel">
+      <div class="container">
+        <div class="words">
+          <h2>Popular professional services</h2>
+        </div>
+        <div class="row slider">
+            {% for s in services %}
+          <div class="col-12 col-md-4 col-lg-3 cardColumn">
+            <div class="card text-center">
+              <a href="{% url 'service_wise_gigs' s.id %}"><img src="{{ s.img.url }}" alt="..." width="100%" class="img-fluid"></a>
+            </div>
+
+            <div class="textOnCard text-white">
+              <p>{{ s.title }} <br> <strong>{{ s.sub_title }}</strong></p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+  <!-----video content---->
+
+    <section class="videoContent">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 videoColumn">
+            <h2>A whole world of freelance <br> talent at your fingertips</h2>
+            <div class="first">
+              <h6><i class="far fa-check-circle"></i> Quality work done quickly</h6>
+            <p>Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
+              <h6><i class="far fa-check-circle"></i> The best for every budget</h6>
+              <p>Find the right freelancer to begin working on your project within minutes.</p>
+              <h6><i class="far fa-check-circle"></i> Protected payments, every time</h6>
+              <p>Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
+            <h6><i class="far fa-check-circle"></i> 24/7 support</h6>
+              <p>Questions? Our round-the-clock support team is available to help anytime, anywhere.</p>
+            </div>
+          </div>
+          <div class="col-md-5 offset-2 videoColumn">
+           <div class="video">
+              <img src="{% static 'images/bannerimg.png' %}" alt="" class="img-fluid">
+           </div>
+           <!--<div class="iconOverlay">-->
+           <!-- <a href="#"><i class="far fa-play-circle"></i></a>-->
+           <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-----Marketplace---->
+
+    <section class="market">
+      <div class="container">
+        <div class="markettext">
+          <h2>Explore the marketplace</h2>
+        </div>
+        <div class="row">
+            {% for s in cats %}
+          <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <div class="marketCategory">
+              <a href="{% url 'categoryWiseView' s.id %}"><img src="{{ s.icon.url }}" alt="">
+              <br>
+              <br>
+                <h6>{{ s.title }}</h6></a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section><br>
+
+
+
+  <section class="firstBanner">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 firstColumn">
+          <div class="text-white text">
+            <h5><a href="#">Fiverr</a> business. <span class="badge badge-secondary">New</span></h5>
+          </div>
+          <div class="text-white text2">
+            <h2>A business solution <br> designed for teams</h2>
+            <p>Upgrade to a curated experience packed with tools <br> and benefits, dedicated to businesses</p>
+          </div>
+          <div class="text-white text3">
+            <p><i class="far fa-check-circle"></i> Connect to freelancers with proven business experience</p>
+            <p><i class="far fa-check-circle"></i> Get matched with the perfect talent by a customer success <br> manager</p>
+            <p><i class="far fa-check-circle"></i> Manage teamwork and boost productivity with one powerful workspace</p>
+          </div>
+          <div class="businessButton">
+            <button type="button" class="btn btn-primary">Explore Fiverr Business</button>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 secondColumn">
+          <img src="{% static 'images/bgbgbg2.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!--<section class="singleSlider">-->
+  <!--  <div class="container">-->
+  <!--    <div class="row testimonial">-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="image">-->
+  <!--          <img src="{% static 'images/bgbgbg2.png' %}" alt="" class="mx-auto d-block img-fluid ">-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="text-content">-->
+  <!--          <h5><span>Kay Kim, Co-Founder  |</span> rooted</h5>-->
+  <!--        </div>-->
+  <!--          <blockquote class="font-domaine">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque perspiciatis quis nobis dolorem iure. Fuga, officiis modi assumenda praesentium recusandae id veritatis quo! Officiis perspiciatis praesentium placeat quae totam veritatis delectus est similique cum iure provident possimus, laborum architecto mollitia voluptatum nisi laboriosam, in culpa dolores distinctio adipisci fugiat accusamus.</blockquote>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="image">-->
+  <!--          <img src="{% static 'images/bgbgbg2.png' %}" alt="" class="img-fluid">-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="text-content">-->
+  <!--          <h5><span>Kay Kim, Co-Founder  |</span> rooted</h5>-->
+  <!--        </div>-->
+  <!--          <blockquote class="font-domaine">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque perspiciatis quis nobis dolorem iure. Fuga, officiis modi assumenda praesentium recusandae id veritatis quo! Officiis perspiciatis praesentium placeat quae totam veritatis delectus est similique cum iure provident possimus, laborum architecto mollitia voluptatum nisi laboriosam, in culpa dolores distinctio adipisci fugiat accusamus.</blockquote>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="image">-->
+  <!--          <img src="{% static 'images/bgbgbg2.png' %}" alt="" class="img-fluid">-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="text-content">-->
+  <!--          <h5><span>Kay Kim, Co-Founder  |</span> rooted</h5>-->
+  <!--        </div>-->
+  <!--          <blockquote class="font-domaine">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque perspiciatis quis nobis dolorem iure. Fuga, officiis modi assumenda praesentium recusandae id veritatis quo! Officiis perspiciatis praesentium placeat quae totam veritatis delectus est similique cum iure provident possimus, laborum architecto mollitia voluptatum nisi laboriosam, in culpa dolores distinctio adipisci fugiat accusamus.</blockquote>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="image">-->
+  <!--          <img src="{% static 'images/bgbgbg2.png' %}" alt="" class="img-fluid">-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="col-12 col-sm-12 col-md-6 col-lg-6">-->
+  <!--        <div class="text-content">-->
+  <!--          <h5><span>Kay Kim, Co-Founder  |</span> rooted</h5>-->
+  <!--        </div>-->
+  <!--          <blockquote class="font-domaine">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque perspiciatis quis nobis dolorem iure. Fuga, officiis modi assumenda praesentium recusandae id veritatis quo! Officiis perspiciatis praesentium placeat quae totam veritatis delectus est similique cum iure provident possimus, laborum architecto mollitia voluptatum nisi laboriosam, in culpa dolores distinctio adipisci fugiat accusamus.</blockquote>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+
+
+
+
+ <section class="multiCardSlider">
+  <div class="container">
+    <div class="upperText">
+      <h2>Get inspired with projects made by our freelancers</h2>
+    </div>
+    <div class="row secondSlider">
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+      <div class="col multiCardsliderColumn">
+        <div class="card2">
+          <a href="#"><img src="{% static 'images/bgbgbg2.png' %}" class="img-fluid" alt="..."></a>
+          <span><img src="{% static 'images/bgbgbg2.png' %}" alt="" class="rounded-circle"> </span>
+          <span>Animated GIFs</span>
+        </div>
+      </div>
+
+
+    </div>
+    <a class="seeMoreLink" href="#">See More Projects
+      <span><i class="fas fa-caret-right"></i></span>
+    </a>
+  </div>
+ </section>
+
+
+
+
+ <section class="guides">
+        <div class="container">
+          <div class="upperText">
+            <h2>Fiverr guides</h2>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 columnGuides">
+              <div class="cardguide text-center">
+                <a class="firstLink" href="#">
+                  <img src="{% static 'images/guide1.jpeg' %}" alt="..." class="img-fluid"></a></br>
+                  <a href="#"><span>Start an online business and work from home</span><p>A complete guide to starting a small business online</p></a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 columnGuides">
+              <div class="cardguide text-center">
+                <a href="#">
+                  <img src="{% static 'images/guide1.jpeg' %}" alt="..." class="img-fluid"></a></br>
+                  <a href="#"><span>Digital marketing made easy</span><p>A practical guide to understand what is digital marketing</p></a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 columnGuides">
+              <div class="cardguide text-center">
+                <a href="#">
+                  <img src="{% static 'images/guide1.jpeg' %}" alt="..." class="img-fluid"></a></br>
+                  <a href="#"><span>Create a logo for your business</span><p>A step-by-step guide to create a memorable business logo</p></a>
+              </div>
+            </div>
+            </div>
+          <a class="seeMoreLink1" href="#">See More Guides
+            <span><i class="fas fa-caret-right"></i></span>
+          </a>
+        </div>
+       </section>
+
+
+<section class="secondBanner">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="bannerImage">
+          <img src="{% static 'images/banner.jpg' %}" alt="back" class="img-responsive">
+          <span class="overlay-text text-dark">
+            <h2>Find the <i>talent</i> needed to <br> get your business <i>growing.</i></h2>
+          </span>
+        </div></br></br>
+        <button type="button" class="btn btn-success">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+</br></br>
+
+{% include 'landingview/footer.html' %}

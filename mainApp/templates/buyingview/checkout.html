@@ -1,0 +1,208 @@
+{% load static %}
+{% load custom_filter %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+    <title>checkout</title>
+  </head>
+  <body>
+    <!-- for mobile view -->
+    <div class="container mobileImg">
+      <div class="mobileViewImg d-flex justify-content-center">
+        <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+      </div>
+    </div>
+
+
+     <!-- header part -->
+     <!-- <header class="container">
+        <div class="headerLogo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+            <span class="orderText1"><a href="{% url 'cartView' %}"><strong>Order Details</strong></a> <i class="fas fa-chevron-right"></i></span>
+            <span class="orderText1"> <a href="{% url 'checkout' %}"><strong> Confirm  & pay</strong></a> <i class="fas fa-chevron-right"></i></span>
+            <span class="orderText"> <strong>  Submit Requirements</strong></span>
+        </div>
+    </header> -->
+
+    <header class="container">
+      <div class="headerLogo">
+      <a href="{% url 'seller_dashboard' %}">
+          <img src="{% static 'images/logo.png' %}">
+      </a>
+          <span class="orderText1"><a href="{% url 'cartView' %}"><strong>Order Details</strong></a> <i class="fas fa-chevron-right"></i></span>
+          <span class="orderText"> <a href="{% url 'checkout' %}"><strong>Confirm  & pay</strong></a> <i class="fas fa-chevron-right"></i></span>
+          <span class="orderText"> <strong>Submit Requirements</strong></span>
+      </div>
+  </header>
+
+
+        <hr>
+
+    <!-- main content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-7 mainContentCard">
+                <div class="card maincard">
+                    <div class="card-body">
+                      <!-- <h6 class="fs-5 fw-bold">Payment Options</h6><br>
+                      <div class="paymentDetails">
+                        <div class="form-check paymentIcon">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Credit & Debit Cards
+                            </label>
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-discover"></i>
+                            <i class="fab fa-cc-discover"></i>
+                          </div>
+                      </div>
+                     <div class="row firstrow">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                        <form method="POST" action="">
+                        {% csrf_token %}
+                          <div class="inputDetails toalinput">
+                            <label for="number" class="fw-bold">Card Number</label><br><br>
+                            <input class="form-control password cardnumber" type="number" placeholder="xxx xxxx xxxx" name="card_number">
+                          </div>
+                        </div>
+                          <div class="col-6 col-sm- col-md-6 col-lg-3">
+                            <div class="inputDetails toalinput">
+                              <label for="number" class="fw-bold">Expiration Date</label><br><br>
+                              <input class="form-control  carddate" type="date" placeholder="DD/MM/YYY" name="date">
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                            <div class="inputDetails toalinput">
+                              <label for="number" class="fw-bold">CVC</label><br><br>
+                              <input class="form-control cardCode" type="number" placeholder="xxxx" name="cvc">
+                            </div>
+                          </div>
+                      </div> -->
+                      <div class="row secondrow">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="inputDetails toalinput">
+                            <label for="text" class="fw-bold">First Name</label><br><br>
+                            <input class="form-control password cardnumber" type="text" placeholder="Enter First Name.." name="first_name">
+                          </div>
+                        </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="inputDetails toalinput">
+                              <label for="text" class="fw-bold">Last Name</label><br><br>
+                              <input class="form-control  carddate" type="text" placeholder="Enter Last Name..." name="last_name">
+                            </div>
+                          </div>
+                          </form>
+                     </div>
+
+                     <div class="lastCheckBox">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Save As Default <span class="badge bg-secondary newbadge">?</span></label>
+                        </label>
+                      </div>
+                     </div>
+
+                     <div class="paypalCheck">
+                      <div class="form-check paymentOption">
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext"><i class="pay">Pay</i><span><i>pal</i></span></h6></a>
+                      </div>
+                      <div class="form-check paymentOption">
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext1">stripe</h6></a>
+                      </div>
+                      <div class="form-check paymentOption">
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext2"><i>Razor Pay</i></h6></h6></a>
+                      </div>
+                      <div class="form-check paymentOption">
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 text-white paypaltext3">SSLCOMMERZ</h6></h6></a>
+                      </div>
+                      <div class="form-check paymentOption">
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext4">ammar<span>Pay</span></h6></h6></a>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 offset-lg-1">
+              <div class="card">
+                <div class="card-body">
+                {% for cp in cart_products %}
+                  {% if request.session.cart %}
+                    <div class="gigimg">
+                      <img src="{{ cp.gig.image.url }}" alt="gig">
+                      <span class="fw-bold" style="font-size: 14px;">
+                        {{ cp.package }}
+                        <p style="font-size: 13px; color: grey;">{{ cp.gig.gig_title }}</p>
+                        <p>{{ cp.package.delivery_time }} Delivery</p>
+                      </span>
+                      
+                      
+                    </div>
+                  {% else %}
+                  <p>No Gigs Added To Cart</p>
+                  {% endif %}
+                  {% endfor %}
+                  <hr>
+                  <div class="gigDetails">
+                    <span class="fw-bold">Services</span>
+                    
+                    <div class="gigDetalIocn">
+                      <i class="fas fa-check"></i>2 Revisions <br>
+                      <i class="fas fa-check"></i>2 Initial Concepts Included <br>
+                      <i class="fas fa-check"></i>Logo Transparency <br>
+                      <i class="fas fa-check"></i>Printable Resotution File <br>
+                    </div>
+                  </div>
+                  <div class="promoCode">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Promo code goes here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button class="btn btn-outline-secondary promoButton" type="button" id="button-addon2">Apply</button>
+                    </div>
+
+                  </div>
+                  <div class="services">
+                    <span>Services fee <span class="badge bg-secondary newbadge">?</span></span>
+                    <p>$5</p>
+                  </div>
+                  <hr>
+                  <div class="totalDetails">
+                    <p class="fw-bold ttt">Total</p>
+                    <p class="fw-bold ddd">$ {{ cart_products|total_with_service_fee:request.session.cart }}</p><br>
+                    <p class="delivery ttt">Total Delivery Time</p>
+                    
+                  </div>
+                  <div class="d-flex justify-content-center confirmButton">
+                    <button type="button" class="btn btn-success w-100 confirm">Confirm & Pay</button>
+                  </div>
+                  <div class="secondCardFooter text-center">
+                    <i class="fas fa-lock"></i> SSL Secure Paayment
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div><br><br><br>
+    <hr>
+
+    <div class="container">
+      <div class="footerText">
+        <span class="co-grey">Payments are processed by Fivourr International Ltd., Fiverr Limited, and Fiverr Inc. See</span>
+        <a href="#">Payment Terms</a>
+      </div>
+    </div><br>
+
+  </body>
+</html>

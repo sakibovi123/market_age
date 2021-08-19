@@ -1,0 +1,948 @@
+{% load static %}
+{% load custom_filter %}
+{% include 'buyingview/header.html' %}
+
+
+<section class="profile-action container">
+        <div class="inner-profile row">
+            <div class="col-md-3 full-width">
+                <div class="card inner-card">
+                    <div class="card-detail">
+                        <h1>Hi ({{ request.user }})</h1>
+                        <p>Get offers from sellers for your project</p>
+                        <a href="{% url 'post_a_request' %}" class="btn profile-button">Post a request</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="col-md-9 inner-right">
+
+
+
+            <div class="with-bg">
+
+                <div class="bg-img">
+
+                    <img src= "{% static 'images/action-profile.png' %}" alt="">
+
+                </div>
+
+                <div class="left-post">
+                    <span>{{ request.user }},</span>
+                    <p>Here's what you need for brand packaging</p>
+                </div>
+
+
+                <div class="right-slider">
+
+
+
+                    <div class="responsive">
+                        {% for cat in cats %}
+
+                        {% if cat %}
+                        <!--category slider div starts Here-->
+                        <div>
+                            <div class="class">
+                                <!--<i class="fab fa-500px"></i>-->
+                                <img src="{{ cat.icon.url }}" style="height: 80px; margin: 0 auto;">
+                                <h5>{{ cat.title }}</h5>
+                            </div>
+                        </div>
+
+                        {% else %}
+
+                        <h4>No Category Found!</h4>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!--
+=============================================================================
+                            Continue Browsing section
+============================================================================= -->
+
+
+<section id="continue-browsing">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1>Continue Browsing</h1>
+        </div>
+
+    <div class="service-card">
+    <div class="row inner-service-card">
+
+
+
+
+
+{% for g in gigs %}
+
+        <div class="col-md-3">
+            <div class="card">
+                <a href="{% url 'gig_details' g.id %}">
+                    <img src="{{ g.image.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                        <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">{{ g.user.extendeduser.level }}</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+
+    </div>
+    </div>
+    </div>
+</section>
+
+<!--
+=============================================================================
+                            Recommended for you section
+============================================================================= -->
+
+<section id="recommended">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1>Recommended for you</h1>
+        </div>
+
+    <div class="service-card">
+    <div class="row inner-service-card">
+
+
+        {% for g in gigs %}
+
+        <div class="col-md-3">
+            <div class="card">
+                 <a href="{% url 'gig_details' g.id %}">
+                    <img src="{{ g.image.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                       <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">fiver level</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+</section>
+
+<!--
+=============================================================================
+                            Most popular Gigs in Web Programming
+============================================================================= -->
+
+
+<section id="popular-gig">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1>Most popular Gigs in Web Programming </h1>
+        </div>
+
+    <div class="service-card">
+    <div class="row inner-service-card">
+
+
+      {% for g in pop_web_gigs %}
+
+        <div class="col-md-3">
+            <div class="card">
+                 <a href="{% url 'gig_details' g.id %}">
+                    <img src="{{ g.image.url }}" class="card-img-top" alt="...">
+                    </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                        <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">fiver level</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+
+    </div>
+    </div>
+    </div>
+</section>
+
+
+
+<!--
+=============================================================================
+                            Gigs you may like
+============================================================================= -->
+
+
+<section id="Gigs-you-may-like">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1>Gigs-you may-like </h1>
+        </div>
+
+    <div class="service-card">
+
+
+
+    <div class="row service-card mb-5">
+
+
+      {% for g in gigs %}
+
+        <div class="col-md-3 for-tab-view-fixxing for-bottom-margin">
+            <div class="card">
+                <a href="{% url 'gig_details' g.id %}">
+                    <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                   <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                       <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">fiver level</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+ </div>
+</div>
+</section>
+
+
+
+
+
+<!--
+=============================================================================
+                            Verified Pro services in Web Programming
+============================================================================= -->
+
+
+<section id="verified-service">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1 class="verified">Verified Pro services</h1>
+        <p class="">Hand-vetted talent for all your professional needs.</p>
+        </div>
+
+    <div class="service-card">
+
+
+
+    <div class="row service-card mb-5">
+
+
+       {% for g in pro_gigs %}
+
+        <div class="col-md-3 for-tab-view-fixxing mb-3">
+            <div class="card">
+                 <a href="{% url 'gig_details' g.id %}">
+                    <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                       <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">Level {{ g.user.extendeduser.level }} Seller</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+ </div>
+</div>
+</section>
+
+
+
+
+
+
+<!--
+=============================================================================
+                            Middle slider
+============================================================================= -->
+
+
+<section id="middle-slider">
+    <div class="container">
+
+        <div class="slidermoron">
+
+        <div>
+            <div class="class">
+                <i class="fas fa-allergies boro"></i>
+                <h5>Work hard, focus your goal</h5>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="class">
+                <i class="fas fa-allergies boro"></i>
+                <h5>Work hard, focus your goal</h5>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="class">
+                <i class="fas fa-allergies boro"></i>
+                <h5>Work hard, focus your goal</h5>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="class">
+                <i class="fas fa-allergies boro"></i>
+                <h5>Work hard, focus your goal</h5>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="class">
+                <i class="fas fa-allergies boro"></i>
+                <h5>Work hard, focus your goal</h5>
+            </div>
+        </div>
+
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
+<!--
+=============================================================================
+                            Editors' picks
+============================================================================= -->
+
+
+
+
+
+<section id="editors-picks">
+    <div class="innerbrowsing container">
+        <div class="headline">
+        <h1>Editors Picks </h1>
+        </div>
+
+    <div class="service-card">
+
+
+
+    <div class="row service-card mb-5">
+
+
+         {% for g in gigs %}
+
+        <div class="col-md-3 for-tab-view-fixxing">
+            <div class="card">
+                <a href="{% url 'gig_details' g.id %}">
+                    <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <p class="card-text">Some quick example text to build on the card title.</p>
+
+                    <div class="level">
+                        <i class="fas fa-star"></i>
+                       <strong>{{ g.gig_rating }}</strong>
+
+                        <span class="for-right">fiver level</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-heart"></i>
+                    <span class="for-right">Starting Start</span>
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+ </div>
+</div>
+</section>
+
+<!--
+=============================================================================
+                            For Mobile view (576 px screen)
+============================================================================= -->
+
+
+<!-- top-slider -->
+
+
+
+
+<div id="top-slider">
+
+    <form class="d-flex input-group collapse navbar-expand-md  mb-4" id="navbarSupportedContent">
+
+                    <i class="fas fa-search"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+
+    </form>
+
+    <div class="inner-top-slider ">
+        <div class="main-top container-fluid">
+
+
+                <div class="main-top-slider">
+                    <img src="{% static 'images/bg-5.jpg' %}" alt="">
+                    <h1>This is the slider title you can add any title here </h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+
+
+               <div class="main-top-slider">
+                    <img src="{% static 'images/bg-2.jpg' %}" alt="">
+                    <h1>This is the slider title you can add any title here</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+
+
+                <div class="main-top-slider">
+                    <img src="{% static 'images/bg-6.jpg' %}" alt="">
+                    <h1>TThis is the slider title you can add any title here</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Catagory box -->
+
+<div class="card-box container">
+
+    <div class="card innr-card-box">
+
+        <div class="card-box-icon">
+            <i class="fas fa-pencil-ruler"></i>
+        </div>
+
+        <div class="card-box-text">
+            <h2>Graphics & Design</h2>
+            <p>Lorem ipsum dolor sit.</p>
+        </div>
+    </div>
+    <div class="card innr-card-box">
+
+        <div class="card-box-icon">
+            <i class="fas fa-pencil-ruler"></i>
+        </div>
+
+        <div class="card-box-text">
+            <h2>Graphics & Design</h2>
+            <p>Lorem ipsum dolor sit.</p>
+        </div>
+    </div>
+    <div class="card innr-card-box">
+
+        <div class="card-box-icon">
+            <i class="fas fa-pencil-ruler"></i>
+        </div>
+
+        <div class="card-box-text">
+            <h2>Graphics & Design</h2>
+            <p>Lorem ipsum dolor sit.</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!--continue-browsing gigs view-->
+
+
+<div class="mob-continue-browsing">
+    <h2>Continue browsing</h2>
+
+    <div>
+
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<!--Recommended for you gigs view-->
+
+
+
+<div class="mob-continue-browsing">
+    <h2>Recommended for you</h2>
+
+    <div>
+
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+    <div>
+    <div class="mob-card">
+        <div class="mob-card-img">
+            <img src="img/bg-1.jpg" alt="">
+        </div>
+
+        <div class="mob-card-title">
+            <h4>The title of the gigs with some of word</h4>
+        <div class="seller-status">
+            <span><i class="fas fa-star"></i></span>
+            <span>5.0</i></span>
+            <span>(12)</i></span>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="mob-card-footer">
+        <img src="img/bg.jpg" alt="">
+        <span >Buyer name</span>
+
+        <p>STARTING AT</p>
+        <strong>$120</strong>
+    </div>
+
+
+    <div class="liner"></div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include 'buyingview/footer.html' %}

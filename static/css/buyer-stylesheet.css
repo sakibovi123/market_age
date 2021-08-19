@@ -1,0 +1,630 @@
+/* for font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,300&display=swap');
+/* ================================= */
+
+/* Common CSS */
+
+*{
+    list-style: none;
+    text-decoration: none;
+    color: #82858C;
+}
+/* Header  */
+#home-page{
+    margin-top: 10px;
+}
+.inner-home{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.logo{
+    width: 10%;
+}
+.input-group{
+    width: 36%;
+    position: relative;
+}
+.form-control{
+    padding-left: 30px;
+    font-size: 15px;
+    outline: none;
+}
+.fa-search{
+    position: absolute;
+    justify-content: center;
+    align-self: center;
+    z-index: 1;
+    margin-left: 8px;
+    color: #CED4DA;
+    display: block;
+
+}
+
+.fas {
+    color: rgb(121, 121, 121) !important;
+}
+.form-control {
+   height: 33px;
+  }
+.btn {
+   height: 33px;
+   padding: 0px 20px ;
+   background-color: #1DBF73;
+   color: #fff;
+   font-weight: 700;
+   font-size: 14px;
+   border: none;
+   line-height: 0;
+   transition: .3s;
+  }
+.btn:hover{
+   background-color: #19A463;
+   color: #fff;
+}
+.form-control:focus {
+    box-shadow: none;
+    z-index: -1;
+  }
+.fa-search{
+    z-index: 100;
+}
+.fiv-logo{
+    width: 100px;
+}
+.main-menu{
+    width: 60%;
+    text-align: right;
+}
+.for-ul{
+    margin-top: 12px;
+}
+.for-ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 22px;
+
+}
+.for-ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+.for-ul li a:hover{
+    color: #19A463;
+}
+
+.for-ul li a span{
+    color: #19A463;
+    font-weight: 600;
+}
+.profile-img{
+    height: 20px;
+}
+.profile-img img{
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+}
+.nav-link{
+    font-size: 16px;
+    font-weight: 700;
+}
+.nav-link:hover{
+    color: #19A463 !important;
+}
+.active{
+    color: #19A463 !important;
+    font-weight: 900;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    box-shadow: none;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+.navbar-brand {
+    margin-right: 4rem;
+}
+
+/* ====================================
+           Mobile nav-bar menu
+==================================== */
+
+
+/* for mobile navbar section  */
+
+.on-mobile{
+    display: none;
+}
+
+
+
+
+
+
+/* ====================================
+            main-menu
+==================================== */
+.dag{
+    background-color: #d3d3d6;
+    height: 1px;
+}
+.catagory-selection{
+    width: 100%;
+}
+
+.catagory-name{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.catagory-name li{
+    padding: 6px 0px;
+    position: relative;
+}
+.catagory-name li a{
+    text-decoration: none;
+    color: #82858C;
+    font-weight: 500;
+    font-size: 17px;
+}
+.catagory-name li:hover::before{
+    content: "";
+    background-color: #19A463;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+/*
+======================================
+            profile action
+======================================
+*/
+.profile-action{
+    margin-top: 30px;
+    height: auto;
+}
+.card{
+    background-color: #FAFAFA;
+}
+.inner-right{
+    width: 75%;
+}
+
+.card-detail{
+    text-align: center;
+}
+
+.card-detail h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: #000;
+    margin-top: 20px;
+}
+.card-detail p{
+    font-size: 18px;
+    margin: 30px 0px;
+    color: #000;
+    margin-bottom: 30px;
+}
+.profile-button{
+    width: 80%;
+    background-color: transparent;
+    border: 1px solid #19A463;
+    color: #19A463;
+    padding: 18px;
+    margin-bottom: 32px;
+}
+.with-bg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+.bg-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.bg-img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 230px;
+}
+.right-slider{
+    width: 80%;
+}
+
+.left-post{
+    z-index: 1;
+    margin-left: 12px;
+}
+.left-post span{
+    font-size: 35px;
+    color: #fff;
+    font-weight: 500;
+}
+.left-post p{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+/*
+======================================
+            Profile action slider
+======================================
+*/
+
+.responsive{
+    margin: 0px !important;
+}
+.slick-slide {
+    padding: 0px 10px !important;
+
+}
+
+.left-post{
+   width: 40%;
+}
+.right-slider{
+    width: 60%;
+}
+.class{
+    background-color: rgb(240, 238, 241);
+    margin: 15px;
+    height: 200px;
+    text-align: center;
+    padding-top: 40px;
+    z-index: 0;
+    border-radius: 15px;
+}
+.fab{
+    font-size: 35px;
+}
+.class h5{
+    text-align: center;
+    color: #000;
+}
+
+
+/*
+========================================
+Continue browsing for every card
+======================================== */
+.headline h1{
+    margin: 50px 0px;
+    color: #000;
+}
+
+.card img{
+    width: 100%;
+    height: 170px !important;
+    object-fit: cover;
+}
+.fa-star, strong{
+    color: #02C2A9;
+}
+.for-right{
+    float: right;
+}
+
+/*
+========================================
+        display one slider left
+======================================== */
+.slick-track {
+    margin-left: 0;
+    margin-right: 0;
+}
+.card-body{
+    text-align: left;
+}
+.card-footer i{
+    float: left;
+    margin-right: 5px;
+}
+/*
+========================================
+                Slider btn
+======================================== */
+
+
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 50px;
+    line-height: 1;
+    opacity: .75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: 100;
+}
+
+.slick-next:before {
+    color: #000 !important ;
+}
+
+.slick-next {
+    right: 3px;
+}
+.slick-prev, .slick-next {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    z-index: 1;
+}
+.slick-prev::before, .slick-next::before {
+    font-family: slick;
+    font-size: 50px;
+    line-height: 1;
+    opacity: 0.75;
+    color: rgb(0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+
+}
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+    display: none;
+}
+.slick-dots {
+    bottom: 24px;
+    left: -388px;
+    width: 100%;
+}
+/* Verified Pro services in Web Programming  */
+
+.verified{
+    margin-bottom: 5px !important ;
+}
+.short{
+    color: #000 ;
+    margin-bottom: 40px;
+}
+.resizing{
+    margin-bottom: 30px;
+}
+
+/*
+==============================
+            Slider
+============================== */
+
+
+  /* the slides */
+  .class{
+    margin-left:27px;
+  }
+
+  /* the parent */
+  .slidermoron{
+    margin-left:-27px;
+  }
+
+.boro{
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+.card img{ 
+    height: 180px;
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/*
+==============================================================
+        For web view hidden part
+============================================================== */
+
+#top-slider{
+    display: none;
+}
+.card-box, .mob-continue-browsing{
+    display: none;
+}
+
+/*
+==============================================================
+        For MOBILE view ( 578px )
+============================================================== */
+
+/* top-slider  */
+
+
+#top-slider{
+    margin: 20px 0px 35px 0px;
+}
+.main-top{
+    padding: 0;
+}
+.main-top-slider{
+    width: 100%;
+    position: relative;
+    background-color: #000;
+}
+.main-top-slider img{
+    width: 100%;
+    height: 100%;
+    max-height: 310px;
+    object-fit: cover;
+    opacity: .5;
+    background-position: center;
+}
+
+.overlay-black{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    top: 0;
+}
+
+.main-top-slider h1{
+    width: 80%;
+    object-fit: cover;
+    position: absolute;
+    top: 40%;
+    color: #fff;
+    text-align: left;
+    margin-left: 10%;
+}
+
+.main-top-slider p{
+    width: 80%;
+    object-fit: cover;
+    position: absolute;
+    top: 70%;
+    color: #fff;
+    text-align: left;
+    margin-left: 10%;
+}
+
+/* top-catagory */
+
+.innr-card-box{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 40px 0px 40px;
+    padding: 25px;
+}
+.card-box-icon{
+    font-size: 30px;
+    background-color: #001aad;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 80px;
+    height: 80px;
+}
+.card-box-icon i{
+    padding: 25px;
+    color: #fff;
+}
+.card-box-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+.card-box-text h2{
+    font-size: 30px;
+}
+
+
+
+
+        /* Mobile card-box  */
+
+
+.mob-continue-browsing h2{
+    margin: 40px 40px;
+}
+.mob-continue-browsing h2{
+    font-size: 25px;
+}
+.mob-card-title{
+    width: 40%;
+    padding: 10px 0px 0px 30px;
+}
+.seller-status{
+   justify-content: flex-end;
+}
+.mob-card{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+.mob-card-img{
+    width: 45%;
+    margin-left: 8%;
+}
+.mob-card-img img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    -webkit-box-shadow: -3px 3px 38px -1px rgba(0,0,0,0.58);
+    box-shadow: -3px 3px 38px -1px rgba(146, 116, 116, 0.58);
+}
+
+/* card footer */
+
+.mob-card-footer{
+    width: 92%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 8%;
+}
+
+.mob-card-footer img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+
+}
+
+.mob-card-footer span{
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.mob-card-footer p{
+   margin-left: 30%;
+   margin-right: 8px;
+}
+.liner{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(212, 212, 212);
+    margin: 8px 0px 40px 0px;
+}
+
+
+
+/*footer*/
+
+.footer{
+    background-color: #272727;
+    width: 100%;
+    padding-top: 42px;
+    padding-bottom: 20px;
+}
+.topFooter a{
+    text-decoration: none;
+    color: #fff;
+}
+.active{
+    color: #717171;
+}
+
+.topFooter a i:hover{
+    color:#f266e7;
+}
+.topFooter a p{
+    font-size: 13px;
+}
+.topFooter a p:hover{
+    color:#7a85eb;
+}
+.topFooter a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+
+

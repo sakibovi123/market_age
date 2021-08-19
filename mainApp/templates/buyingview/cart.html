@@ -1,0 +1,248 @@
+{% load static %}
+{% load custom_filter %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/cartdesign.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+    <title>Cart</title>
+  </head>
+  <body>
+
+    <!-- Mobile navbar section starts -->
+<nav class="mobile__navbar">
+    <div class="hamburger__menu">
+        <span class="iconify" data-icon="radix-icons:hamburger-menu" data-inline="false"></span>
+    </div>
+    <div class="logo__img">
+        <p class="text-center">Upgrade your Order</p>
+    </div>
+
+    <!-- For fixed black background -->
+    <div class="bg__fixed"></div>
+
+    <div class="mobile__navLinks">
+
+        <div class="top__section">
+            <div class="nav__close">
+                <span class="iconify" data-icon="carbon:close-outline" data-inline="false"></span>
+            </div>
+            <div class="user__profile">
+                <div class="mobile__userImg">
+                    <a href="#">
+                        <img src="{% static 'images/user_img.jpg' %}" alt="">
+                    </a>
+                </div>
+                <p>Wasek Samin</p>
+            </div>
+        </div>
+        <div class="all__options">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Inbox</a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Lists</a>
+                </li>
+                <li class="browse__cat">
+                    <div>Browse Categories</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="browse__cat">
+                    <div>Explore</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="fivourr__pro">
+                    <a href="#">Fivourr Pro</a>
+                </li>
+                <li class="fivourr__business">
+                    <a href="#">Fiverr Busines</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">Buying</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Manage Requests</a>
+                </li>
+                <li>
+                    <a href="#">Post a Request</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">Selling</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Manage Sales</a>
+                </li>
+                <li>
+                    <a href="#">Revenues</a>
+                </li>
+                <li>
+                    <a href="#">Learn Online Courses</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <p class="fw-bold text-dark">General</p>
+                    <hr>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+                <li class="browse__cat cat__alt">
+                    <div>English <span class="iconify" data-icon="bi:globe" data-inline="false"></span></div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+                <li class="browse__cat cat__alt">
+                    <div>USD - $</div>
+                    <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Mobile navbar section ends -->
+
+
+    <!-- header part -->
+    <header class="container">
+        <div class="headerLogo">
+        <a href="{% url 'seller_dashboard' %}">
+            <img src="{% static 'images/logo.png' %}">
+        </a>
+            <span class="orderText1"><a href="{% url 'cartView' %}"><strong>Order Details</strong></a> <i class="fas fa-chevron-right"></i></span>
+            <span class="orderText"> <a href="{% url 'checkout' %}"><strong>Confirm  & pay</strong></a> <i class="fas fa-chevron-right"></i></span>
+            <span class="orderText"> <strong>Submit Requirements</strong></span>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <hr>
+    </div>
+
+    <!-- main part   -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="gigText">
+                    <h3>Customize Your Package</h3>
+                </div><br>
+                {% for c in cart_products %}
+                <div class="giggig">
+                    <div class="gigImg">
+                        <img src="{{ c.gig.image.url }}" alt="">
+                    </div>
+                    <div class="gigdetails">
+                        <span class="gigtitle"> <a href="#">{{ c.package }}</a></span><br>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="rating"> <strong> {{ c.gig.gig_rating }}</strong> ({{ c.gig.click }} Clicks)</span><br>
+                        <span class="view"><a href="#">View what's included <i class="fas fa-chevron-down"></i></a></span>
+                     </div>
+                     <div class="quantity">
+                        <span> QTY &nbsp;</span>
+                        <!-- <button class="btn minus-btn disabled" type="button">-</button> -->
+                        <input type="text" id="quantity" value="{{ c|cart_quantity:request.session.cart }}">
+                        <!-- <button class="btn plus-btn" type="button">+</button> -->
+                     </div>
+                     <div class="totalPrice">
+                        <span id="price"> <strong>$ {{ c.price }}</strong></span>
+                     </div>
+                 </div>
+                 {% endfor %}
+                <hr>
+                <div class="getStarted">
+                    <span>Get Started</span><br>
+                    <i class="fas fa-check"> 3 Days Delivery</i><br>
+                    <i class="fas fa-check"> 2 Revisions</i><br>
+                    <i class="fas fa-check"> 2 Initial  Concepts Included</i><br>
+                    <i class="fas fa-check"> Printable Resolution</i><br>
+                    <i class="fas fa-check"> Logo Transparency</i><br>
+                    <span>$ 30</span><br>
+                </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="card m-4 checkCard">
+                        <div class="card-body checkoutCard">
+                            <h4>Summary</h4>
+                            <div class="cardBodyDetails">
+                                <p class="details">Subtotal</p>
+                                <p class="amount">${{ cart_products|get_subtotal_cart_total:request.session.cart }}</p><br>
+                                <p class="details">Service Free ?</p>
+                                <p class="amount">$5</p><br>
+                                <hr>
+                                <p class="details">Total</p>
+                                <p class="amount">${{ cart_products|total_with_service_fee:request.session.cart }}</p><br>
+                                <p class="details">Delivery Time</p>
+                                <p class="amount">3 days</p><br>
+                                <div class="button d-flex justify-content-center">
+                                    <a href="{% url 'checkout' %}" type="button" class="btn btn-success continue col-lg-12">
+                                        Continue to Checkout
+                                    </a>
+                                    </br>
+
+                                </div><br>
+                                <p class="text-center footertext">You won't be charged yet</p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="paymentIconAll">
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                        <i class="fab fa-cc-paypal paymentIcon"></i>
+                      </div><br>
+                      <div class="cardFooterText">
+                        <p class="text-center">SSL SECURED PAYMENT</p>
+                        <p class="text-center">Your information is protected by 256-bit SSL <br> encryption</p>
+                      </div>
+                </div>
+            </div>
+        </div>
+         <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+        <script src="{% static 'js/mobile_navbar.js' %}"></script>
+
+  </body>
+</html>
