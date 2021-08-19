@@ -70,8 +70,7 @@
                       </div>
                      <div class="row firstrow">
                       <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                        <form method="POST" action="">
-                        {% csrf_token %}
+                        
                           <div class="inputDetails toalinput">
                             <label for="number" class="fw-bold">Card Number</label><br><br>
                             <input class="form-control password cardnumber" type="number" placeholder="xxx xxxx xxxx" name="card_number">
@@ -92,6 +91,8 @@
                       </div> -->
                       <div class="row secondrow">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                        <form method="POST" action="">
+                        {% csrf_token %}
                           <div class="inputDetails toalinput">
                             <label for="text" class="fw-bold">First Name</label><br><br>
                             <input class="form-control password cardnumber" type="text" placeholder="Enter First Name.." name="first_name">
@@ -103,7 +104,7 @@
                               <input class="form-control  carddate" type="text" placeholder="Enter Last Name..." name="last_name">
                             </div>
                           </div>
-                          </form>
+                          
                      </div>
 
                      <div class="lastCheckBox">
@@ -129,7 +130,7 @@
                         <a class="paymentLink" href=""><h6 class="fw-bold fs-7 text-white paypaltext3">SSLCOMMERZ</h6></h6></a>
                       </div>
                       <div class="form-check paymentOption">
-                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext4">ammar<span>Pay</span></h6></h6></a>
+                        <a class="paymentLink" href=""><h6 class="fw-bold fs-7 paypaltext4">aamar<span>Pay</span></h6></h6></a>
                       </div>
                      </div>
                     </div>
@@ -180,13 +181,19 @@
                   <hr>
                   <div class="totalDetails">
                     <p class="fw-bold ttt">Total</p>
+                    {% if request.session.cart %}
                     <p class="fw-bold ddd">$ {{ cart_products|total_with_service_fee:request.session.cart }}</p><br>
+
                     <p class="delivery ttt">Total Delivery Time</p>
-                    
+                    {% else %}
+
+                    {% endif %}
+
                   </div>
                   <div class="d-flex justify-content-center confirmButton">
-                    <button type="button" class="btn btn-success w-100 confirm">Confirm & Pay</button>
+                    <button type="submit" class="btn btn-success w-100 confirm">Confirm & Pay</button>
                   </div>
+                  </form>
                   <div class="secondCardFooter text-center">
                     <i class="fas fa-lock"></i> SSL Secure Paayment
                   </div>

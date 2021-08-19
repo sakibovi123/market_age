@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'mainApp',
     'crispy_forms',
     'rest_framework',
-    'API'
+    'API',
+    'AdminPanel'
 ]
 
 MIDDLEWARE = [

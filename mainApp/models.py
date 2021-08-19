@@ -182,19 +182,21 @@ class ReviewSeller(models.Model):
 
 class Checkout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
     package = models.ForeignKey(GigManager, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveIntegerField(default=0)
     price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     total = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-
+    grand_total = models.DecimalField(decimal_places=2, max_digits=10, default=0.00, null=True)
 
 
     def save(self, *args, **kwargs):
         self.total = self.price*self.quantity
+        service_fee = self.total * 25 / 100
+        self.grand_total = self.total + service_fee
         super().save(*args, **kwargs)
 
 

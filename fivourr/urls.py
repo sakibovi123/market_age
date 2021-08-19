@@ -107,6 +107,10 @@ urlpatterns = [
 
     path('become_a_seller/', views.get_become_a_seller_page, name="BecomeSeller"),
 
+    # Buyer Orders Page Url
+    
+    path('buyer_orders/', views.get_buyer_orders_url, name="BuyerOrders"),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

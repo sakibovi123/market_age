@@ -15,18 +15,17 @@ def get_landing_page(request):
     cats = Category.objects.all()
 
     args = {
-            'landing_slider': landing_slider,
-            'services': services,
-            'cats': cats
-        }
+        'landing_slider': landing_slider,
+        'services': services,
+        'cats': cats
+    }
     return render(request, 'landingview/landingPage.html', args)
-
 
 
 @login_required(login_url='user_login')
 def service_wise_gigs(request, id):
     service = Services.objects.all()
-    gigs = Gig.objects.filter(service_id = id)
+    gigs = Gig.objects.filter(service_id=id)
     cats = Category.objects.all()[:6]
     args = {
         'service': service,
@@ -48,7 +47,6 @@ def view_all_category(request):
     return render(request, 'landingview/categories.html')
 
 
-
 @login_required(login_url='user_login')
 def buying_view(request):
     gigs = Gig.objects.all()
@@ -56,7 +54,7 @@ def buying_view(request):
 
     pop_gigs = Gig.objects.filter(is_popular=True)
     pop_web_gigs = Gig.objects.filter(pop_web=True)
-    pro_gigs = Gig.objects.filter(is_pro = True)
+    pro_gigs = Gig.objects.filter(is_pro=True)
 
     args = {
         'gigs': gigs,
@@ -68,10 +66,10 @@ def buying_view(request):
     return render(request, 'buyingview/buying_view.html', args)
 
 # @login_required(login_url='user_login')
+
+
 def gig_details(request, id):
     gigs = Gig.objects.filter(id=id).first()
-
-
 
     def get_ip(request):
         address = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -121,7 +119,6 @@ def user_registration(request):
     return render(request, 'accountview/registration.html', args)
 
 
-
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -146,6 +143,8 @@ def seller_profile(request):
     return render(request, 'accountview/seller.html')
 
 # Category Wise Page
+
+
 @login_required(login_url='user_login')
 def categoryWisePage(requrest):
     return render(requrest, "buyingview/category_wise.html")
@@ -163,22 +162,24 @@ def manageGigs(request):
     return render(request, "wasekPart/manage_gigs.html")
 
 # Chat inbox
+
+
 @login_required(login_url='user_login')
 def chatInbox(requrest):
     return render(requrest, "wasekPart/chat_inbox.html")
 
 # Seller Dashboard
+
+
 @login_required(login_url='user_login')
 def seller_dashboard(request):
     users = User.objects.all()
-    
+
     args = {
         'users': users
     }
-    
+
     return render(request, 'sellingview/seller_dashboard.html', args)
-
-
 
 
 # Settings Page
@@ -187,30 +188,39 @@ def settings_page(request):
     return render(request, 'sellingview/settings.html')
 
 # Account Page
+
+
 @login_required(login_url='user_login')
 def account_page(request):
     return render(request, 'sellingview/account.html')
 
 # Security Page
+
+
 @login_required(login_url='user_login')
 def security_page(request):
     return render(request, 'sellingview/security.html')
 
 # Notification Page
+
+
 @login_required(login_url='user_login')
 def notifications_page(request):
     return render(request, 'sellingview/notifications.html')
 
 # Support Page
+
+
 @login_required(login_url='user_login')
 def support_page(request):
     return render(request, 'sellingview/support.html')
 
 # Azim Contact Page
+
+
 @login_required(login_url='user_login')
 def azim_contact_page(request):
     return render(request, 'sellingview/contacts.html')
-
 
 
 # seller Dashboard End
@@ -220,7 +230,7 @@ def add_to_cart(request):
     package_id = request.POST.get('package_id')
     remove = request.POST.get('remove')
 
-    if request.method=="POST":
+    if request.method == "POST":
         if cart:
             quantity = cart.get(package_id)
             if quantity:
@@ -239,9 +249,9 @@ def map_function(request, package_id):
     cart = request.session.get('cart', None)
     package_id = str(package_id.id)
 
-
     if package_id in cart:
         return package_id.price * cart[package_id]
+
 
 def get_cart_products(request):
     ids = list(request.session.get('cart').keys())
@@ -264,10 +274,11 @@ def cartView(request):
     cart_products = GigManager.get_gig(ids)
     print(cart)
     context = {
-            'cart_products': cart_products
-        }
+        'cart_products': cart_products
+    }
 
     return render(request, 'buyingview/cart.html', context)
+
 
 @login_required(login_url='user_login')
 def checkout(request):
@@ -277,11 +288,43 @@ def checkout(request):
     ids = list(request.session.get('cart').keys())
     cart_products = GigManager.get_gig(ids)
 
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        user = request.user
+        packages = GigManager.get_gig(list(cart.keys()))
+
+        for package in packages:
+            checkout = Checkout(
+                first_name=first_name,
+                last_name=last_name,
+                user=user,
+                package=package,
+                price=package.price,
+                quantity=cart.get(str(package.id))
+            )
+
+            checkout.save()
+
+            return redirect('BuyerOrders')
+
+        request.session['cart'] = {}
     args = {
-            'cart_products': cart_products
-        }
+        'cart_products': cart_products
+    }
     return render(request, 'buyingview/checkout.html', args)
 
+
+@login_required(login_url='user_login')
+def get_buyer_orders_url(request):
+    orders = Checkout.objects.filter(user=request.user)
+    
+    
+     
+    args = {
+        'orders': orders
+    }
+    return render(request, 'buyingview/buying_orders.html', args)
 
 
 @login_required(login_url='user_login')
@@ -295,29 +338,26 @@ def category_wise_gigs(request, category_id):
     return render(request, 'landingview/category_wise.html', args)
 
 
-
-
 @login_required(login_url='user_login')
 def post_a_request(request):
     categories = Category.objects.all()
     delivery_time = DeliveryTime.objects.all()
-    
+
     post_form = PostRequestForm(request.POST, request.FILES)
     if request.method == 'POST':
         post_form = PostRequestForm(request.POST, request.FILES)
         if post_form.is_valid():
             post_form.save()
-            
+
             print(post_form)
-            
-            return redirect('buying_view')                
+
+            return redirect('buying_view')
     args = {
         'categories': categories,
         'delivery_time': delivery_time,
         'post_form': post_form
     }
     return render(request, 'buyingview/post_request.html', args)
-
 
 
 def get_become_a_seller_page(request):
