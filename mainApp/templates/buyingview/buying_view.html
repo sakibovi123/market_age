@@ -418,14 +418,13 @@
     </div>
 </section>
 
+
+
+
 <!--
 =============================================================================
                             Editors' picks
 ============================================================================= -->
-
-
-
-
 
 <section id="editors-picks">
     <div class="innerbrowsing container">
@@ -442,7 +441,7 @@
 
          {% for g in gigs %}
 
-        <div class="col-md-3 for-tab-view-fixxing">
+        <div class="col-md-3 for-tab-view-fixxing mb-4">
             <div class="card">
                 <a href="{% url 'gig_details' g.id %}">
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
@@ -933,16 +932,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-{% include 'buyingview/footer.html' %}
+{% include 'buyingview/buying_footer.html' %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Avg, Max, Min
+from django.contrib import messages
 from .models import Gig
 import time
 from .forms import *
@@ -10,16 +11,21 @@ from django.contrib.auth.models import User
 
 
 def get_landing_page(request):
-    landing_slider = LandingSlider.objects.all().order_by('-id')
-    services = Services.objects.all()
-    cats = Category.objects.all()
+    user_session = request.session.get("user", None)
+    
+    if (user_session is None):
+        landing_slider = LandingSlider.objects.all().order_by('-id')
+        services = Services.objects.all()
+        cats = Category.objects.all()
 
-    args = {
-        'landing_slider': landing_slider,
-        'services': services,
-        'cats': cats
-    }
-    return render(request, 'landingview/landingPage.html', args)
+        args = {
+            'landing_slider': landing_slider,
+            'services': services,
+            'cats': cats
+        }
+        return render(request, 'landingview/landingPage.html', args)
+    else:
+        return redirect("buying_view")
 
 
 @login_required(login_url='user_login')
@@ -108,31 +114,45 @@ def gig_details(request, id):
 
 
 def user_registration(request):
-    form = UserCreationForm()
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+    user_session = request.session.get("user", None)
 
-            return redirect('user_login')
-    args = {
-        'form': form
-    }
-    return render(request, 'accountview/registration.html', args)
+    if (user_session is None):
+        form = UserCreationForm()
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+
+                return redirect('user_login')
+        args = {
+            'form': form
+        }
+        return render(request, 'accountview/registration.html', args)
+    else:
+        return redirect("buying_view")
 
 
 def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    user_session = request.session.get("user", None)
 
-        user = authenticate(request, username=username, password=password)
+    if (user_session is None):
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
 
-        if user is not None:
-            login(request, user)
+            user = authenticate(request, username=username, password=password)
 
-            return redirect('buying_view')
-    return render(request, 'accountview/login.html')
+            if user is not None:
+                # Creating user session
+                request.session["user"] = username
+                login(request, user)
+                return redirect('buying_view')
+            else:
+                messages.error(request, "Incorrect username or password!")
+
+        return render(request, 'accountview/login.html')
+    else:
+        return redirect("buying_view")
 
 
 def logoutview(request):
@@ -381,3 +401,5 @@ def get_order_details_url(request, id):
     }
     
     return render(request, 'buyingview/order_details.html', args)
+
+

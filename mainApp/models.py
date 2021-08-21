@@ -79,9 +79,21 @@ class Subcategory(models.Model):
     sub_img = models.ImageField(upload_to="images/", null=True, blank=True)
     parent_market = models.ForeignKey(
         Category, on_delete=models.CASCADE, null=True)
+    # is_iterested = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.title
+
+class CategoryInterestedModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    is_interested = models.BooleanField(default=False)
+    
+    
+    def __str__(self):
+        return str(self.user)
+
+
 
 
 class Tag(models.Model):
@@ -124,10 +136,22 @@ class Gig(models.Model):
     pop_web = models.BooleanField(default=False, null=True, blank=True)
     is_pro = models.BooleanField(default=False, null=True)
     short_desc = models.TextField(null=True)
-    click = models.PositiveIntegerField(null=True, blank=True)
+    click = models.PositiveIntegerField(null=True, blank=True, default=0)
+    impressions = models.PositiveIntegerField(default=0, null=True, blank=True)
+    order_count = models.PositiveIntegerField(default=0, null=True, blank=True)
+    cancellation = models.PositiveIntegerField(default=0, null=True, blank=True)
 
     def __str__(self):
         return self.gig_title
+
+
+
+class GigFavoriteModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
+    is_Favorite = models.BooleanField(default=False)
+
+
 
 
 class GigManager(models.Model):

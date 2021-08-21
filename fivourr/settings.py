@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'API',
-    'AdminPanel'
+    'AdminPanel',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
