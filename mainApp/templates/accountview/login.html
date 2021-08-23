@@ -1,157 +1,117 @@
+{% extends "accountview/base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-
-    <title>Log In</title>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="forBackground">
-        <!--<div class="top_pop">-->
-        <!--    <div class="logo d-flex justify-content-center">-->
-        <!--<a href="#"><img src="{% static 'images/logo.png' %}"></a>-->
-        <!--    </div>-->
-        <!--</div>-->
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3"></div>
-
-            <div class="col-lg-6">
-              <div class="ui">
-                <form action="" method="POST">
-                  {% csrf_token %}
-                  <h5>Log In</h5>
-                  <div class="socialIcon">
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-lg form-control"
-                    >
-                      <i class="fab fa-facebook-f"></i> Continue with Facebook</button
-                    ><br /><br />
-
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-lg form-control"
-                    >
-                      <i class="fab fa-google googleButton"></i> Continue with
-                      Google
-                    </button>
-                  </div>
-                  <br /><br />
-                  <div class="or-dev">
-                    <span>OR</span>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-12 inputColumn">
-                      <input
-                        type="text"
-                        placeholder="Username"
-                        class="form-control"
-                        name="username"
-                        required
-                      />
+{% block content %}
+    <div class="total-login">
+        <div class="forBackground">
+          <!--<div class="top_pop">-->
+          <!--    <div class="logo d-flex justify-content-center">-->
+          <!--<a href="#"><img src="{% static 'images/logo.png' %}"></a>-->
+          <!--    </div>-->
+          <!--</div>-->
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3"></div>
+  
+              <div class="col-lg-6 main-colum">
+                <div class="ui first-ui">
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                    <h5>Log In</h5>
+                    <div class="socialIcon">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-lg form-control"
+                      >
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook</button
+                      ><br /><br />
+  
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-lg form-control"
+                      >
+                        <i class="fab fa-google googleButton"></i> Continue with
+                        Google
+                      </button>
                     </div>
                     <br /><br />
-                    <!--<div class="col-lg-6">-->
-                    <!--    <input type="text" placeholder="Last name" class="form-control">-->
-                    <!--</div><br><br>-->
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3"></div>
-                    <!--<div class="col-lg-12"><input type="email" placeholder="Email Address" class="form-control"></div>-->
-                    <div class="col-lg-3"></div>
-                  </div>
-                  <br />
-                  <div class="row passwordColumn">
-                    <div class="col-lg-12">
-                      <input
-                        type="password"
-                        placeholder="Password"
-                        class="form-control"
-                        name="password"
-                        required
-                      />
+                    <div class="or-dev">
+                      <span>OR</span>
                     </div>
-                    <br /><br />
-                    <!--<div class="col-lg-6">-->
-                    <!--    <input type="password" placeholder="Confirm Password" class="form-control">-->
+                    <div class="row">
+                      <div class="col-lg-12 inputColumn">
+                        <input
+                          type="text"
+                          placeholder="Username"
+                          class="form-control"
+                          name="username"
+                          required
+                        />
+                      </div>
+                      <br /><br />
+                      <!--<div class="col-lg-6">-->
+                      <!--    <input type="text" placeholder="Last name" class="form-control">-->
+                      <!--</div><br><br>-->
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <!--<div class="col-lg-12"><input type="email" placeholder="Email Address" class="form-control"></div>-->
+                      <div class="col-lg-3"></div>
+                    </div>
+                    <br />
+                    <div class="row passwordColumn">
+                      <div class="col-lg-12">
+                        <input
+                          type="password"
+                          placeholder="Password"
+                          class="form-control"
+                          name="password"
+                          required
+                        />
+                      </div>
+                      <br /><br />
+                      <!--<div class="col-lg-6">-->
+                      <!--    <input type="password" placeholder="Confirm Password" class="form-control">-->
+                      <!--</div>-->
+                    </div>
+                    <!--<div class="checkBox">-->
+                    <!--    <form>-->
+                    <!--        <input type="checkbox" name="remember" value="1">-->
+                    <!--        <label for="remember">Remember Me</label>-->
+                    <!--        <label class="fotgot" for="forgot"><a href="#">Forgot Password?</a></label>-->
+                    <!--    </form>-->
                     <!--</div>-->
-                  </div>
-                  <!--<div class="checkBox">-->
-                  <!--    <form>-->
-                  <!--        <input type="checkbox" name="remember" value="1">-->
-                  <!--        <label for="remember">Remember Me</label>-->
-                  <!--        <label class="fotgot" for="forgot"><a href="#">Forgot Password?</a></label>-->
-                  <!--    </form>-->
-                  <!--</div>-->
-                  {% for message in messages %}
-                  <p id="form__Errormessages">{{message}}</p>
-                  {% endfor %}
-
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-lg form-control signupbtn"
-                  >
-                    Log In
-                  </button>
-                  <hr />
-                  <div class="logInFooter">
-                    <p>
-                      Don't have an account?
-                      <a href="{% url 'user_registration' %}">Sign Up</a>
-                    </p>
-                  </div>
-                </form>
+                    {% for message in messages %}
+                    <p id="form__Errormessages">{{message}}</p>
+                    {% endfor %}
+  
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg form-control signupbtn"
+                    >
+                      Log In
+                    </button>
+                    <hr />
+                    <div class="logInFooter">
+                      <p>
+                        Don't have an account?
+                        <a href="{% url 'user_registration' %}">Sign Up</a>
+                      </p>
+                    </div>
+                  </form>
+                </div>
               </div>
+  
+              <div class="col-lg-3"></div>
             </div>
-
-            <div class="col-lg-3"></div>
           </div>
+        </br>
         </div>
-      </div>
+
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

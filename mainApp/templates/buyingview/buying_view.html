@@ -84,11 +84,11 @@
 
 
 
-{% for g in gigs %}
+{% for g in offers %}
 
         <div class="col-md-3">
             <div class="card">
-                <a href="{% url 'gig_details' g.id %}">
+                <a href="{% url 'offer_details' g.id %}">
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
@@ -106,7 +106,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                    <span class="for-right">Starting at $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>
@@ -141,7 +141,7 @@
 
         <div class="col-md-3">
             <div class="card">
-                 <a href="{% url 'gig_details' g.id %}">
+                 <a href="{% url 'offer_details' g.id %}">
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
@@ -159,7 +159,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                    <span class="for-right">Starting at $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>
@@ -192,11 +192,11 @@
     <div class="row inner-service-card">
 
 
-      {% for g in pop_web_gigs %}
+      {% for g in pop_web_offers %}
 
         <div class="col-md-3">
             <div class="card">
-                 <a href="{% url 'gig_details' g.id %}">
+                 <a href="{% url 'offer_details' g.id %}">
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                     </a>
                 <div class="card-body">
@@ -214,7 +214,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                    <span class="for-right">Starting at $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>
@@ -251,11 +251,11 @@
     <div class="row service-card mb-5">
 
 
-      {% for g in gigs %}
+      {% for g in offers %}
 
         <div class="col-md-3 for-tab-view-fixxing for-bottom-margin">
             <div class="card">
-                <a href="{% url 'gig_details' g.id %}">
+                <a href="{% url 'offer_details' g.id %}">
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
@@ -273,7 +273,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                    <span class="for-right">Starting at $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>
@@ -319,11 +319,11 @@
     <div class="row service-card mb-5">
 
 
-       {% for g in pro_gigs %}
+       {% for g in pro_offers %}
 
         <div class="col-md-3 for-tab-view-fixxing mb-3">
             <div class="card">
-                 <a href="{% url 'gig_details' g.id %}">
+                 <a href="{% url 'offer_details' g.id %}">
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
@@ -341,7 +341,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting at $ {{ g.gigmanager_set.all|gig_price_start }}</span>
+                    <span class="for-right">Starting at $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>
@@ -439,11 +439,11 @@
     <div class="row service-card mb-5">
 
 
-         {% for g in gigs %}
+         {% for g in offers %}
 
         <div class="col-md-3 for-tab-view-fixxing mb-4">
             <div class="card">
-                <a href="{% url 'gig_details' g.id %}">
+                <a href="{% url 'offer_details' g.id %}">
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
@@ -461,7 +461,7 @@
                 <div class="card-footer">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-heart"></i>
-                    <span class="for-right">Starting Start</span>
+                    <span class="for-right">Starting Start $ {{ g.offermanager_set.all|offer_price_start }}</span>
                 </div>
 
             </div>

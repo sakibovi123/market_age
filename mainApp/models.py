@@ -35,10 +35,9 @@ class City(models.Model):
 
 class ExtendedUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField(null=True, unique=True)
+    contact_no = models.CharField(max_length=15, null=True)
     profile_picture = models.ImageField(upload_to="images/", null=True)
-    rating_text = models.CharField(max_length=1000, null=True)
-    level = models.IntegerField(default=None, null=True)
-    rating = models.FloatField(default=0.0)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
 
@@ -120,18 +119,26 @@ class Package(models.Model):
         return self.title
 
 
-class Gig(models.Model):
+class Offer(models.Model):
+    Offer_STATUS = (
+        ("ACTIVE", "ACTIVE"),
+        ("PENDING APPROVAL", "PENDING APPROVAL"),
+        ("REQUIRED MODIFICATION", "REQUIRED MODIFICATION"),
+        ("DENIED", "DENIED"),
+        ("PAUSED", "PAUSED"),
+    )
+
     slug = models.SlugField(unique=True, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    gig_title = models.CharField(max_length=240)
+    offer_title = models.CharField(max_length=240)
     image = models.ImageField(upload_to='images/')
     extra_images = models.ImageField(upload_to="images/")
-    gig_video = models.FileField(upload_to="images/")
+    offer_video = models.FileField(upload_to="images/")
     service = models.ForeignKey(Services, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    packages = models.ManyToManyField(Package, through='GigManager')
+    packages = models.ManyToManyField(Package, through='OfferManager')
     description = models.TextField()
-    gig_rating = models.FloatField(default=0)
+    offer_rating = models.FloatField(default=0)
     is_popular = models.BooleanField(default=False, null=True)
     pop_web = models.BooleanField(default=False, null=True, blank=True)
     is_pro = models.BooleanField(default=False, null=True)
@@ -140,35 +147,36 @@ class Gig(models.Model):
     impressions = models.PositiveIntegerField(default=0, null=True, blank=True)
     order_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     cancellation = models.PositiveIntegerField(default=0, null=True, blank=True)
+    offer_status = models.CharField(max_length=200, null=True, choices=Offer_STATUS, default="ACTIVE")
 
     def __str__(self):
-        return self.gig_title
+        return self.offer_title
 
 
 
-class GigFavoriteModel(models.Model):
+class OfferFavoriteModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     is_Favorite = models.BooleanField(default=False)
 
 
 
 
-class GigManager(models.Model):
-    gig = models.ForeignKey(Gig, on_delete=models.CASCADE, null=True)
+class OfferManager(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
     package = models.ForeignKey(Package, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return str(self.gig)
+        return str(self.offer)
 
     @staticmethod
     def get_price(self):
         return self.price
 
     @staticmethod
-    def get_gig(ids):
-        return GigManager.objects.filter(id__in=ids)
+    def get_offer(ids):
+        return OfferManager.objects.filter(id__in=ids)
 
 
 class Currency(models.Model):
@@ -187,12 +195,19 @@ class Rating(models.Model):
 
 class ReviewSeller(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    gig = models.ForeignKey(Gig, on_delete=models.CASCADE, null=True)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
     rate_seller = models.ForeignKey(
         Rating, on_delete=models.CASCADE, null=True)
 
 
 class Checkout(models.Model):
+    ORDER_CHOICES = (
+        ("ACTIVE", "ACTIVE"),
+        ("LATE", "LATE"),
+        ("DELIVERED", "DELIVERED"),
+        ("COMPLETED", "COMPLETED"),
+        ("CANCELLED", "CANCELLED"),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name='seller')
@@ -200,12 +215,15 @@ class Checkout(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
-    package = models.ForeignKey(GigManager, on_delete=models.CASCADE)
+    package = models.ForeignKey(OfferManager, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     total = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     grand_total = models.DecimalField(
         decimal_places=2, max_digits=10, default=0.00, null=True)
+    paid = models.BooleanField(default=False)
+    due_date = models.DateField(null=True)
+    order_status = models.CharField(max_length=200, choices=ORDER_CHOICES, default="ACTIVE")
 
     def save(self, *args, **kwargs):
         self.total = self.price*self.quantity
@@ -231,6 +249,15 @@ class Checkout(models.Model):
     @staticmethod
     def get_orders_by_users(user):
         return Checkout.objects.filter(user=user['id'])
+
+
+class SellerSubmit(models.Model):
+    checkout = models.ForeignKey(Checkout, on_delete=models.CASCADE, related_name="checkout")
+    file_field = models.FileField(upload_to="files/", null=True)
+    submit_date = models.DateField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return str(self.id)
 
 
 class PromoCode(models.Model):

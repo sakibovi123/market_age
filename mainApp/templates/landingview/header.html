@@ -74,7 +74,6 @@
             margin-top: -70px;
         }
     }
-}
   </style>
 
   <title>FIVOUR</title>
@@ -92,10 +91,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Fiverr Busines</a>
+            <a class="nav-link" href="#">Reimble</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Explore</a>
+            <a class="nav-link" href="#">Hire Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-globe"></i> English</a>
@@ -114,7 +113,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'user_login' %}">Sign In</a>
           </li>
-          <a type="button" class="btn btn-outline-success" href="{% url 'user_registration' %}">Join</a>
+          <a type="button" class="btn btn-outline-light text-white join-button" href="{% url 'user_registration' %}">Join</a>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'buying_view' %}">Swtich To Buying View</a>

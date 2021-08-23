@@ -9,6 +9,10 @@
     display: none;
 }
 
+.join-button:hover{
+    color: #000 !important;
+}
+
 .navbar-brand span{
     color: #fff;
     font-size: 18px;

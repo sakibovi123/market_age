@@ -1,0 +1,43 @@
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/azim_new_header.css' %}">
+
+<div class="main-nav">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand navBar" href="#"><img src="{% static 'images/marketage.png' %}" alt="marketage logo"></a>
+          <button class="navbar-toggler tog-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent"><br>
+            <form class="d-flex search-box">
+                <input class="form-control search-bar me-2" type="search" placeholder="Search" aria-label="Search">
+                <i class="fas fa-search srch-icon"></i>
+              </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" aria-current="page" href="#">Explore</a>
+              </li>
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" href="#">English</a>
+              </li>
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" href="#">$ USD</a>
+              </li>
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" href="#">Become a Seller</a>
+              </li>
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" href="#">Sign In</a>
+              </li>
+              <li class="nav-item nav-element">
+                <a class="nav-link fw-bold" href="#">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+      </nav>
+   </div>
+</div>
+{% endblock %}

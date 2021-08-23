@@ -10,6 +10,11 @@
   align-items: center;
 }
 
+.manage__orderTable tbody td:nth-child(2) {
+  max-width: 20rem;
+  min-width: 20rem;
+}
+
 .order__searchForm {
   display: flex;
   justify-content: space-between;
@@ -30,6 +35,12 @@
 .order__searchForm .iconify {
   font-size: 1.5rem;
   color: #ccc;
+}
+
+.order__status {
+  background-color: #69c0e2 !important;
+  color: #fff;
+  text-align: center;
 }
 
 /* Order header section ends */
@@ -157,7 +168,8 @@
 }
 
 .manage__orderTable tbody td {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  font-weight: bold;
 }
 
 .manage__orderTable tbody td:first-child {

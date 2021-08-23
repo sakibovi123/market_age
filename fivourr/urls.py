@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('', views.get_landing_page, name="get_landing_page"),
     path('buyer_view/', views.buying_view, name="buying_view"),
-    path('gig_details/<int:id>/', views.gig_details, name="gig_details"),
+    path('offer_details/<int:id>/', views.offer_details, name="offer_details"),
 
     #user Registration URL
     path('registration/', views.user_registration, name="user_registration"),
@@ -44,14 +44,14 @@ urlpatterns = [
 
     path('seller_profile/', views.seller_profile, name="seller_profile"),
 
-    ## Service wise gigs url
-    path('gigs/<int:id>/', views.service_wise_gigs, name="service_wise_gigs"),
+    ## Service wise offers url
+    path('offers/<int:id>/', views.service_wise_offers, name="service_wise_offers"),
     # Category wise page
-    path("category-wise/<slug:slug>/", views.category_wise_gigs, name="category-wise"),
+    path("category-wise/<slug:slug>/", views.category_wise_offers, name="category-wise"),
     # Manage order page url
     path("manage-order/", views.manageOrder, name="manage-order"),
-    # Gigs page url
-    path("manage-gigs/", views.manageGigs, name="manage-gigs"),
+    # offers page url
+    path("manage-offers/", views.manageOffers, name="manage-offers"),
     # Chat inbox url
     path("inbox", views.chatInbox, name="inbox"),
     # Seller Dashboard
@@ -71,7 +71,7 @@ urlpatterns = [
 
     # category wise Subcategory
 
-    path('category_wise_subcategory/p=2021/<int:category_id>/', views.category_wise_gigs, name="categoryWiseView"),
+    path('category_wise_subcategory/p=2021/<int:category_id>/', views.category_wise_offers, name="categoryWiseView"),
 
     # Settings URL
 
@@ -115,7 +115,27 @@ urlpatterns = [
     
     path('order_details/<int:id>/', views.get_order_details_url, name="OrderDetails"),
     
+    # Pay With SSLCOMMERZ URL
+    
+    # path('sslcommerz_payment/', views.pay_with_sslcommerz, name="SSLCOMMERZ"),
+
+    # Success page
+    path("success/", views.successView, name="success"),
+    # Failed page
+    path("failed/", views.failedView, name="failed"),
+    # Cancelled page
+    path("cancelled/", views.cancelledView, name="cancelled"),
+    # Extended user page
+    path("extended-user/", views.extendedUserView, name="extended-user"),
+    # Seller submit page
+    path("seller-submit/<int:pk>/", views.sellerSubmitView, name="seller-submit"),
+    
+    # Test URL
+    path('test/', views.level_up_seller, name="levelUp"),
+    
 ]
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.extended__form {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 0.3rem;
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+.extended__form > p {
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+}
+.extended-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.extended-colum{
+    background-color: #fff;
+    padding: 40px;
+}
+.sub-btn{
+    background-color: #58d098;
+    outline: none !important;
+    border: none !important;
+}
+.custom-file-upload{
+    background-color: #fff !important;
+}

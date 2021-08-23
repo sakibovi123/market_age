@@ -20,34 +20,34 @@ class ServiceApiView(APIView):
         return Response(serializer.data)
 
 
-class GigApiView(APIView):
+class OfferApiView(APIView):
     permission_classes = [IsAuthenticated, ]
     authentication_classes = [TokenAuthentication, ]
 
     def get(self, request):
-        gigs = Gig.objects.all()
+        offers = Offer.objects.all()
 
         data = []
 
-        serializer = GigSeriaLizer(gigs, many=True)
+        serializer = OfferSeriaLizer(offers, many=True)
 
         user = request.user
 
-        for gigs in serializer.data:
-            favorite_gig = GigFavoriteModel.objects.filter(user=user).filter(
-                gig_id=gigs['id']
+        for offers in serializer.data:
+            favorite_offer = OfferFavoriteModel.objects.filter(user=user).filter(
+                offer_id=offers['id']
             )
 
-            if favorite_gig:
-                gigs['gigfavoritemodel'] = favorite_gig[0].is_Favorite
+            if favorite_offer:
+                offers['offerfavoritemodel'] = favorite_offer[0].is_Favorite
             else:
-                gigs['gigfavoritemodel'] = False
-            data.append(gigs)
+                offers['offerfavoritemodel'] = False
+            data.append(offers)
 
         return Response(serializer.data)
 
 
-class GigFavoriteView(APIView):
+class OfferFavoriteView(APIView):
     permission_classes = [IsAuthenticated, ]
     authentication_classes = [TokenAuthentication, ]
 
@@ -55,22 +55,22 @@ class GigFavoriteView(APIView):
         data = request.data['id']
 
         try:
-            gig_obj = Gig.objects.get(id=data)
+            offer_obj = Offer.objects.get(id=data)
 
             user = request.user
 
-            single_interested_gig = GigFavoriteModel.objects.filter(user=user).filter(
-                gig=gig_obj
+            single_interested_offer = OfferFavoriteModel.objects.filter(user=user).filter(
+                offer=offer_obj
             )
 
-            if single_interested_gig:
-                print(single_interested_gig)
-                var = single_interested_gig.is_interested
-                single_interested_gig.is_interested = not var
-                single_interested_gig.save()
+            if single_interested_offer:
+                print(single_interested_offer)
+                var = single_interested_offer.is_interested
+                single_interested_offer.is_interested = not var
+                single_interested_offer.save()
             else:
-                GigFavoriteModel.objects.create(
-                    gig=gig_obj, user=user, is_Favorite=True
+                OfferFavoriteModel.objects.create(
+                    offer=offer_obj, user=user, is_Favorite=True
                 )
 
             respose_msg = {'error': False}

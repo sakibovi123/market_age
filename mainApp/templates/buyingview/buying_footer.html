@@ -7,6 +7,7 @@
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="{% static 'css/buying_footer.css' %}">
     <title>Footer</title>
 </head>
@@ -17,12 +18,13 @@
         <div class="two-colum">
             <div class="first_column">
                 <h3>CONTACT INFO</h3><br>
-                <p><span class="iconify" data-icon="et:phone" style="color: #fa3e57;"></span><a href="#"> Sales and SUpport (+88)01713429001</a></p>
-                <p><span class="iconify" data-icon="bx:bx-message-detail" style="color: #fa3e57;"></span><a href="#"> support@marketage.io</a></p>
-                <p><span class="iconify" data-icon="akar-icons:location" style="color: #fa3e57;"></span><a href="#"> Nikunja 02, Khilkhet, Dhaka 1229</a></p>
-                <p><span class="iconify" data-icon="uil:calender" style="color: #fa3e57;"></span><a href="#"> Monday-Saturday 24/7</a></p><br>
+                <p><i class="fas fa-mobile-alt"></i><a href="#">&nbsp; Sales and SUpport (+88)01713429001</a></p>
+                <p><i class="far fa-envelope-open"></i></span><a href="#">&nbsp; support@marketage.io</a></p>
+                <p><i class="fas fa-map-marker-alt"></i><a href="#"><a href="#">&nbsp; Nikunja 02, Khilkhet, Dhaka 1229</a></p>
+                <p><i class="far fa-calendar-minus"></i>&nbsp; Monday-Saturday 24/7</a></p><br>
+
                 <p class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:facebook" style="color: #ff0a95;"></span> <a href="#">&nbsp; <span class="social-textfb">FACEBOOK</span></a></p>
-                <p class="fb-with-text"><span class="iconify fb-icon" data-icon="akar-icons:instagram-fill" style="color: #ff0a95;"></span><a href="#">&nbsp; <span class="social-textin">INSTAGRAM</span></a></p>
+                <p><i class="fab fa-instagram fb-icon inatagram"></i> <a href="#">&nbsp; <span class="social-textin">INSTAGRAM</span></a></p>
                 <P class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:twitter" style="color: #ff0a95;"></span><a href="#">&nbsp; <span class="social-texttw">TWITTER</span></a></P>
                 <p class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:linkedin-icon" style="color: #ff0a95;"></span><a href="#">&nbsp; <span class="social-textln">LINKEDIN</span></a></p>
                 
@@ -31,10 +33,10 @@
                 <h3>CATEGORIES</h3><br>
                 <p><a href="#">Keyboards</a></p>
                 <p><a href="#">Mouse</a></p>
-                <p><a href="#">Switch Sets</a></p>
-                <p><a href="#">Gift Cards</a></p>
-                <p><a href="#">Headsets</a></p>
-                <p><a href="#">Wirst Rest</a></p>
+                <p><a href="#">Help & Support</a></p>
+                <p><a href="#">Trust & Saftety</a></p>
+                <p><a href="#">Term of Services</a></p>
+                <p><a href="#">Privacy Policy</a></p>
             </div>
           </div>
             <div class="third-colum">
@@ -42,22 +44,18 @@
                     <h3>STAY INFORMED BY NEWSSLETTER</h3><br>
                     <p>*Subscribe to our newsteller to receive early discount offers. <br> updates and new products info.</p>
                    <div class="colum-input">
-                    <input type="email" name="search" placeholder=" Your email here....">
+                    <input type="email" name="search" placeholder="&nbsp; Your email here....">
                    </div>
                     <div class="colum-img">
-                        <a href="#"><img src="images/logo.png" alt="logo"></a>
+                        <a href="#"><img src="{% static 'images/marketage.png' %}" alt="logo"></a>
                     </div>
                 </div>
             </div>
      </div>
     <div class="footer-bottom">
         <p><span>Marketage LTD</span> - All Rights Reserved</p>
-       <div class="payment-icon">
-        <span class="iconify paypal-icon" data-icon="cib:cc-paypal" style="color: #270aff;"></span>
-        <span class="iconify paypal-icon" data-icon="cib:cc-paypal" style="color: #270aff;"></span>
-        <span class="iconify paypal-icon" data-icon="cib:cc-paypal" style="color: #270aff;"></span>
-        <span class="iconify paypal-icon" data-icon="cib:cc-paypal" style="color: #270aff;"></span>
-        <span class="iconify paypal-icon" data-icon="cib:cc-paypal" style="color: #270aff;"></span>
+       <div class="payment-img">
+        <img src="{% static 'images/15.png' %}" alt="">
        </div>
     </div>
     </div>

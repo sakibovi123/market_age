@@ -1,0 +1,15 @@
+{% extends "wasekPart/base.html" %} {% block content %}
+
+<form method="POST" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    <p>Checkout ID</p>
+    {{ form.checkout }}
+    <p>File Upload</p>
+    {{ form.file_field }}
+    <div class="submit-main-button d-flex justify-content-center">
+    <button type="submit" class="btn btn-success sub-btn col-lg-7 mt-3">
+        Submit
+    </button>
+    </div>
+</form>
+{% endblock %}

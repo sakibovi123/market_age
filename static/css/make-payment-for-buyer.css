@@ -88,6 +88,9 @@ tbody, td, tfoot, th, thead, tr {
 .paypal, .ammrpay, .sslcommerz, .razorpay{
     display: none;
 }
+#paypal-button-container{
+    display: none;
+}
 
 
 @media screen and (max-width: 991px) {

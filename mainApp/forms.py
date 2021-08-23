@@ -18,3 +18,12 @@ class PostRequestForm(forms.ModelForm):
         model = BuyerPostRequest
         fields = '__all__'
     
+class ExtendedUserForm(forms.ModelForm):
+    class Meta:
+        model = ExtendedUser
+        fields = "__all__"
+
+class SellerSubmitForm(forms.ModelForm):
+    class Meta:
+        model = SellerSubmit
+        fields = "__all__"

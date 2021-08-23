@@ -3,12 +3,12 @@ from .models import *
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 
-class GigManagerInline(admin.TabularInline):
-    model = GigManager
+class OfferManagerInline(admin.TabularInline):
+    model = OfferManager
 
-class GigAdmin(admin.ModelAdmin):
+class OfferAdmin(admin.ModelAdmin):
     inlines = [
-        GigManagerInline
+        OfferManagerInline
     ]
 
 
@@ -21,11 +21,12 @@ admin.site.register(Category)
 admin.site.register(Subcategory)
 admin.site.register(Tag)
 admin.site.register(DeliveryTime)
-admin.site.register(Gig, GigAdmin)
+admin.site.register(Offer, OfferAdmin)
 admin.site.register(Currency)
 admin.site.register(DummyUser)
 admin.site.register(LandingSlider)
 admin.site.register(Checkout)
+admin.site.register(SellerSubmit)
 admin.site.register(PromoCode)
 admin.site.register(BuyerPostRequest)
 admin.site.register(CategoryInterestedModel)

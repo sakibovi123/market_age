@@ -19,32 +19,24 @@
   <!-- Order links section starts  -->
   <div class="order__links">
     <ul>
-      <button class="ordered__btn priority__btn active__link">
-        <li>
-          Prority
-          <span class="circle__badge">
-            <span>1</span>
-          </span>
-        </li>
-      </button>
-      <button class="ordered__btn active__btn">
+      <button class="ordered__btn active__btn active__link">
         <li>
           Active
           <span class="circle__badge">
-            <span>10</span>
+            <span>{{ active_orders|length }}</span>
           </span>
         </li>
       </button>
       <button class="ordered__btn late__btn">
         <li>
-          Late <span class="circle__badge"><span>2</span> </span>
+          Late <span class="circle__badge"><span>{{ late_orders|length }}</span> </span>
         </li>
       </button>
       <button class="ordered__btn delivered__btn">
         <li>
           Delivered
           <span class="circle__badge">
-            <span>4</span>
+            <span>{{ delivered_orders|length }}</span>
           </span>
         </li>
       </button>
@@ -52,7 +44,7 @@
         <li>
           Completed
           <span class="circle__badge">
-            <span>6</span>
+            <span>{{ completed_orders|length }}</span>
           </span>
         </li>
       </button>
@@ -60,15 +52,7 @@
         <li>
           Cancelled
           <span class="circle__badge">
-            <span>5</span>
-          </span>
-        </li>
-      </button>
-      <button class="ordered__btn starred__link">
-        <li>
-          Starred
-          <span class="circle__badge">
-            <span>1</span>
+            <span>{{ cancelled_orders|length }}</span>
           </span>
         </li>
       </button>
@@ -77,109 +61,44 @@
   <!-- Order links section ends  -->
 
   <!-- Order header section starts -->
-  <div class="card priority__order py-3 px-2 mt-4">
-    <p class="table__orderText">Prority orders</p>
+  <div class="card active__order py-3 px-2 mt-4">
+    <p class="table__orderText">Active orders</p>
   </div>
   <!-- Order header section ends -->
 
   <!-- Order table section starts -->
   <div class="table-responsive manage__orderTable">
-      <!-- Priotiry table section starts -->
-    <table class="table table-hover bg-white priority__table show__activeTable">
-      <thead>
-        <tr>
-          <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
-          <th scope="col" class="text-muted">gig</th>
-          <th scope="col" class="text-muted">due on</th>
-          <th scope="col" class="text-muted">total</th>
-          <th scope="col" class="text-muted">note</th>
-          <th scope="col" class="text-muted">status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="ps-3" colspan="2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Necessitatibus quae sit temporibus mollitia iusto suscipit.
-          </td>
-          <td>Mark priority</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td class="ps-3" colspan="2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-            doloribus.
-          </td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td class="ps-3" colspan="2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-            dicta unde illum exercitationem harum non!
-          </td>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- Priotiry table section ends -->
-
     <!-- Active table section starts -->
-    <table class="table table-hover bg-white activated__table">
+    <table class="table table-hover bg-white activated__table show__activeTable">
         <thead>
           <tr>
             <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
             <th scope="col" class="text-muted">gig</th>
             <th scope="col" class="text-muted">due on</th>
             <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
             <th scope="col" class="text-muted">status</th>
           </tr>
         </thead>
         <tbody>
+          {% if active_orders|length > 0 %}
+          {% for order in active_orders %}
           <tr>
             <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Necessitatibus quae sit temporibus mollitia iusto suscipit.
+              {{order.user}}
             </td>
-            <td>Mark active</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <td><a href="{% url 'seller-submit' order.id %}">{{ order.package }}</a></td>
+            <td>{{ order.due_date }}</td>
+            <td>{{ order.total }}</td>
+            <td class="order__status">{{ order.order_status|title }}</td>
           </tr>
+          {% endfor %}
+          {% else %}
           <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
+            <td class="ps-3" colspan="7">
+                <h6 class="fw-bold text-danger">No orders to show!</h6>
             </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
           </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
+          {% endif %}
         </tbody>
       </table>
       <!-- Active table section ends -->
@@ -192,7 +111,6 @@
             <th scope="col" class="text-muted">gig</th>
             <th scope="col" class="text-muted">due on</th>
             <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
             <th scope="col" class="text-muted">status</th>
           </tr>
         </thead>
@@ -206,29 +124,6 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
-            </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
           </tr>
         </tbody>
       </table>
@@ -242,7 +137,6 @@
             <th scope="col" class="text-muted">gig</th>
             <th scope="col" class="text-muted">due on</th>
             <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
             <th scope="col" class="text-muted">status</th>
           </tr>
         </thead>
@@ -256,29 +150,6 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
-            </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
           </tr>
         </tbody>
       </table>
@@ -292,7 +163,6 @@
             <th scope="col" class="text-muted">gig</th>
             <th scope="col" class="text-muted">due on</th>
             <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
             <th scope="col" class="text-muted">status</th>
           </tr>
         </thead>
@@ -306,29 +176,6 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
-            </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
           </tr>
         </tbody>
       </table>
@@ -342,7 +189,6 @@
             <th scope="col" class="text-muted">gig</th>
             <th scope="col" class="text-muted">due on</th>
             <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
             <th scope="col" class="text-muted">status</th>
           </tr>
         </thead>
@@ -356,83 +202,10 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
-            </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
           </tr>
         </tbody>
       </table>
       <!-- Cancelled table section ends -->
-
-      <!-- Starred table section starts -->
-      <table class="table table-hover bg-white starred__table">
-        <thead>
-          <tr>
-            <th scope="col" colspan="2" class="text-muted ps-3">buyer</th>
-            <th scope="col" class="text-muted">gig</th>
-            <th scope="col" class="text-muted">due on</th>
-            <th scope="col" class="text-muted">total</th>
-            <th scope="col" class="text-muted">note</th>
-            <th scope="col" class="text-muted">status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Necessitatibus quae sit temporibus mollitia iusto suscipit.
-            </td>
-            <td>Mark starred</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-              doloribus.
-            </td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td class="ps-3" colspan="2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor
-              dicta unde illum exercitationem harum non!
-            </td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- Starred table section ends -->
   </div>
   <!-- Order table section ends -->
 </div>

@@ -1,18 +1,20 @@
 from django.shortcuts import render, redirect
 from django.db.models import Avg, Max, Min
 from django.contrib import messages
-from .models import Gig
+from .models import Offer
 import time
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
+from sslcommerz_lib import SSLCOMMERZ
+from django.views.decorators.csrf import csrf_exempt
 
 
 def get_landing_page(request):
     user_session = request.session.get("user", None)
-    
+
     if (user_session is None):
         landing_slider = LandingSlider.objects.all().order_by('-id')
         services = Services.objects.all()
@@ -29,17 +31,17 @@ def get_landing_page(request):
 
 
 @login_required(login_url='user_login')
-def service_wise_gigs(request, id):
+def service_wise_offers(request, id):
     service = Services.objects.all()
-    gigs = Gig.objects.filter(service_id=id)
+    offers = Offer.objects.filter(service_id=id)
     cats = Category.objects.all()[:6]
     args = {
         'service': service,
-        'gigs': gigs,
+        'offers': offers,
         'cats': cats
     }
 
-    return render(request, 'landingview/service_wise_gigs.html', args)
+    return render(request, 'landingview/service_wise_offers.html', args)
 
 
 @login_required(login_url='user_login')
@@ -55,28 +57,28 @@ def view_all_category(request):
 
 @login_required(login_url='user_login')
 def buying_view(request):
-    gigs = Gig.objects.all()
+    offers = Offer.objects.all()
     cats = Category.objects.all()
 
-    pop_gigs = Gig.objects.filter(is_popular=True)
-    pop_web_gigs = Gig.objects.filter(pop_web=True)
-    pro_gigs = Gig.objects.filter(is_pro=True)
+    pop_offers = Offer.objects.filter(is_popular=True)
+    pop_web_offers = Offer.objects.filter(pop_web=True)
+    pro_offers = Offer.objects.filter(is_pro=True)
 
     args = {
-        'gigs': gigs,
-        'pop_gigs': pop_gigs,
+        'offers': offers,
+        'pop_offers': pop_offers,
         'cats': cats,
-        'pop_web_gigs': pop_web_gigs,
-        "pro_gigs": pro_gigs
+        'pop_web_offers': pop_web_offers,
+        "pro_offers": pro_offers
     }
     return render(request, 'buyingview/buying_view.html', args)
 
 # @login_required(login_url='user_login')
 
 
-def gig_details(request, id):
+def offer_details(request, id):
     cats = Category.objects.all()
-    gigs = Gig.objects.filter(id=id).first()
+    offers = Offer.objects.filter(id=id).first()
 
     def get_ip(request):
         address = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -97,20 +99,20 @@ def gig_details(request, id):
         print("It wont work either!!")
     else:
         u.save()
-        # gigs.gig_click_count = gigs.gig_click_count + 1
-        # gigs.save()
+        # offers.offer_click_count = offers.offer_click_count + 1
+        # offers.save()
     # if request.user:
-    #     gigs.gig_click_count = gigs.gig_click_count + 1
-    #     gigs.save()
+    #     offers.offer_click_count = offers.offer_click_count + 1
+    #     offers.save()
     c = DummyUser.objects.all().count()
-    related_gigs = Gig.objects.all()
+    related_offers = Offer.objects.all()
     args = {
-        'gigs': gigs,
+        'offers': offers,
         'c': c,
-        'related_gigs': related_gigs,
+        'related_offers': related_offers,
         'cats': cats
     }
-    return render(request, 'buyingview/gigs_details.html', args)
+    return render(request, 'buyingview/offers_details.html', args)
 
 
 def user_registration(request):
@@ -121,6 +123,7 @@ def user_registration(request):
         if request.method == 'POST':
             form = UserCreationForm(request.POST)
             if form.is_valid():
+                request.session["new_user"] = True
                 form.save()
 
                 return redirect('user_login')
@@ -134,6 +137,7 @@ def user_registration(request):
 
 def user_login(request):
     user_session = request.session.get("user", None)
+    new_user = request.session.get("new_user", None)
 
     if (user_session is None):
         if request.method == 'POST':
@@ -146,6 +150,8 @@ def user_login(request):
                 # Creating user session
                 request.session["user"] = username
                 login(request, user)
+                if new_user is not None:
+                    return redirect("extended-user")
                 return redirect('buying_view')
             else:
                 messages.error(request, "Incorrect username or password!")
@@ -175,13 +181,75 @@ def categoryWisePage(requrest):
 # Order page
 @login_required(login_url='user_login')
 def manageOrder(request):
-    return render(request, "wasekPart/manage_order.html")
+    orders = Checkout.objects.all().order_by("-id")
+    active_orders, late_orders, delivered_orders, completed_orders, cancelled_orders  = [], [], [], [], []
+
+    for order in orders:
+        if order.order_status == "ACTIVE":
+            active_orders.append(order)
+        elif order.order_status == "LATE":
+            late_orders.append(order)
+        elif order.order_status == "DELIVERED":
+            delivered_orders.append(order)
+        elif order.order_status == "COMPLETED":
+            completed_orders.append(order)
+        elif order.order_status == "CANCELLED":
+            cancelled_orders.append(order)
+
+    args = {
+        "active_orders": active_orders,
+        "late_orders": late_orders,
+        "delivered_orders": delivered_orders,
+        "completed_orders": completed_orders,
+        "cancelled_orders": cancelled_orders
+    }
+
+    return render(request, "wasekPart/manage_order.html", args)
 
 
-# Gigs page
+# offers page
 @login_required(login_url='user_login')
-def manageGigs(request):
-    return render(request, "wasekPart/manage_gigs.html")
+def manageOffers(request):
+    offers = Offer.objects.all().order_by("-id")
+    active_offers, pending_approvals, required_modifications, denieds, pauseds = [], [], [], [], []
+
+    for offer in offers:
+        if offer.offer_status == "ACTIVE":
+            active_offers.append(offer)
+        elif offer.offer_status == "PENDING APPROVAL":
+            pending_approvals.append(offer)
+        elif offer.offer_status == "REQUIRED MODIFICATION":
+            required_modifications.append(offer)
+        elif offer.offer_status == "DENIED":
+            denieds.append(offer)
+        elif offer.offer_status == "PAUSED":
+            pauseds.append(offer)
+
+    if request.method == "POST":
+        offer_id = request.POST.get("offer_id", None)
+
+        if offer_id is not None:
+            try:
+                offer_id = int(offer_id)
+            except:
+                return redirect("manage-offers")
+            else:
+                try:
+                    offer = Offer.objects.get(id=offer_id)
+                    offer.offer_status = "PAUSED"
+                    offer.save()
+                    return redirect("manage-offers")
+                except:
+                    return redirect("manage-offers")
+
+    args = {
+        "active_offers": active_offers,
+        "pending_approvals": pending_approvals,
+        "required_modifications": required_modifications,
+        "denieds": denieds,
+        "pauseds": pauseds,
+    }
+    return render(request, "wasekPart/manage_offers.html", args)
 
 # Chat inbox
 
@@ -277,7 +345,7 @@ def map_function(request, package_id):
 
 def get_cart_products(request):
     ids = list(request.session.get('cart').keys())
-    cart_products = GigManager.get_gig(ids)
+    cart_products = OfferManager.get_offer(ids)
     package_prices = list(map(map_function, cart_products))
     print(package_prices)
     total = sum(package_prices)
@@ -293,7 +361,7 @@ def cartView(request):
     if not cart:
         request.session['cart'] = {}
     ids = list(request.session.get('cart').keys())
-    cart_products = GigManager.get_gig(ids)
+    cart_products = OfferManager.get_offer(ids)
     print(cart)
     context = {
         'cart_products': cart_products
@@ -308,15 +376,15 @@ def checkout(request):
     if not cart:
         request.session['cart'] = {}
     ids = list(request.session.get('cart').keys())
-    cart_products = GigManager.get_gig(ids)
+    cart_products = OfferManager.get_offer(ids)
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         user = request.user
         # seller work
-        
-        packages = GigManager.get_gig(list(cart.keys()))
+
+        packages = OfferManager.get_offer(list(cart.keys()))
 
         for package in packages:
             checkout = Checkout(
@@ -351,15 +419,15 @@ def get_buyer_orders_url(request):
 
 # category wise Page
 @login_required(login_url='user_login')
-def category_wise_gigs(request, slug):
+def category_wise_offers(request, slug):
     cats = Category.objects.all()
     category = Category.objects.all()
-    catwise_gigs = Gig.objects.filter(category__slug=slug)
-    all_gigs = Gig.objects.all()
+    catwise_offers = Offer.objects.filter(category__slug=slug)
+    all_offers = Offer.objects.all()
     # sub_cats = Subcategory.objects.all()
 
-    args = {'catwise_gigs': catwise_gigs, 'category': category,
-            "all_gigs": all_gigs, 'cats': cats}
+    args = {'catwise_offers': catwise_offers, 'category': category,
+            "all_offers": all_offers, 'cats': cats}
 
     return render(request, 'landingview/category_wise.html', args)
 
@@ -375,8 +443,6 @@ def post_a_request(request):
         if post_form.is_valid():
             post_form.save()
 
-            print(post_form)
-
             return redirect('buying_view')
     args = {
         'categories': categories,
@@ -390,16 +456,144 @@ def get_become_a_seller_page(request):
     return render(request, 'landingview/become_a_seller.html')
 
 
-
-# Order Details Page
+# Order Details Page & SSLCOMMERZ 
 @login_required(login_url='user_login')
-def get_order_details_url(request, id):
-    order_details = Checkout.objects.get(pk=id)
-    
+def get_order_details_url(request, id, *args, **kwargs):
+    order = Checkout.objects.get(pk=id)
+    # print(order_details)
+    print(order.user)
+
+    if request.method == 'POST':
+        settings = {
+            'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True
+        }
+
+        user = request.user
+        # order = Checkout.objects.get(pk=kwargs['id'])
+        order = Checkout.objects.get(pk=id)
+        print(order)
+        first_name = order.first_name
+        last_name = order.last_name
+        quantity = order.quantity
+        total = order.grand_total
+
+        # Checkout.objects.filter(pk=kwargs['id'])
+        Checkout.objects.filter(pk=id)
+
+        sslcommerz = SSLCOMMERZ(settings)
+        post_body = {}
+        post_body['total_amount'] = total
+        post_body['currency'] = "BDT"
+        post_body['tran_id'] = "123sdf5xxxxx234asf2321"
+        # post_body['tran_id'] = transaction_id
+        post_body['success_url'] = "http://127.0.0.1:8000/success/"
+        post_body['fail_url'] = "http://127.0.0.1:8000/failed/"
+        post_body['cancel_url'] = "http://127.0.0.1:8000/cancel/"
+        post_body['emi_option'] = 0
+        post_body['cus_name'] = first_name
+        post_body['cus_email'] = "test@test.com"
+        post_body['cus_add1'] = "customer address"
+        post_body['cus_phone'] = "01700000000"
+        post_body['cus_city'] = "Dhaka"
+        post_body['cus_country'] = "Bangladesh"
+        post_body['shipping_method'] = "NO"
+        post_body['multi_card_name'] = ""
+        post_body['num_of_item'] = quantity
+        post_body['product_name'] = order.package
+        post_body['product_category'] = "Test Category"
+        post_body['product_profile'] = "general"
+        print(post_body)
+        response = sslcommerz.createSession(post_body)
+        print(response)
+        return redirect(response['GatewayPageURL'])
     args = {
-        'order_details': order_details
+        'order': order
     }
-    
+
     return render(request, 'buyingview/order_details.html', args)
 
 
+@csrf_exempt
+def successView(request):
+    return render(request, "responseview/success.html")
+
+@csrf_exempt
+def failedView(request):
+    return render(request, "responseview/failed.html")
+
+@csrf_exempt
+def cancelledView(request):
+    return render(request, "responseview/cancel.html")
+
+
+def extendedUserView(request):
+    form = ExtendedUserForm()
+    user_session = request.session.get("user", None)
+
+    if user_session is not None:
+        if request.method == "POST":
+            email = request.POST.get("email")
+            contact_no = request.POST.get("contact_no")
+            profile_picture = request.FILES.get("profile_picture")
+            country_id = request.POST.get("country")
+            city_id = request.POST.get("city")
+            # print(request.user, email, contact_no, profile_picture, country_id, city_id)
+            try:
+                country = Country.objects.get(id=country_id)
+                city = City.objects.get(id=city_id)
+            except:
+                return redirect("extended-user")
+            else:
+                ExtendedUser.objects.create(user=request.user, email=email,
+                                            contact_no=contact_no, profile_picture=profile_picture,
+                                            country=country, city=city)
+                return redirect('buying_view')
+    else:
+        return redirect("user_registration")
+
+    args = {
+        'form': form,
+    }
+    return render(request, "wasekPart/extendedForm.html", args)
+
+def sellerSubmitView(request, pk):
+    form = SellerSubmitForm()
+
+    args = {
+        "form": form
+    }
+    return render(request, "wasekPart/sellerSubmit.html")
+    
+
+
+
+## Level up sellers
+
+def level_up_seller(request):
+    offr = Offer.objects.all()
+    offers = Offer.objects.values_list('click')
+    
+    usr = offr.click
+    
+    print(usr)
+    
+    
+    print(offers)
+    args = {
+        'offers': offers
+    }
+    
+    return render(request, 'testpart/test.html', args)
+
+
+## Rating Sellers
+
+
+
+## Top Offers
+
+
+
+## 
+
+    

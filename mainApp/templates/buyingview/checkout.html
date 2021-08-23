@@ -54,41 +54,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-7 mainContentCard">
                 <div class="card maincard">
                     <div class="card-body">
-                      <!-- <h6 class="fs-5 fw-bold">Payment Options</h6><br>
-                      <div class="paymentDetails">
-                        <div class="form-check paymentIcon">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Credit & Debit Cards
-                            </label>
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-discover"></i>
-                            <i class="fab fa-cc-discover"></i>
-                          </div>
-                      </div>
-                     <div class="row firstrow">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                        
-                          <div class="inputDetails toalinput">
-                            <label for="number" class="fw-bold">Card Number</label><br><br>
-                            <input class="form-control password cardnumber" type="number" placeholder="xxx xxxx xxxx" name="card_number">
-                          </div>
-                        </div>
-                          <div class="col-6 col-sm- col-md-6 col-lg-3">
-                            <div class="inputDetails toalinput">
-                              <label for="number" class="fw-bold">Expiration Date</label><br><br>
-                              <input class="form-control  carddate" type="date" placeholder="DD/MM/YYY" name="date">
-                            </div>
-                          </div>
-                          <div class="col-6 col-sm-6 col-md-6 col-lg-3">
-                            <div class="inputDetails toalinput">
-                              <label for="number" class="fw-bold">CVC</label><br><br>
-                              <input class="form-control cardCode" type="number" placeholder="xxxx" name="cvc">
-                            </div>
-                          </div>
-                      </div> -->
+                
                       <div class="row secondrow">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                         <form method="POST" action="">
@@ -143,7 +109,7 @@
                 {% for cp in cart_products %}
                   {% if request.session.cart %}
                     <div class="gigimg">
-                      <img src="{{ cp.gig.image.url }}" alt="gig">
+                      <img src="{{ cp.offer.image.url }}" alt="gig">
                       <span class="fw-bold" style="font-size: 14px;">
                         {{ cp.package }}
                         <p style="font-size: 13px; color: grey;">{{ cp.gig.gig_title }}</p>

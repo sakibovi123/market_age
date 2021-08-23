@@ -6,8 +6,8 @@ from decimal import Decimal
 register = template.Library()
 
 
-@register.filter(name='gig_price_start')
-def gig_price_start(queryset):
+@register.filter(name='offer_price_start')
+def offer_price_start(queryset):
     return queryset.first().price
 
 

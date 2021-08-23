@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainApp.models import BuyerPostRequest, Category, Services, Gig
+from mainApp.models import BuyerPostRequest, Category, Services, Offer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
@@ -12,9 +12,9 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class GigSeriaLizer(serializers.ModelSerializer):
+class OfferSeriaLizer(serializers.ModelSerializer):
     class Meta:
-        model = Gig
+        model = Offer
         fields = '__all__'
 
 
