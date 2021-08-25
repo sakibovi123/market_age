@@ -1,0 +1,995 @@
+{% load static %}
+{% load custom_filter %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+   
+    
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+    <title>Creative Logo Design</title>
+  </head>
+  <body>
+      <div class="wasek___header">
+        {% include '../wasekPart/header.html' %}
+      </div>
+
+      <!-- arko header code -->
+      
+    <header id="home-page">
+        <nav class="navbar navbar-expand-lg navbar-light nav-bar-hide-on-mob">
+            <div class="container">
+
+                <a class="navbar-brand" href="{% url 'buying_view' %}">
+                    <span>
+                        <img src="{% static 'images/logo.png' %}" alt="" style="height: 50px; width:150px;">
+                    </span>
+                </a>
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"           aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+            <form class="d-flex input-group collapse navbar-expand-md" id="navbarSupportedContent">
+
+                    <i class="fas fa-search"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+                <ul class="navbar-nav ms-auto mb-lg-0">
+
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Fiver Pro</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Explore</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Lists</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{% url 'BuyerOrders' %}">Orders</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="{% url 'seller_dashboard' %}">Switch to Selling</a>
+                  </li>
+
+
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+
+        <div class="dag container-fluid"></div>
+        <div class="catagory-selection container">
+            <ul class="catagory-name" id="navbarSupportedContent">
+            {% for cat in cats %}
+                <li><a href="{% url 'category-wise' cat.slug %}">{{ cat.title }}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'Categories' %}">View More</a></li>
+                {% comment %} <li><a href="">Disital Marketing</a></li>
+                <li><a href="">Writing & Translation</a></li>
+                <li><a href="">Video & Animation</a></li>
+                <li><a href="">Music & Audio</a></li>
+                <li><a href="">Programming & Tech</a></li>
+                <li><a href="">Data</a></li>
+                <li><a href="">Business</a></li>
+                <li><a href="">Lifestyle</a></li> {% endcomment %}
+            </ul>
+        </div>
+        <div class="dag container-fluid"></div>
+    </header>
+        
+    <br>
+
+    <!-- section selection -->
+
+    <div class="container">
+      <div class="sectionSelection">
+        <p><a href="#">Fivourr <i class="fas fa-chevron-right"></i> GRAPHICS & DESIGN  <i class="fas fa-chevron-right"></i></a></p>
+      </div>
+    </div>
+    
+       
+
+        
+
+
+
+   <!-- Title -->
+    <div class="container">
+        <div class="title-wrapper">
+            <h1>Logo Design</h1>
+        </div>
+        <div class="explanation-video">
+            <p class="sc-subtitle">Stand out from the crowd with a logo that fits your brand personality.</p>
+            <button class="FKiIhUG _1x76oPA H69bvrM co-white btn-play without-border bg-co-green-700">
+                <span class="_1AB8XqH play-icon">
+                    <i class="fas fa-play"></i>
+                </span>"How Fiverr Works"
+            </button>
+        </div>
+    </div>
+
+    <!-- Select logo style -->
+    <section class="SelectLogoStyle">
+        <div class="container">
+            <div class="title">
+                <h6>Select logo style</h6>
+            </div><br>
+            <div class="row justify-content-center logoStyle">
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                   <div class="imgPara">
+                    <div class="logoImages">
+                        <img src="images/flat_minimalist.svg" alt="flat">
+                        <p class="text-body-2 text-center"><a href="#">Minimalist</a></p>
+                    </div>
+                   </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/hand_drawn.svg" alt="hand">
+                            <p class="text-body-2 text-center"><a href="#">3D</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/mascot_cartoon.svg" alt="masscot">
+                            <p class="text-body-2"><a href="#">Mascot</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/retro.svg" alt="retro">
+                            <p class="text-body-2"><a href="#">Signature</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/signaturesvg.svg" alt="sing">
+                            <p class="text-body-2"><a href="#">Hand-Drawn</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                   <div class="imgPara">
+                    <div class="logoImages">
+                        <img src="images/three_dimentional.svg" alt="three">
+                        <p class="text-body-2"><a href="#">Vintage</a></p>
+                    </div>
+                   </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/watercolor_feminine.svg" alt="water">
+                            <p class="text-body-2"><a href="#">Watercolor</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-wrapper col-12 col-sm-6 col-md-3 col-lg-2 m-1 logoColumn">
+                    <div class="imgPara">
+                        <div class="logoImages">
+                            <img src="images/view_all.svg" alt="flat">
+                            <p class="text-body-2"><a href="#"><a href="#">View All</a></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+    <!-- top  bar -->
+
+      <div class="container">
+        <div class="drop-button-with-checkbox">
+          <div class="all-drop-button">
+
+            <div class="dropdown main-drop">
+              <button class="btn btn-sm drop-style dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Logo Options
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown main-drop">
+              <button class="btn btn-sm drop-style dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Seller Details
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown main-drop">
+              <button class="btn btn-sm drop-style dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Budget
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown main-drop">
+              <button class="btn btn-sm drop-style dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Delivery Time
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+          </div>
+
+        <div class="all-checkbox">
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Pro services</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Subscription services</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Online sellers</label>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+
+    <!-- services available -->
+
+    <div class="container">
+        <div class="serviceslist">
+            <div class="services">
+                13,655 services available
+            </div>
+            <div class="servicesDropDown">
+                Sort by  <button class="btn btn-secondary dropdown-toggle servicesDropDownButton" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong>Best Selling</strong>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- gigs for mobile view -->
+
+    <div class="container">
+      <div class="gigsMobileView">
+
+        <div class="mob-card">
+            <div class="mob-card-img">
+                <img src="images/logogigs1.png" alt="">
+            </div>
+    
+            <div class="mob-card-title">
+                <h4>The title of the gigs with some of word</h4>
+            <div class="seller-status">
+                <span><i class="fas fa-star"></i></span>
+                <span>5.0</i></span>
+                <span>(12)</i></span>
+            </div>
+            </div>
+        </div>
+    
+    
+        <div class="mob-card-footer">
+            <img src="images/logogigs1.png" alt="">
+            <span >Buyer name</span>
+    
+            <p>STARTING AT</p>
+            <strong>$120</strong>
+        </div>
+        <div class="liner"></div>
+        </div>
+        
+        <div class="gigsMobileView">
+
+          <div class="mob-card">
+              <div class="mob-card-img">
+                  <img src="images/logogigs1.png" alt="">
+              </div>
+      
+              <div class="mob-card-title">
+                  <h4>The title of the gigs with some of word</h4>
+              <div class="seller-status">
+                  <span><i class="fas fa-star"></i></span>
+                  <span>5.0</i></span>
+                  <span>(12)</i></span>
+              </div>
+      
+              </div>
+          </div>
+      
+      
+          <div class="mob-card-footer">
+              <img src="images/logogigs1.png" alt="">
+              <span >Buyer name</span>
+      
+              <p>STARTING AT</p>
+              <strong>$120</strong>
+          </div>
+      
+      
+          <div class="liner"></div>
+          </div>
+          <div class="gigsMobileView">
+
+            <div class="mob-card">
+                <div class="mob-card-img">
+                    <img src="images/logogigs1.png" alt="">
+                </div>
+        
+                <div class="mob-card-title">
+                    <h4>The title of the gigs with some of word</h4>
+                <div class="seller-status">
+                    <span><i class="fas fa-star"></i></span>
+                    <span>5.0</i></span>
+                    <span>(12)</i></span>
+                </div>
+        
+                </div>
+            </div>
+        
+        
+            <div class="mob-card-footer">
+                <img src="images/logogigs1.png" alt="">
+                <span >Buyer name</span>
+        
+                <p>STARTING AT</p>
+                <strong>$120</strong>
+            </div>
+        
+        
+            <div class="liner"></div>
+            </div>
+            <div class="gigsMobileView">
+
+              <div class="mob-card">
+                  <div class="mob-card-img">
+                      <img src="images/logogigs1.png" alt="">
+                  </div>
+          
+                  <div class="mob-card-title">
+                      <h4>The title of the gigs with some of word</h4>
+                  <div class="seller-status">
+                      <span><i class="fas fa-star"></i></span>
+                      <span>5.0</i></span>
+                      <span>(12)</i></span>
+                  </div>
+          
+                  </div>
+              </div>
+          
+          
+              <div class="mob-card-footer">
+                  <img src="images/logogigs1.png" alt="">
+                  <span >Buyer name</span>
+          
+                  <p>STARTING AT</p>
+                  <strong>$120</strong>
+              </div>
+          
+          
+              <div class="liner"></div>
+              </div>
+              <div class="gigsMobileView">
+
+                <div class="mob-card">
+                    <div class="mob-card-img">
+                        <img src="images/logogigs1.png" alt="">
+                    </div>
+            
+                    <div class="mob-card-title">
+                        <h4>The title of the gigs with some of word</h4>
+                    <div class="seller-status">
+                        <span><i class="fas fa-star"></i></span>
+                        <span>5.0</i></span>
+                        <span>(12)</i></span>
+                    </div>
+            
+                    </div>
+                </div>
+            
+            
+                <div class="mob-card-footer">
+                    <img src="images/logogigs1.png" alt="">
+                    <span >Buyer name</span>
+            
+                    <p>STARTING AT</p>
+                    <strong>$120</strong>
+                </div>
+            
+            
+                <div class="liner"></div>
+                </div>
+                <div class="gigsMobileView">
+
+                  <div class="mob-card">
+                      <div class="mob-card-img">
+                          <img src="images/logogigs1.png" alt="">
+                      </div>
+              
+                      <div class="mob-card-title">
+                          <h4>The title of the gigs with some of word</h4>
+                      <div class="seller-status">
+                          <span><i class="fas fa-star"></i></span>
+                          <span>5.0</i></span>
+                          <span>(12)</i></span>
+                      </div>
+              
+                      </div>
+                  </div>
+              
+              
+                  <div class="mob-card-footer">
+                      <img src="images/logogigs1.png" alt="">
+                      <span >Buyer name</span>
+              
+                      <p>STARTING AT</p>
+                      <strong>$120</strong>
+                  </div>
+              
+              
+                  <div class="liner"></div>
+                  </div>
+                  <div class="gigsMobileView">
+
+                    <div class="mob-card">
+                        <div class="mob-card-img">
+                            <img src="images/logogigs1.png" alt="">
+                        </div>
+                
+                        <div class="mob-card-title">
+                            <h4>The title of the gigs with some of word</h4>
+                        <div class="seller-status">
+                            <span><i class="fas fa-star"></i></span>
+                            <span>5.0</i></span>
+                            <span>(12)</i></span>
+                        </div>
+                
+                        </div>
+                    </div>
+                
+                
+                    <div class="mob-card-footer">
+                        <img src="images/logogigs1.png" alt="">
+                        <span >Buyer name</span>
+                
+                        <p>STARTING AT</p>
+                        <strong>$120</strong>
+                    </div>
+                
+                
+                    <div class="liner"></div>
+                    </div>
+                    <div class="gigsMobileView">
+
+                      <div class="mob-card">
+                          <div class="mob-card-img">
+                              <img src="images/logogigs1.png" alt="">
+                          </div>
+                  
+                          <div class="mob-card-title">
+                              <h4>The title of the gigs with some of word</h4>
+                          <div class="seller-status">
+                              <span><i class="fas fa-star"></i></span>
+                              <span>5.0</i></span>
+                              <span>(12)</i></span>
+                          </div>
+                  
+                          </div>
+                      </div>
+                  
+                  
+                      <div class="mob-card-footer">
+                          <img src="images/logogigs1.png" alt="">
+                          <span >Buyer name</span>
+                  
+                          <p>STARTING AT</p>
+                          <strong>$120</strong>
+                      </div>
+                  
+                  
+                      <div class="liner"></div>
+                      </div>
+                      <div class="gigsMobileView">
+
+                        <div class="mob-card">
+                            <div class="mob-card-img">
+                                <img src="images/logogigs1.png" alt="">
+                            </div>
+                    
+                            <div class="mob-card-title">
+                                <h4>The title of the gigs with some of word</h4>
+                            <div class="seller-status">
+                                <span><i class="fas fa-star"></i></span>
+                                <span>5.0</i></span>
+                                <span>(12)</i></span>
+                            </div>
+                    
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="mob-card-footer">
+                            <img src="images/logogigs1.png" alt="">
+                            <span >Buyer name</span>
+                    
+                            <p>STARTING AT</p>
+                            <strong>$120</strong>
+                        </div>
+                    
+                    
+                        <div class="liner"></div>
+                        </div>
+                        <div class="gigsMobileView">
+
+                          <div class="mob-card">
+                              <div class="mob-card-img">
+                                  <img src="images/logogigs1.png" alt="">
+                              </div>
+                      
+                              <div class="mob-card-title">
+                                  <h4>The title of the gigs with some of word</h4>
+                              <div class="seller-status">
+                                  <span><i class="fas fa-star"></i></span>
+                                  <span>5.0</i></span>
+                                  <span>(12)</i></span>
+                              </div>
+                      
+                              </div>
+                          </div>
+                      
+                      
+                          <div class="mob-card-footer">
+                              <img src="images/logogigs1.png" alt="">
+                              <span >Buyer name</span>
+                      
+                              <p>STARTING AT</p>
+                              <strong>$120</strong>
+                          </div>
+                      
+                      
+                          <div class="liner"></div>
+                          </div>
+                          <div class="gigsMobileView">
+
+                            <div class="mob-card">
+                                <div class="mob-card-img">
+                                    <img src="images/logogigs1.png" alt="">
+                                </div>
+                        
+                                <div class="mob-card-title">
+                                    <h4>The title of the gigs with some of word</h4>
+                                <div class="seller-status">
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span>5.0</i></span>
+                                    <span>(12)</i></span>
+                                </div>
+                        
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="mob-card-footer">
+                                <img src="images/logogigs1.png" alt="">
+                                <span >Buyer name</span>
+                        
+                                <p>STARTING AT</p>
+                                <strong>$120</strong>
+                            </div>
+                        
+                        
+                            <div class="liner"></div>
+                            </div>
+
+    </div>
+
+    <!-- gigs -->
+
+    <div class="container">
+      <div class="row gigs">
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+          <div class="card">
+                  <img src="images/logogigs1.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">The name of seller</h5>
+                  
+                  <p class="card-text">Some quick example text to build on the card title.</p>
+                  
+                  <div class="level">
+                      <i class="fas fa-star"></i>
+                      <strong>4.5</strong>
+    
+                      <span class="for-right">fiver level</span>
+                  </div>
+              </div>  
+              <div class="card-footer">
+                  <i class="fas fa-heart"></i>
+                  <span class="for-right">Starting Start</span>
+              </div>
+          </div>
+      </div> 
+
+      <div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+        <div class="card">
+                <img src="images/logogigs1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">The name of seller</h5>
+                
+                <p class="card-text">Some quick example text to build on the card title.</p>
+                
+                <div class="level">
+                    <i class="fas fa-star"></i>
+                    <strong>4.5</strong>
+  
+                    <span class="for-right">fiver level</span>
+                </div>
+            </div>  
+            <div class="card-footer">
+                <i class="fas fa-heart"></i>
+                <span class="for-right">Starting Start</span>
+            </div>
+        </div>
+    </div> 
+
+    <div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+      <div class="card">
+              <img src="images/logogigs1.png" class="card-img-top" alt="...">
+          <div class="card-body">
+              <h5 class="card-title">The name of seller</h5>
+              
+              <p class="card-text">Some quick example text to build on the card title.</p>
+              
+              <div class="level">
+                  <i class="fas fa-star"></i>
+                  <strong>4.5</strong>
+
+                  <span class="for-right">fiver level</span>
+              </div>
+          </div>  
+          <div class="card-footer">
+              <i class="fas fa-heart"></i>
+              <span class="for-right">Starting Start</span>
+          </div>
+      </div>
+  </div> 
+
+  <div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+    <div class="card">
+            <img src="images/logogigs1.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">The name of seller</h5>
+            
+            <p class="card-text">Some quick example text to build on the card title.</p>
+            
+            <div class="level">
+                <i class="fas fa-star"></i>
+                <strong>4.5</strong>
+
+                <span class="for-right">fiver level</span>
+            </div>
+        </div>  
+        <div class="card-footer">
+            <i class="fas fa-heart"></i>
+            <span class="for-right">Starting Start</span>
+        </div>
+    </div>
+</div> 
+
+<div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+  <div class="card">
+          <img src="images/logogigs1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title">The name of seller</h5>
+          
+          <p class="card-text">Some quick example text to build on the card title.</p>
+          
+          <div class="level">
+              <i class="fas fa-star"></i>
+              <strong>4.5</strong>
+
+              <span class="for-right">fiver level</span>
+          </div>
+      </div>  
+      <div class="card-footer">
+          <i class="fas fa-heart"></i>
+          <span class="for-right">Starting Start</span>
+      </div>
+  </div>
+</div> 
+
+<div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+  <div class="card">
+          <img src="images/logogigs1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title">The name of seller</h5>
+          
+          <p class="card-text">Some quick example text to build on the card title.</p>
+          
+          <div class="level">
+              <i class="fas fa-star"></i>
+              <strong>4.5</strong>
+
+              <span class="for-right">fiver level</span>
+          </div>
+      </div>  
+      <div class="card-footer">
+          <i class="fas fa-heart"></i>
+          <span class="for-right">Starting Start</span>
+      </div>
+  </div>
+</div> 
+
+<div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+  <div class="card">
+          <img src="images/logogigs1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title">The name of seller</h5>
+          
+          <p class="card-text">Some quick example text to build on the card title.</p>
+          
+          <div class="level">
+              <i class="fas fa-star"></i>
+              <strong>4.5</strong>
+
+              <span class="for-right">fiver level</span>
+          </div>
+      </div>  
+      <div class="card-footer">
+          <i class="fas fa-heart"></i>
+          <span class="for-right">Starting Start</span>
+      </div>
+  </div>
+</div> 
+
+<div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+  <div class="card">
+          <img src="images/logogigs1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title">The name of seller</h5>
+          
+          <p class="card-text">Some quick example text to build on the card title.</p>
+          
+          <div class="level">
+              <i class="fas fa-star"></i>
+              <strong>4.5</strong>
+
+              <span class="for-right">fiver level</span>
+          </div>
+      </div>  
+      <div class="card-footer">
+          <i class="fas fa-heart"></i>
+          <span class="for-right">Starting Start</span>
+      </div>
+  </div>
+</div> 
+
+<div class="col-12 col-sm-12 col-md-4 col-lg-3 resizing">    
+  <div class="card">
+          <img src="images/logogigs1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title">The name of seller</h5>
+          
+          <p class="card-text">Some quick example text to build on the card title.</p>
+          
+          <div class="level">
+              <i class="fas fa-star"></i>
+              <strong>4.5</strong>
+
+              <span class="for-right">fiver level</span>
+          </div>
+      </div>  
+      <div class="card-footer">
+          <i class="fas fa-heart"></i>
+          <span class="for-right">Starting Start</span>
+      </div>
+  </div>
+</div> 
+
+  </div> 
+ </div>
+
+
+
+    <div class="container">
+        <hr>
+    </div>
+
+    <!-- explore more logo design services -->
+
+    <section class="exploreMore">
+        <div class="container">
+            <div class="exploreText text-center">
+                <h2>Explore More Logo Design Services</h2>
+            </div><br>
+            <div class="row justify-content-center exploreRow">
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Logo maker</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">3D Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Minimalist Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Hand-Drawn Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Mascot Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Freestyle Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Vintage Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Signature Logo Design</a>
+                </div>
+                <div class="col-sm-6 col-4 col-lg-2">
+                    <a class="related-link text-center" href="#">Watercolor Logo Design</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <hr>
+    </div>
+
+    <!-- logo design FAQs -->
+
+    <section class="faq">
+        <div class="container">
+            <div class="fqatitle text-center">
+                <h2>Logo Design FAQs</h2>
+            </div><br><br>
+            <div class="row justify-content-between">
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>What is logo design?</h6>
+                    <p>Logo design is the art of creating a visually stunning mark for a brand or company. A logo usually consists of a symbol, brandmark, or image that represents or symbolizes the company. a logo should stand out and be easily recognized.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                   <div class="totalfaqs">
+                    <h6>What makes a good logo?</h6>
+                    <p>A good logo should be visually appealing, distinctive, memorable, simple in form, and stand out from the crowd. It should match the brand's aesthetics and message. and above all, a great logo should have exceptional conceptualization and execution.</p>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>How to hire top logo designers?</h6>
+                    <p>Once you’ve identified a pool of logo designers based on style and availability, evaluate your candidates in terms of their level and type of experience, especially in your niche or field. also, browse through their gig gallery and portfolio for specific examples of prior work.</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                   <div class="totalfaqs">
+                    <h6>How much does logo design cost?</h6>
+                    <p>The cost of a professional logo design can vary depending on expertise, experience and other factors. designing a great logo involves much more than a simple sketch; it also comprises market research, artistic skill & technical knowledge, brand design, and revisions.</p>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>Do I need to prepare anything for my logo design?</h6>
+                    <p>It's always a good idea to have a few things prepared beforehand. as a business, you should know your brand identity, your company's message, and aesthetics. It's also best to set a budget and write a detailed logo design brief in advance. this will help your logo designer create the perfect logo for you!</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 faqColumn">
+                    <div class="totalfaqs">
+                        <h6>What qualities should I look for in a logo designer?</h6>
+                    <p>When looking for a professional logo designer, you should choose someone who will best fit your business. a professional logo designer should exhibit personality, passion, and professionalism. You want someone who has experience in your niche, research skills, flexibility, responds quickly, provides outstanding examples, and shares the design process with you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+        <hr>
+    </div><br>
+
+    <!-- logo designn related guide -->
+
+    <section class="logoRelatedGuide">
+        <div class="container">
+            <div class="guidetext">
+                <h2>Logo Design Related Guides</h2>
+            </div>
+            <div class="seeMoreGuide">
+                <a href="#">See more guides <i class="fas fa-chevron-right"></i></a>
+            </div>
+            <div class="row justify-content-center guideRow">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="images/logoguide1.jpg" alt="" class="img-fluid"></a><br><br>
+                    <h6>How to design a logo: 11 steps to getting a logo made for your business</h6>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="images/logoguide2.jpg" alt="" class="img-fluid" ></a><br><br>
+                    <h6>Style guide: what it is and how to create one for your brand</h6>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                    <div class="logoGuideImg">
+                        <a href="#"><img src="images/logoguide3.jpg" alt="" class="img-fluid"></a><br><br>
+                    <h6>The what, why, and how of branding</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br>
+
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'js/services.js' %}">
+
+    </script>
+    {% include 'buyingview/buying_footer.html' %}
+  </body>
+</html>
+

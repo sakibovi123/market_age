@@ -279,10 +279,6 @@
 .btn-primary{
     background-color: #1dbf73;
 }
-.singleSlider{
-    padding-top: 75px;
-    padding-bottom: 20px;
-}
 .secondColumn{
     width: 100%;
 }
@@ -303,21 +299,6 @@
 .image img{
     width: 417px;
     height: 290px;
-}
-.text-content h5{
-    font-weight: 400;
-    color: #7a7d85;
-    padding-bottom: 16px;
-}
-.text-content blockquote{
-    font-size: 30px;
-    line-height: 44px;
-}
-.testimonial{
-    display: flex !important;
-    padding: 67px;
-    width: 100%;
-    margin-left: 0px;
 }
 .bannerImage img{
     width: 100%;

@@ -30,7 +30,7 @@ def get_landing_page(request):
         return redirect("buying_view")
 
 
-@login_required(login_url='user_login')
+
 def service_wise_offers(request, id):
     service = Services.objects.all()
     offers = Offer.objects.filter(service_id=id)
@@ -57,12 +57,14 @@ def view_all_category(request):
 
 @login_required(login_url='user_login')
 def buying_view(request):
-    offers = Offer.objects.all()
+    offers = Offer.objects.all().order_by('-click')
     cats = Category.objects.all()
 
     pop_offers = Offer.objects.filter(is_popular=True)
     pop_web_offers = Offer.objects.filter(pop_web=True)
     pro_offers = Offer.objects.filter(is_pro=True)
+    
+    
 
     args = {
         'offers': offers,
@@ -79,6 +81,11 @@ def buying_view(request):
 def offer_details(request, id):
     cats = Category.objects.all()
     offers = Offer.objects.filter(id=id).first()
+    cart_session = request.session.get("cart", None)
+
+    for image in offers.extra_images.all():
+        print(image)
+
 
     def get_ip(request):
         address = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -89,15 +96,14 @@ def offer_details(request, id):
         return ip
 
     ip = get_ip(request)
+    
+    print(ip)
+    
     u = DummyUser(user=ip)
 
     result = DummyUser.objects.filter(Q(user__icontains=ip))
 
-    if len(result) == 1:
-        print("It wont Work Dude!")
-    elif len(result) > 1:
-        print("It wont work either!!")
-    else:
+    if result is None:
         u.save()
         # offers.offer_click_count = offers.offer_click_count + 1
         # offers.save()
@@ -106,11 +112,17 @@ def offer_details(request, id):
     #     offers.save()
     c = DummyUser.objects.all().count()
     related_offers = Offer.objects.all()
+    
+    # ISSUE ##
+
+    # print(packages)
+
     args = {
         'offers': offers,
         'c': c,
         'related_offers': related_offers,
-        'cats': cats
+        'cats': cats,
+        "cart_session": cart_session,
     }
     return render(request, 'buyingview/offers_details.html', args)
 
@@ -148,7 +160,8 @@ def user_login(request):
 
             if user is not None:
                 # Creating user session
-                request.session["user"] = username
+                user_session = username
+                request.session["user"] = user_session
                 login(request, user)
                 if new_user is not None:
                     return redirect("extended-user")
@@ -181,27 +194,33 @@ def categoryWisePage(requrest):
 # Order page
 @login_required(login_url='user_login')
 def manageOrder(request):
-    orders = Checkout.objects.all().order_by("-id")
-    active_orders, late_orders, delivered_orders, completed_orders, cancelled_orders  = [], [], [], [], []
+    orders = Checkout.objects.filter(seller=request.user).order_by("-id")
+    active_orders, late_orders, delivered_orders, completed_orders, cancelled_orders, review_orders  = [], [], [], [], [], []
 
     for order in orders:
+        if order.is_complete:
+            completed_orders.append(order)
+        if order.on_review and order.order_status == "ON REVIEW":
+            review_orders.append(order)
         if order.order_status == "ACTIVE":
             active_orders.append(order)
         elif order.order_status == "LATE":
             late_orders.append(order)
         elif order.order_status == "DELIVERED":
             delivered_orders.append(order)
-        elif order.order_status == "COMPLETED":
-            completed_orders.append(order)
         elif order.order_status == "CANCELLED":
             cancelled_orders.append(order)
+    
+    print(review_orders)
+    # print(cancelled_orders)
 
     args = {
         "active_orders": active_orders,
         "late_orders": late_orders,
         "delivered_orders": delivered_orders,
         "completed_orders": completed_orders,
-        "cancelled_orders": cancelled_orders
+        "cancelled_orders": cancelled_orders,
+        "review_orders": review_orders
     }
 
     return render(request, "wasekPart/manage_order.html", args)
@@ -264,9 +283,27 @@ def chatInbox(requrest):
 @login_required(login_url='user_login')
 def seller_dashboard(request):
     users = User.objects.all()
+    active_orders, completed_orders, cancelled_orders = [], [], []
+
+    orders = Checkout.objects.filter(seller=request.user).order_by("-id")
+
+    for order in orders:
+        if order.is_complete:
+            completed_orders.append(order)
+        elif order.order_status == "ACTIVE":
+            active_orders.append(order)
+        elif order.order_status == "CANCELLED" and order.is_cancel:
+            cancelled_orders.append(order)
+
+    # print(active_orders)
+    # print(completed_orders)
+    # print(cancelled_orders)
 
     args = {
-        'users': users
+        'users': users,
+        "active_orders": active_orders,
+        "completed_orders": completed_orders,
+        "cancelled_orders": cancelled_orders,
     }
 
     return render(request, 'sellingview/seller_dashboard.html', args)
@@ -317,8 +354,8 @@ def azim_contact_page(request):
 @login_required(login_url='user_login')
 def add_to_cart(request):
     cart = request.session.get('cart')
-    package_id = request.POST.get('package_id')
     remove = request.POST.get('remove')
+    package_id = request.POST.get('package_id')
 
     if request.method == "POST":
         if cart:
@@ -356,15 +393,32 @@ def get_cart_products(request):
 
 @login_required(login_url='user_login')
 def cartView(request):
-    cart = request.session.get('cart')
+    cart = request.session.get('cart', None)
 
+    if request.method == "POST":
+        cart = {}
+        del request.session["cart"]
+        return redirect("buying_view")
+
+    print(request.session.get("cart"))
     if not cart:
         request.session['cart'] = {}
     ids = list(request.session.get('cart').keys())
     cart_products = OfferManager.get_offer(ids)
-    print(cart)
+    # print(len(cart))
+    # print(cart)
+    # print(cart.keys())
+    if cart is not None:
+        if len(cart) > 1:
+            cart_first_item = str(list(cart.keys())[0])
+            cart_first_item_val = list(cart.values())[0]
+            request.session['cart'] = {}
+            request.session["cart"] = {cart_first_item: cart_first_item_val}
+            ids = list(request.session.get('cart').keys())
+            cart_products = OfferManager.get_offer(ids)
+    # print(request.session.get("cart"))
     context = {
-        'cart_products': cart_products
+        'cart_products': cart_products,
     }
 
     return render(request, 'buyingview/cart.html', context)
@@ -377,14 +431,19 @@ def checkout(request):
         request.session['cart'] = {}
     ids = list(request.session.get('cart').keys())
     cart_products = OfferManager.get_offer(ids)
+    
+    
+    
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         user = request.user
         # seller work
-
+        
+        
         packages = OfferManager.get_offer(list(cart.keys()))
+     
 
         for package in packages:
             checkout = Checkout(
@@ -394,13 +453,14 @@ def checkout(request):
                 package=package,
                 price=package.price,
                 quantity=cart.get(str(package.id)),
+                
             )
 
             checkout.save()
-
+            request.session['cart'] = {}
             return redirect('BuyerOrders')
 
-        request.session['cart'] = {}
+        
     args = {
         'cart_products': cart_products
     }
@@ -556,34 +616,103 @@ def extendedUserView(request):
     }
     return render(request, "wasekPart/extendedForm.html", args)
 
+@login_required(login_url='user_login')
 def sellerSubmitView(request, pk):
     form = SellerSubmitForm()
 
+    if request.method == "POST":
+        file_field = request.FILES.get("file_field")
+        try:
+            checkout = Checkout.objects.get(id=pk)
+            # print(file_field)
+        except:
+            return redirect("manage-order")
+        else:
+            SellerSubmit.objects.create(checkout=checkout, file_field=file_field)
+            checkout.order_status ="DELIVERED"
+            
+            chk = checkout.is_complete = True
+            
+            # SELLER LEVEL UP ALGORITHM
+            l = Checkout.objects.filter(is_complete = True).filter(seller=request.user).count()
+            print("Count:" + str(l))
+
+            if l > 15:
+                us = checkout.seller.username
+                
+                print("SEller:" + us)
+                print("Working")
+                checkout.seller.extendeduser.level = "LEVEL1"
+                checkout.seller.extendeduser.save()
+                # print(out)
+                checkout.save()
+            
+            elif l > 25:
+                checkout.seller.extendeduser.level = "LEVEL 2"
+                checkout.seller.extendeduser.save()
+                checkout.save()
+            elif l > 30:
+                checkout.seller.extendeduser.level = "LEVEL 3"
+                checkout.seller.extendeduser.save()
+                checkout.save()
+            elif l > 40:
+                checkout.seller.extendeduser.level = "MARKETAGE PRO"
+            
+            # SELLER LEVEL DOWN ALGORITHM
+            
+            
+            
+            print(chk)
+            checkout.save()
+            return redirect("manage-order")
+
     args = {
-        "form": form
+        "form": form,
+        "checkout_id": pk,
     }
-    return render(request, "wasekPart/sellerSubmit.html")
+    return render(request, "wasekPart/sellerSubmit.html", args)
     
 
 
 
-## Level up sellers
+        
+
+## Level up sellers (FOR TESTING)
 
 def level_up_seller(request):
-    offr = Offer.objects.all()
-    offers = Offer.objects.values_list('click')
     
-    usr = offr.click
+    offs = Offer.objects.all()
     
-    print(usr)
-    
-    
-    print(offers)
     args = {
-        'offers': offers
+        'offs': offs
     }
     
     return render(request, 'testpart/test.html', args)
+
+def level_up_function(request, id):
+    count_clicks = Offer.objects.filter(id=id).first()
+    info = count_clicks.user.extendeduser.level
+    
+    lvl = Checkout.objects.filter(seller=request.user).first()
+
+   
+    # if count_clicks > 10:
+    #     level  = "Hello"
+    #     lvl.save()        
+        
+    # else:
+    #     level = "New Freelancer"
+    
+    print(count_clicks)
+
+    args = {
+        # 'level': level,
+        'info': info,
+        # 'lvl': lvl
+    }
+    
+    return render(request, 'testpart/test_details.html', args)
+
 
 
 ## Rating Sellers
@@ -596,4 +725,31 @@ def level_up_seller(request):
 
 ## 
 
-    
+def aboutusView(request):
+    return render(request, "azimpart/aboutus.html")
+
+
+def createOfferView(request):
+    return render(request, "sellingview/create_offer.html")
+
+
+def seller_order_details(request):
+    return render(request, 'sellingview/seller_order_details.html')
+
+def buyerGigFormView(request, pk):
+    args = {}
+    return render(request, "wasekPart/buyer_gigForm.html", args)
+
+
+def buyerDashboardFormView(request):
+    orders = Checkout.objects.filter(user=request.user, order_status="DELIVERED").order_by("-id")
+    seller_submit = SellerSubmit.objects.all()
+    for order in orders:
+        print(order.id)
+    # for item in sellter
+
+    args = {
+        "orders": orders,
+    }
+
+    return render(request, "wasekPart/buyer_dashboard.html", args)

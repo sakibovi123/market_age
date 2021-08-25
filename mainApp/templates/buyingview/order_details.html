@@ -1,7 +1,10 @@
 {% load static %}
 {% include 'buyingview/header.html' %}
-
+  <!-- For gigs details  -->
+  <script src="{% static 'js/order_details.js' %}" defer></script>
     
+    <!-- For gigs details  -->
+    <script src="{% static 'js/main-gigs-details.js' %}" defer></script>
     <div id="make-patment">
         <div class="inner-make-payment container mt-5">
           <div class="row">
@@ -144,11 +147,12 @@
   <div id="paypal-button-container"></div>
 
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AaC_vcmMD3QAkUBk-hT9E1fsgLEjGrN40DXWGN5UIfxa-OnhkeoS4b8bsz6dyCfoRVWQeLZYsnD1MyLF&currency=USD"></script>
 
     <script>
 
         var total = "{{ order.grand_total }}"
+        var user = "{{ order.user }}"
 
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({

@@ -40,7 +40,9 @@
           <img src="{% static 'images/logo.png' %}">
       </a>
           <span class="orderText1"><a href="{% url 'cartView' %}"><strong>Order Details</strong></a> <i class="fas fa-chevron-right"></i></span>
+
           <span class="orderText"> <a href="{% url 'checkout' %}"><strong>Confirm  & pay</strong></a> <i class="fas fa-chevron-right"></i></span>
+
           <span class="orderText"> <strong>Submit Requirements</strong></span>
       </div>
   </header>
@@ -68,6 +70,12 @@
                             <div class="inputDetails toalinput">
                               <label for="text" class="fw-bold">Last Name</label><br><br>
                               <input required id="l_name" class="form-control  carddate" type="text" placeholder="Enter Last Name..." name="last_name">
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="inputDetails toalinput">
+                              <label for="text" class="fw-bold">Seller Name</label><br><br>
+                              <input required id="l_name" class="form-control  carddate" type="text" value="HELLO" name="last_name">
                             </div>
                           </div>
                           

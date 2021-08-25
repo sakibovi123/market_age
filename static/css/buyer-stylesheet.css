@@ -9,6 +9,8 @@
     text-decoration: none;
     color: #82858C;
 }
+
+
 /* Header  */
 #home-page{
     margin-top: 10px;
@@ -107,28 +109,22 @@
     height: 33px;
     border-radius: 50%;
 }
-.nav-link{
+.link-page{
     font-size: 16px;
     font-weight: 700;
 }
-.nav-link:hover{
+.link-page:hover{
     color: #19A463 !important;
 }
-.active{
-    color: #19A463 !important;
-    font-weight: 900;
-}
+
 
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
     box-shadow: none;
 }
-.navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 0rem;
-    padding-left: 0rem;
-}
-.navbar-brand {
+
+.nav-logo {
     margin-right: 4rem;
 }
 
@@ -142,12 +138,6 @@
 .on-mobile{
     display: none;
 }
-
-
-
-
-
-
 /* ====================================
             main-menu
 ==================================== */

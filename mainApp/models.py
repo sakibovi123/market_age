@@ -17,6 +17,12 @@ class LandingSlider(models.Model):
 
         return str(self.id)
 
+class SecondarySlider(models.Model):
+    image = models.ImageField(upload_to="images/")
+
+    def __str__(self):
+        return str(self.id)
+
 
 class Country(models.Model):
     title = models.CharField(max_length=120)
@@ -34,12 +40,20 @@ class City(models.Model):
 
 
 class ExtendedUser(models.Model):
+    levels_fields = (
+        ("NEW SELLER", "NEW SELLER"),
+        ("LEVEL1", "LEVEL1"),
+        ("LEVEL 2", "LEVEL 2"),
+        ("LEVEL 3", "LEVEL 3"),
+        ("MARKETAGE PRO", "MARKETAGE PRO")
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(null=True, unique=True)
     contact_no = models.CharField(max_length=15, null=True)
     profile_picture = models.ImageField(upload_to="images/", null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
+    level = models.CharField(max_length = 120, null=True, blank=True, choices=levels_fields, default="NEW SELLER")
 
     def __str__(self):
         return str(self.user)
@@ -66,7 +80,7 @@ class Category(models.Model):
     slug = models.SlugField()
     title = models.CharField(max_length=120)
     icon = models.FileField(upload_to="images/", validators=[
-                            FileExtensionValidator(['pdf', 'doc', 'svg', 'png'])], null=True)
+                            FileExtensionValidator(['svg', 'png', 'jpg'])], null=True)
 
     def __str__(self):
         return self.title
@@ -118,6 +132,12 @@ class Package(models.Model):
     def __str__(self):
         return self.title
 
+class ExtraImage(models.Model):
+    image = models.ImageField(upload_to="images/", null=True, unique=True)
+
+    def __str__(self):
+        return str(self.image)
+
 
 class Offer(models.Model):
     Offer_STATUS = (
@@ -132,13 +152,13 @@ class Offer(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     offer_title = models.CharField(max_length=240)
     image = models.ImageField(upload_to='images/')
-    extra_images = models.ImageField(upload_to="images/")
+    extra_images = models.ManyToManyField(ExtraImage)
     offer_video = models.FileField(upload_to="images/")
     service = models.ForeignKey(Services, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     packages = models.ManyToManyField(Package, through='OfferManager')
     description = models.TextField()
-    offer_rating = models.FloatField(default=0)
+    # offer_rating = models.FloatField(default=0)
     is_popular = models.BooleanField(default=False, null=True)
     pop_web = models.BooleanField(default=False, null=True, blank=True)
     is_pro = models.BooleanField(default=False, null=True)
@@ -148,6 +168,7 @@ class Offer(models.Model):
     order_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     cancellation = models.PositiveIntegerField(default=0, null=True, blank=True)
     offer_status = models.CharField(max_length=200, null=True, choices=Offer_STATUS, default="ACTIVE")
+    # is_complete = models.BooleanField(null=True, default=False)
 
     def __str__(self):
         return self.offer_title
@@ -205,9 +226,10 @@ class Checkout(models.Model):
         ("ACTIVE", "ACTIVE"),
         ("LATE", "LATE"),
         ("DELIVERED", "DELIVERED"),
-        ("COMPLETED", "COMPLETED"),
         ("CANCELLED", "CANCELLED"),
+        ("ON REVIEW", "ON REVIEW")
     )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, related_name='seller')
@@ -224,7 +246,10 @@ class Checkout(models.Model):
     paid = models.BooleanField(default=False)
     due_date = models.DateField(null=True)
     order_status = models.CharField(max_length=200, choices=ORDER_CHOICES, default="ACTIVE")
-
+    is_complete = models.BooleanField(default=False, null=True)
+    is_cancel = models.BooleanField(default=False, null=True)
+    on_review = models.BooleanField(default=False, null=True)    
+    
     def save(self, *args, **kwargs):
         self.total = self.price*self.quantity
         service_fee = self.total * 25 / 100
@@ -258,6 +283,11 @@ class SellerSubmit(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+    
 
 
 class PromoCode(models.Model):

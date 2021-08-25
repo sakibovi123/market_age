@@ -220,6 +220,10 @@ a:hover{
     border: 1px solid gray;
 }
 
+/* complete order table */
+.complete__order__table{
+    background-color: #fff;
+}
 /* complete order button */
 .seller-detail{
     display: flex;

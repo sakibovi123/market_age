@@ -1,15 +1,33 @@
-{% extends "wasekPart/base.html" %} {% block content %}
+{% load static %}
 
-<form method="POST" enctype="multipart/form-data" class="form">
-    {% csrf_token %}
-    <p>Checkout ID</p>
-    {{ form.checkout }}
-    <p>File Upload</p>
-    {{ form.file_field }}
-    <div class="submit-main-button d-flex justify-content-center">
-    <button type="submit" class="btn btn-success sub-btn col-lg-7 mt-3">
-        Submit
-    </button>
+
+<link rel="stylesheet" href="{% static 'css/sellerSubmit.css' %}">
+{% include "wasekPart/base.html" %} {% block content %}
+
+<div class="container seller__sub">
+    <div class="row d-flex justify-content-center seller___row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2 seller__submit__form">
+            <form method="POST" enctype="multipart/form-data" class="form seller__form">
+                {% csrf_token %}
+                <p>Checkout ID: <span class="fw-bold">{{ checkout_id }}</span></p>
+                <!-- <p>File Upload</p> -->
+                <!-- {{ form.file_field }} -->
+                <div class="choose___file">
+                    <label for="formFileLg" class="form-label text-white"><span class="iconify" data-icon="entypo:attachment"></span> Attachment</label>
+                    <input class="form-control form-control" id="formFileLg" name="file_field" type="file">
+                  </div>
+                <div class="submit-main-button">
+                <button type="submit" class="btn btn-success sub-btn">
+                    Submit
+                </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-5"></div>
+        </div>
     </div>
-</form>
+</div>
+
+
 {% endblock %}

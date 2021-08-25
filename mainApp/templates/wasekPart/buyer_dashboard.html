@@ -1,0 +1,26 @@
+{% extends "wasekPart/base.html" %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Seller Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+      <tr>
+        <td>{{ order.user }}</td>
+        <td>
+            <a href="#">
+                <button class="btn btn-primary">View</button>
+            </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

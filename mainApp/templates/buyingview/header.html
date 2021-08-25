@@ -46,12 +46,7 @@
 
     
 
-    <!--main css for order details -->
     <link rel="stylesheet" href=  "{% static 'css/make-payment-for-buyer.css' %}" />
-
-
-    <!-- For gigs details  -->
-    <script src="{% static 'js/order_details.js' %}" defer></script>
 
     
 
@@ -214,7 +209,7 @@
         <nav class="navbar navbar-expand-lg navbar-light nav-bar-hide-on-mob">
             <div class="container">
 
-                <a class="navbar-brand" href="{% url 'buying_view' %}">
+                <a class="navbar-brand nav-logo" href="{% url 'buying_view' %}">
                     <span>
                         <img src="{% static 'images/logo.png' %}" alt="" style="height: 50px; width:150px;">
                     </span>
@@ -236,22 +231,22 @@
                 <ul class="navbar-nav ms-auto mb-lg-0">
 
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Fiver Pro</a>
+                    <a class="nav-link link-page active" aria-current="page" href="#">Fiver Pro</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Explore</a>
+                    <a class="nav-link link-page" href="#">Explore</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link" href="#">Messages</a>
+                    <a class="nav-link link-page" href="#">Messages</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Lists</a>
+                    <a class="nav-link link-page" href="#">Lists</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link" href="{% url 'BuyerOrders' %}">Orders</a>
+                    <a class="nav-link link-page" href="{% url 'BuyerOrders' %}">Orders</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link" href="{% url 'seller_dashboard' %}">Switch to Selling</a>
+                    <a class="nav-link link-page" href="{% url 'seller_dashboard' %}">Switch to Selling</a>
                   </li>
 
 

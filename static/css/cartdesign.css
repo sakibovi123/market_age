@@ -39,13 +39,57 @@ body{
     width: 150px;
     height: 92px;
 }
-.gigImg{
+/* .gigImg{
     display: inline-block;
-}
+} */
 .giggig{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: 0px;
 }
+.gig___contained{
+  display: flex;
+}
+.quantity___button{
+  display: flex;
+}
+
+.quantity___button button {
+  transition: color 0.2s;
+  margin-left: 1rem;
+}
+
+.quantity___button button:hover {
+  color: red;
+}
+.quantity__amount{
+  border: 1px solid #000;
+  padding: 5px 8px 5px 8px;
+  border-radius: 4px;
+  height: 35px !important;
+}
+
+.delete__gig button {
+  border: none;
+  background-color: transparent;
+}
+
+.delete__gig button:focus {
+  border: none;
+  outline: none;
+}
+
+.delete__gig .iconify {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete__gig > .iconify:hover {
+  color: #F63737;
+}
+
 .gigtitle a{
     color: #000;
 }
@@ -55,9 +99,7 @@ body{
 .quantity, .totalPrice{
     padding: 12px;
 }
-.quantity{
-    padding-left: 66px;
-}
+
 .fa-star{
     font-size: 10px;
     color: #ffbf00;
@@ -109,6 +151,8 @@ body{
 
 .continue{
     background-color: #1dbf73;
+    border: none;
+    outline: none;
 }
 .checkCard{
     width: 77%!important;
@@ -136,6 +180,16 @@ body{
     color: #95979d;
 }
 
+/* view details part */
+#myDIV{
+  margin-top: 24px;
+}
+.total__view__detail{
+  display: flex;
+}
+.view___detail__show1, .view___detail__show2{
+  padding: 10px
+}
 
 /* mmobile view  */
 .getStarted{
@@ -144,6 +198,7 @@ body{
 .mobile__navbar {
     display: none;
   }
+
 @media (max-width: 990px){
     .getStarted{
         display: block;
@@ -327,6 +382,15 @@ body{
       margin-top: 1rem;
       font-weight: bold;
       color: #333;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .giggig {
+      align-items: center;
+    }
+    .quantity___button span {
+      display: none;
     }
   }
 

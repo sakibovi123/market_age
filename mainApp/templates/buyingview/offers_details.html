@@ -1,6 +1,12 @@
 {% load static %}
 {% include 'buyingview/header.html' %}
 
+<style>
+    .view__cartBtn {
+        text-decoration: none !important;
+    }
+</style>
+
 <div id="header">
     <div class="container">
         <nav class="navbar">
@@ -69,7 +75,6 @@
         <div class="col-md-7 left-section"> 
 
             <!-- Slider upper text (GIGs title) -->
-
             <div class="gigs-title">
                 <h1 class="gigs-name">{{ offers.gig_title }}</h1>
                 <img class="gigs-sellers-img" src="{{ request.user.extendeduser.profile_picture.url }}" alt="">
@@ -91,29 +96,27 @@
 
                 </span>
             </div>
-
+ 
 
 
             <!-- Slider with img (GIGs img slider) -->
             <div class="swiper-container gallery-top">
 
                 <div class="swiper-wrapper">
-
+                    {% for image in offers.extra_images.all %}
                     <div class="swiper-slide">
                         <div class="swiper-slide-container">
-                            <img class="cover" src="{{ offers.image.url }}" alt="">
+                            <img class="cover" src="/media/{{ image }}" alt="">
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <div class="swiper-slide">
-                        <div class="swiper-slide-container">
-                            <img class="cover" src="{{ offers.image.url }}" alt="">
-                        </div>
-                    </div>
+                
                 </div>
+                
+                
                 <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                
             </div>
 
 
@@ -121,18 +124,19 @@
             <!-- Slider lower img (GIGs thumb img) -->
 
             <div class="swiper-container gallery-thumbs">
-
                 <div class="swiper-wrapper">
-
+                    {% for image in offers.extra_images.all %}
                     <div class="swiper-slide">
                         <div class="swiper-slide-container">
-                            <img class="resizeing" src="{{ offers.extra_images.url }}" alt="">
+                            <img class="resizeing" src="/media/{{ image }}" alt="">
                         </div>
                     </div>
-
-
+                    {% endfor %}
                 </div>
             </div>
+
+
+
 
         </div>
 
@@ -151,14 +155,8 @@
 
 <!-- click button for basic-->
                     <label class="tab" id="one-tab" for="one">Basic</label>
-
-
-
 <!-- click button for standard-->
                     <label class="tab" id="two-tab" for="two">Standard</label>
-
-
-
 <!-- click button for premium-->
                     <label class="tab" id="three-tab" for="three">Premium</label>
 
@@ -166,15 +164,58 @@
 
 
 
-               
-
-
                 <div class="panels">
-
-                    {% for manager in offers.offermanager.all %}
-                        
+                    {% for manager in offers.offermanager_set.all %}
+                    {% if manager.package.id == 1 %}
                     <div class="panel" id="one-panel">
+                        <div class="panel-title">
+                            <h3>{{ manager.package }}</h3>
+                            <span>${{ manager.price }}</span>
+                            <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                elit. Quaerat, error?</p>
+                        </div>
 
+                        <div class="inner-panel">
+
+                            <i class="far fa-clock"> 1 Day Delivery
+                            </i>
+
+                            <i class="fas fa-redo-alt"> 1 Day Delivery
+                            </i>
+
+
+                            <ul class="pannel-service-list">
+                                <li> <i class="fas fa-check-double"></i> 1 Page</li>
+                                <li> <i class="fas fa-check-double"></i> Responsive Design</li>
+                                <li> <i class="fas fa-check-double"></i> Slider/Scroller</li>
+                                <li> <i class="fas fa-check-double"></i> Server Upload</li>
+                                <li> <i class="fas fa-check-double"></i> Browser Compatibility</li>
+                            </ul>
+                        </div>
+
+                        {% if request.user %}
+                        {% if not request.session.cart %}
+                        <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" value="{{ manager.id }}" name="package_id">
+                            
+                            <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        </form>
+                        {% else %}
+                        <a class="view__cartBtn" href="{% url 'cartView' %}">
+                        
+                            <button class="pannel-service-button">View Cart</button>
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %}
+
+
+                        <button class="pannel-service-button-lower">Compare Packages</button>
+                    </div>
+                    {% elif manager.package.id == 2 %}
+                    <div class="panel" id="two-panel">
                         <div class="panel-title">
                             <h3>{{ manager.package }}</h3>
                             <span>${{ manager.price }}</span>
@@ -201,13 +242,78 @@
                         </div>
 
 
-                        <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        {% if request.user %}
+                        {% if cart_session is None %}
+                        <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" value="{{ manager.id }}" name="package_id">
+                            <input type="text" value="{{ manager.offer.id }}" name="seller_id">
+                            <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        </form>
+                        {% else %}
+                        <a class="view__cartBtn" href="{% url 'cartView' %}">
+                            <button class="pannel-service-button">View Cart</button>
+                            <input type="text" value="{{ manager.offer.id }}" name="seller_id">
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %}
 
 
                         <button class="pannel-service-button-lower">Compare Packages</button>
                     </div>
-                    
+                    {% elif manager.package.id == 3 %}
+                    <div class="panel" id="three-panel">
+                        <div class="panel-title">
+                            <h3>{{ manager.package }}</h3>
+                            <span>${{ manager.price }}</span>
+                            <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                elit. Quaerat, error?</p>
+                        </div>
+
+                        <div class="inner-panel">
+
+                            <i class="far fa-clock"> 1 Day Delivery
+                            </i>
+
+                            <i class="fas fa-redo-alt"> 1 Day Delivery
+                            </i>
+
+
+                            <ul class="pannel-service-list">
+                                <li> <i class="fas fa-check-double"></i> 1 Page</li>
+                                <li> <i class="fas fa-check-double"></i> Responsive Design</li>
+                                <li> <i class="fas fa-check-double"></i> Slider/Scroller</li>
+                                <li> <i class="fas fa-check-double"></i> Server Upload</li>
+                                <li> <i class="fas fa-check-double"></i> Browser Compatibility</li>
+                            </ul>
+                        </div>
+
+
+                        {% if request.user %}
+                        {% if cart_session is None %}
+                        <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" value="{{ manager.id }}" name="package_id">
+                            <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        </form>
+                        {% else %}
+                        <a class="view__cartBtn" href="{% url 'cartView' %}">
+                            <button class="pannel-service-button">View Cart</button>
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %}
+
+
+                        <button class="pannel-service-button-lower">Compare Packages</button>
+                    </div>
+                    {% endif %}
                     {% endfor %}
+
+                    
 
                 </div>
 
@@ -324,7 +430,7 @@
                                 </th>
                                 {% for manager in offers.offermanager_set.all %}
                                 <th scope="col">
-                                    <span class="">$50</span>
+                                    <span class="">$ {{ manager.price }}</span>
                                     <strong class="d-block col text-left">{{ manager.package }}</strong>
                                     <!--<strong class="d-block text-left">Single Page</strong>-->
                                     <p class="text-left">{{ manager.offer.short_desc|truncatechars:100 }}</p>
@@ -480,8 +586,7 @@
 
         </div>       
             
-           
-
 </section>
+</br>
 
-{% include 'buyingview/footer.html' %}
+{% include 'buyingview/buying_footer.html' %}

@@ -65,7 +65,8 @@
 }
 .gigs-sellers-img{
     display: inline-block;
-    width: 4%;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
 }
 .seller-name{
@@ -94,7 +95,6 @@
     top: 15%;
     left: 110%;
     background-color: rgb(190, 190, 190);
-
 }
 
 /* Slider */
@@ -103,7 +103,7 @@
 .swiper-container {
     width: 100%;
     height: 300px;
-    margin: 20px auto;
+    margin: 5px auto;
 }
 
 .swiper-slide-container {
@@ -122,7 +122,7 @@ margin:auto;
     transition: all .5s;
 }
 .cover:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 .swiper-slide-container img{
     object-fit: cover;
@@ -131,11 +131,13 @@ margin:auto;
 .gallery-top {
     height: 80%;
     width: 100%;
+    overflow: hidden;
 }
 .gallery-thumbs {
     height: 20%;
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 0px 0;
+    overflow: hidden;
 }
 .gallery-thumbs .swiper-slide {
     width: 20%;
@@ -191,8 +193,8 @@ margin:auto;
     width: 100%;
 }
 .left-section{
-    width: 60%;
-    display: inline-block;
+    width: 60% !important;
+    display: inline-block !important;
 }
 .right-section{
     width: 40%;

@@ -1,5 +1,5 @@
 {% load static %}
-<title>FIVOURR</title>
+<title>Marketage</title>
   <body>
    <!-- Bootstrap CSS -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +103,6 @@
             <hr>
             </a>
             {% endfor %}
-            {% comment %} all users list {% endcomment %}
             
           </div><br>
 
@@ -191,29 +190,103 @@
                 <div class="dropdown">
                   <button class="btn active-dropdown dropdown-toggle activeBtn" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="true">
-                    Active orders (0)
+                    Active orders ({{active_orders|length}})
                   </button>
                   <ul class="dropdown-menu dropMenuItem" aria-labelledby="dropdownMenuButton1">
-                    <li id="activeOrder"><a class="dropdown-item" href="#">Active Orders (0)</a></li>
+                    <li id="activeOrder"><a class="dropdown-item" href="#">Active Orders ({{active_orders|length}})</a></li>
                     <hr>
-                    <li id="completed"><a class="dropdown-item" href="#">Completed</a></li>
+                    <li id="completed"><a class="dropdown-item" href="#">Completed ({{completed_orders|length}})</a></li>
                     <hr>
-                    <li id="canceled"><a class="dropdown-item" href="#">Canceled</a></li>
+                    <li id="canceled"><a class="dropdown-item" href="#">Cancelled ({{cancelled_orders|length}})</a></li>
                   </ul>
                 </div>
               </li>
             </ul>
           </div><br>
-          <div id="complete_order_show" class="complete-order">
+
+          <!-- complete order section -->
+
+            <div id="complete_order_show" class="complete__order__table table-responsive">
+              <table class="table">
+                <tbody>
+                  {% for order in completed_orders %}
+                  <tr>
+                    <td scope="row">
+                      <div class="seller-name">
+                        <img src="{{ order.package.offer.image.url }}" alt="" class="rounded-circle">
+                        <p class="ms-2">{{ order.user }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="price">
+                        <p class="text-muted">Price</p>
+                        <p>${{ order.total }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="status">
+                        <p class="text-muted">Status</p>
+                        <p><span class="badge bg-secondary">Completed</span></p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="view">
+                        <p><a href="#">View</a></p>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- cancel order options -->
+            <div id="cancel_order" class="complete__order__table table-responsive">
+              <table class="table">
+                <tbody>
+                  {% for order in cancelled_orders %}
+                  <tr>
+                    <td scope="row">
+                      <div class="seller-name">
+                        <img src="{{ order.package.offer.image.url }}" alt="" class="rounded-circle">
+                        <p class="ms-2">{{ order.user }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="price">
+                        <p class="text-muted">Price</p>
+                        <p>${{ order.total }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="status">
+                        <p class="text-muted">Status</p>
+                        <p><span class="badge bg-secondary">cancelled</span></p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="view">
+                        <p><a href="#">View</a></p>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+
+          <!-- Completed Order section starts -->
+          <!-- <div id="complete_order_show" class="complete-order">
+            {% for order in completed_orders %}
             <div class="seller-detail">
               <div class="seller-name">
-                <img class="complete-order-firstimage" src="images/goku.png" alt="goku">
-                <img src="images/goku.png" alt="" class="rounded-circle">
-                <p>Seller Name</p>
+                <img src="{{ order.package.offer.image.url }}" alt="" class="rounded-circle">
+                <p class="ms-2">{{ order.user }}</p>
               </div>
               <div class="price">
                 <p class="text-muted">Price</p>
-                <p>$100000</p>
+                <p>${{ order.total }}</p>
               </div>
               <div class="status">
                 <p class="text-muted">Status</p>
@@ -223,8 +296,12 @@
                 <p><a href="#">View</a></p>
               </div>
             </div>
-          </div>
-          <div id="cancel_order" class=" ">
+            {% endfor %}
+          </div> -->
+          <!-- Completed Order section ends -->
+
+          <!-- Cancelled order section starts -->
+          <!-- <div id="cancel_order" class=" ">
             <div class="seller-detail">
               <div class="seller-name">
                 <img class="complete-order-firstimage" src="images/goku.png" alt="goku">
@@ -243,7 +320,8 @@
                 <p><a href="#">View</a></p>
               </div>
             </div>
-          </div>
+          </div> -->
+          <!-- Cancelled order section ends -->
           <br><br><br>
 
           <div id="upgrade_text" class="upgradeText">
@@ -254,9 +332,9 @@
             <div id="upgrade_business" class="row upgradeBusiness">
               <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="secondUpgradeText">
-                  <h5>How to build your success on Fiverr in 3 steps</h5>
-                  <p>The key to your success on Fiverr is the brand you build for yourself through <br> your Fiverr
-                    reputation. We gathered some tips and resources to help you <br> become a leading seller on Fiverr.
+                  <h5>How to build your success on Marketage in 3 steps</h5>
+                  <p>The key to your success on Fiverr is the brand you build for yourself through <br> your marketage
+                    reputation. We gathered some tips and resources to help you <br> become a leading seller on marketage.
                   </p>
                 </div>
               </div>
@@ -271,7 +349,7 @@
 
           <div id="top_seller" class="topSeller">
             <div class="topSeller text-center">
-              <h4>Take these steps to become a top seller on Fiverr</h4>
+              <h4>Take these steps to become a top seller on marketage</h4>
             </div>
             <div class="container">
               <div class="row">

@@ -1,0 +1,20 @@
+{% extends "wasekPart/base.html" %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <a href="#" download="#">
+        <button class="btn btn-primary">
+            Download
+        </button>
+    </a>
+
+    <select name="order_status">
+        <option value="complete">Complete</option>
+        <option value="cancel">Cancel</option>
+        <option value="review">Review</option>
+    </select>
+</form>
+
+{% endblock %}
