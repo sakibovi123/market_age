@@ -4,17 +4,17 @@
 
 <form method="POST">
     {% csrf_token %}
-    <a href="#" download="#">
-        <button class="btn btn-primary">
+        <a href="{{ seller_submit.file_field.url }}" download="{{ seller_submit.file_field.url }}">
             Download
-        </button>
-    </a>
+        </a>
 
     <select name="order_status">
         <option value="complete">Complete</option>
         <option value="cancel">Cancel</option>
         <option value="review">Review</option>
     </select>
+
+    <button type="submit">Save</button>
 </form>
 
 {% endblock %}

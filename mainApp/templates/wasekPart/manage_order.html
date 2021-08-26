@@ -287,8 +287,8 @@
             <p>{{ order.order_status|title }}</p>
           </td>
           <td class="order__submitBtn">
-            <a href="#">
-              <button class="btn btn-primary">View</button>
+            <a href="{% url 'seller-submit' order.id %}">
+              <button class="btn btn-primary">Reupload</button>
             </a>
           </td>
         </tr>

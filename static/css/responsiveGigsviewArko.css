@@ -8,12 +8,15 @@
         font-size: 15px;
     }
     .right-section{
-        display: none;
         padding-left: 0%;
+        width: 100% !important;
+        margin-top: 40px;
     }
-
+    .changing-order{
+        flex-direction: column-reverse !important;
+    }
     .left-section{
-        width: 100%;
+        width: 100% !important;
         order: 2;
         align-self: flex-end;
     }

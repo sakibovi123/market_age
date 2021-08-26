@@ -20,7 +20,7 @@ class PostRequestForm(forms.ModelForm):
     
 class ExtendedUserForm(forms.ModelForm):
     class Meta:
-        model = ExtendedUser
+        model = SellerAccount
         fields = "__all__"
 
 class SellerSubmitForm(forms.ModelForm):

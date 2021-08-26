@@ -39,21 +39,14 @@ class City(models.Model):
         return self.city_name
 
 
-class ExtendedUser(models.Model):
-    levels_fields = (
-        ("NEW SELLER", "NEW SELLER"),
-        ("LEVEL1", "LEVEL1"),
-        ("LEVEL 2", "LEVEL 2"),
-        ("LEVEL 3", "LEVEL 3"),
-        ("MARKETAGE PRO", "MARKETAGE PRO")
-    )
+class SellerAccount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(null=True, unique=True)
     contact_no = models.CharField(max_length=15, null=True)
     profile_picture = models.ImageField(upload_to="images/", null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
-    level = models.CharField(max_length = 120, null=True, blank=True, choices=levels_fields, default="NEW SELLER")
+    level = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -225,6 +218,7 @@ class Checkout(models.Model):
     ORDER_CHOICES = (
         ("ACTIVE", "ACTIVE"),
         ("LATE", "LATE"),
+        ("COMPLETED", "COMPLETED"),
         ("DELIVERED", "DELIVERED"),
         ("CANCELLED", "CANCELLED"),
         ("ON REVIEW", "ON REVIEW")
@@ -248,7 +242,7 @@ class Checkout(models.Model):
     order_status = models.CharField(max_length=200, choices=ORDER_CHOICES, default="ACTIVE")
     is_complete = models.BooleanField(default=False, null=True)
     is_cancel = models.BooleanField(default=False, null=True)
-    on_review = models.BooleanField(default=False, null=True)    
+    on_review = models.BooleanField(default=False, null=True)
     
     def save(self, *args, **kwargs):
         self.total = self.price*self.quantity
@@ -257,7 +251,7 @@ class Checkout(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.first_name
+        return str(self.user)
 
     @staticmethod
     def get_total(total):

@@ -28,8 +28,8 @@
 }
 
 .gigs__radioButton:checked {
-  background-color: #198754 !important;
-  border-color: #198754 !important;
+  background-color: #619CEC !important;
+  border-color: #619CEC !important;
 }
 /* Gigs radio input section ends */
 
@@ -72,7 +72,7 @@
 .create__newGig a,
 .mobile__createGig a {
   padding: 0.7rem;
-  background-color: #198754;
+  background-color: #619CEC;
   color: #fff;
   border-radius: 0.3rem;
   text-transform: uppercase;
@@ -84,7 +84,7 @@
 }
 
 .create__newGig:hover a {
-  background-color: #0e693f;
+  background-color: #3d70b8;
 }
 
 .manage__orderTable tbody td:first-child > a {

@@ -1,24 +1,11 @@
+
+{% extends 'wasekPart/base.html' %}
+
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      <!-- google font -->
-      <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
-      <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
-
+      {% block content %}
       <link rel="stylesheet" href="{% static 'css/seller_order_details.css' %}">
-
-    <title>Seller Order Details</title>
-  </head>
-  <body>
 
     <!-- order completed and earned section -->
     <div class="earned__section">
@@ -27,20 +14,20 @@
             <div class="check__name1">
               <span class="iconify earned__icon" data-icon="akar-icons:circle-check" style="color: white;"></span>
               <div class="check_name1_p">
-                <p class="text-white">wasek kibria</p>
-              <p class="text-white">Abar wasek kibria</p>
+                <p class="text-white">BUYER SUBMITTED</p>
+              <p class="text-white">INFORMATION</p>
               </div>
           </div>
           <div class="check__name2">
               <span class="iconify earned__icon" data-icon="akar-icons:circle-check" style="color: white;"></span>
               <div class="check_name2_p">
-                <p class="text-white">wasek kibria</p>
-              <p class="text-white">Abar wasek kibria</p>
+                <p class="text-white">WORK</p>
+              <p class="text-white">DELIVERED</p>
               </div>
           </div>
           <div class="order__completed">
               <span class="iconify earned__icon" data-icon="bi:check-lg" style="color: white;"></span>
-              <p class="text-white check_name3">ORDER COMPLETED. <span class="fw-bold">YOU EARNED $ 120000</span></p>
+              <p class="text-white check_name3">ORDER {{ order.order_status }}. <span class="fw-bold">YOU EARNED $ 120000</span></p>
           </div>
           </div>
         </div>
@@ -50,19 +37,194 @@
     <!-- main content -->
 
     <div class="container-fluid">
+
       <div class="main__content__card">
-        <div class="order____details">
-          <div class="order__first__colum">
-            <p>Star</p>
-            <p><span>Order #FFFFFFFFFF</span> sada</p>
-              <p>sasd  <span> sdasdsa</span> sadsa | asdasdsa</p>
+
+        <div class="main__content">
+
+          <div class="order____details">
+            <div class="order__first__colum">
+              <p class="star">Star</p>
+              <p><span class="order__info fw-bold">Order #{{order.id}}
+
+              <!-- </span> view gig</p> -->
+                <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+            </div>
+            <div class="order__second__colum">
+              <p class="erned____amount">${{order.total}}</p>
+              <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
           </div>
         </div>
-      </div>
+        <hr>
+
+        <div class="order___description">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+          <hr>
+        </div>
+
+        <!-- order table -->
+
+        <div class="order___table table-responsive">
+          <table class="table">
+            <thead class="bg-light">
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><p>{{ order.package }}</p>
+                  <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                </td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ duration }}</td>
+                <td>${{ order.total }}</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Total</td>
+                <td></td>
+                <td></td>
+                <td class="fw-bold">${{ order.total }}</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                <td></td>
+                <td></td>
+              <td class="fw-bold">${{ order.grand_total }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- order announcment -->
+        <!-- <div class="order___announcmennt">
+          <div class="first__announcment">
+            <p><span class="iconify note__icon" data-icon="clarity:note-edit-line" style="color: #1dde7d;"></span></p>
+            <p class="fw-bold">ORDER REQUIREMENTS</p>
+            <p class="text-muted">Your buyer has filled out the requirements <span class="star"> Show requirements</span></p>
+            <hr>
+          </div>
+          <div class="first__announcment">
+            <p><span class="iconify note__icon" data-icon="bx:bxs-plane-alt" style="color: #1dde7d;"></span></p>
+            <p class="fw-bold">ORDER STARTED</p>
+            <p class="text-muted">The order countdown is now ticking...<span>Don't waste your time reading this message...</span></p>
+            <hr>
+          </div>
+          <div class="first__announcment">
+            <p><span class="iconify note__icon" data-icon="akar-icons:shipping-box-01" style="color: #1dde7d;"></span></p>
+            <p class="fw-bold">HERE'S YOUR DELIVERY</p>
+            <p class="text-muted">This order will be marked as complete in 3 days.<span class="star"></span></p>
+            <hr>
+          </div>
+        </div>   -->
+
+        <!-- personal info -->
+        <!-- <div class="personal__info">
+          <a href="#"><img src="{% static 'images/goku.png' %}" alt="goku" class="rounded-circle"></a>
+          <div class="personal__info__details">
+            <p class="fw-bold">Me</p>
+            <p>This is the <a href="#">www.justiceforwasek.com</a> </p>
+            <p>I try my best to responsive this hope you will like</p>
+            <p class="text-muted">Delivered Files</p>
+            <p class="text-muted">23.36 aug 05, 2021</p>
+          </div>
+        </div>
+        <hr> -->
+
+        <!-- main icon -->
+
+        <!-- <div class="main__icon">
+          <p><span class="iconify note__icon" data-icon="bi:chat" style="color: #1dde7d;"></span></p>
+          <p>ORDER REVIEWS</p>
+          <hr>
+        </div> -->
+
+        <!-- main chat content -->
+        <!-- <div class="main__chat__content">
+        <div class="all__chat">
+          <div class="main__all__chat">
+            <a href="#"><img src="{% static 'images/goku.png' %}" alt="goku" class="rounded-circle"></a>
+          <div class="chat__content">
+            <p class="fw-bold">seller name <span class="iconify" data-icon="akar-icons:star" style="color: green;"></span></p>
+            <p class="text-muted chat__para">seller order description</p>
+            <p class="text-muted">20 days ago</p>
+          </div>
+          </div>
+          <div class="chat__button">
+            <button class="chat__all__button"><span class="iconify" data-icon="bi:share" style="color: green;"></span> Share</button>
+          </div>
+        </div>
+        </div> -->
+
+        <!-- chat input form -->
+        <!-- <div class="input__form">
+          <a href="#"><img src="{% static 'images/goku.png' %}" alt="goku" class="rounded-circle"></a>
+          <div class="main__input__form">
+            <p class="fw-bold">You may respond to this review (This will be public)</p>
+            <div class="form-floating">
+              <textarea class="form-control new__comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <label class="text-muted" for="floatingTextarea">Share your responce here</label>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- last share button -->
+        <!-- <div class="last__share__button">
+          <button class="last__button">Share response</button>
+          <hr>
+        </div> -->
+
+        <!-- rabbith arko -->
+        <!-- <div class="rabbith___arko">
+          <a href="#"><img src="{% static 'images/goku.png' %}" alt="goku" class="rounded-circle"></a>
+          <div class="rabboth_arko_detail">
+            <p>rabbith_arko <span class="text-muted">20 days ago</span></p>
+            <p>seller reveiw here.............</p>
+          </div>
+        </div> -->
+
+        <!-- order completion -->
+        <!-- <div class="order__com">
+          <p><span class="iconify note__icon" data-icon="bi:box-seam"></span></p>
+          <p class="fw-bold">ORDER COMPLETION</p>
+        </div> -->
+
+        <!-- hand sign icon with text -->
+        <!-- <div class="hand__sign__text">
+          <p><span class="iconify note__icon" data-icon="clarity:cursor-hand-click-line" style="color: #13c0d4;"></span></p>
+          <p class="hand__para">YOUR BUYER HAS GIVEN YOU A TIP</p>
+          <p class="fw-bold text-muted fs-3">CONGRATS! You've just received a tip of</p>
+          <p class="text-muted fw-bold fs-3">$ 222222222</p>
+          <p class="text-muted">This order is complete. click <a href="#">here</a> to contact the buyer</p>
+        </div> -->
+        </div>
+
+        <!-- main second card -->
+        <div class="main__second__card">
+
+          <div class="private__note">
+            <p class="fw-bold">Private Note</p>
+            <p class="text-muted">Only poerer ta ar dekhina</p>
+            <hr>
+            <p class="add__note"><span class="iconify note__icon" data-icon="bi:file-earmark-plus" style="color: #1dde7d;"></span> Add Note</p>
+          </div>
+
+          <div class="need__conect__card">
+            <p class="fw-bold">Need to conduct</p>
+            <p class="fw-bold">Customer! Support?</p>
+            <div class="contuct__button">
+              <button class="conduct__button text-white">sadsadsa dfsdf dfasdsa</button>
+              <p><span class="iconify" data-icon="akar-icons:play" style="color: #1dde7d;"></span>   <a href="#">Learn More</a></p>
+            </div>
+        </div>
     </div>
+  </div>
+</div>
+</br>
 
+    {% include 'buyingview/buying_footer.html' %}
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+{% endblock %}

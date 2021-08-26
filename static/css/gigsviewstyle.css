@@ -129,7 +129,7 @@ margin:auto;
     width: 100%;
 }
 .gallery-top {
-    height: 80%;
+    height: 60%;
     width: 100%;
     overflow: hidden;
 }
@@ -426,7 +426,7 @@ margin:auto;
   }
   .tab{
     cursor: pointer;
-    padding: 12px 25px;
+    padding: 12px 5px;
     background:#000;
     display:inline-block;
     color:#fff;
@@ -517,7 +517,3 @@ margin:auto;
     font-size: 18px;
   }
 
-
-.for-responsive{
-
-  }

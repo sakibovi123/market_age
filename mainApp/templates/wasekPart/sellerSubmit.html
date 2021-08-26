@@ -3,17 +3,17 @@
 
 <link rel="stylesheet" href="{% static 'css/sellerSubmit.css' %}">
 {% include "wasekPart/base.html" %} {% block content %}
-
+<!-- 
 <div class="container seller__sub">
     <div class="row d-flex justify-content-center seller___row">
         <div class="col-lg-5"></div>
         <div class="col-lg-2 seller__submit__form">
             <form method="POST" enctype="multipart/form-data" class="form seller__form">
                 {% csrf_token %}
-                <p>Checkout ID: <span class="fw-bold">{{ checkout_id }}</span></p>
+                <p>Checkout ID: <span class="fw-bold">{{ checkout_id }}</span></p> -->
                 <!-- <p>File Upload</p> -->
                 <!-- {{ form.file_field }} -->
-                <div class="choose___file">
+                <!-- <div class="choose___file">
                     <label for="formFileLg" class="form-label text-white"><span class="iconify" data-icon="entypo:attachment"></span> Attachment</label>
                     <input class="form-control form-control" id="formFileLg" name="file_field" type="file">
                   </div>
@@ -26,8 +26,28 @@
         </div>
         <div class="col-lg-5"></div>
         </div>
+    </div> -->
+<!-- </div> -->
+
+    <div class="container">
+        <div class="seller__sub__form">
+            <p>Select the file you want to upload for "sadasd/sadas/sada".</p>
+            <div class="maximum____file___to__upload">
+                <p>Maximum file size allowed for upload: <span class="iconify" data-icon="akar-icons:infinity"></span></p>
+            </div>
+            <div class="upload____option">
+                <p>Upload Files</p>
+                <p>or</p>
+                <div class="choose___file">
+                    <label for="formFileLg" class="form-label text-white"><span class="iconify go__back__icon text-white" data-icon="ant-design:cloud-upload-outlined"></span></label>
+                    <input class="form-control form-control" id="formFileLg" name="file_field" type="file">
+                  </div>
+            </div>
+            <div class="go__back__option">
+                <p><span class="iconify goback__icon" data-icon="akar-icons:triangle-left"></span> <a href="#">Go Back to "asds/sda"</a></p>
+            </div>
+        </div>
     </div>
-</div>
 
 
 {% endblock %}

@@ -66,6 +66,9 @@ cancel.style.display= "none"
 const active = document.getElementById("activeOrder");
 const activeBtn = document.querySelector(".activeBtn");
 
+const activeOrderShow = document.getElementById("active_order_show")
+const newActive = document.getElementById("activeOrder")
+
 active.addEventListener("click", (event) =>{
 if(active.style.display = "none"){
   active.style.display = "block"
@@ -76,11 +79,24 @@ if(active.style.display = "none"){
   slider_row.style.display="block"
   upgrade_text.style.display="block"
   activeBtn.innerHTML = "Active Orders"
+  activeText.innerHTML = "Active Orders"
 } else{
   active.style.display = "none"
 }
 })
 
+activeOrder.addEventListener("click", (event) => {
+  if (activeOrderShow.style.display = "none"){
+    activeOrderShow.style.display = "block"
+    cancel.style.display = "none"
+    complete.style.display = "none"
+    activeText.innerHTML = "Active Orders"
+    activeBtn.innerHTML = "Active Orders"
+  } else {
+    activeOrderShow.style.display = "none"
+  
+  }
+  })
 
 completed.addEventListener("click", (event) => {
 if (complete.style.display = "none"){
@@ -90,6 +106,7 @@ if (complete.style.display = "none"){
   slider_row.style.display="none"
   upgrade_text.style.display="none"
   cancel.style.display = "none"
+  activeOrderShow.style.display = "none"
   activeText.innerHTML = "Completed Orders"
   activeBtn.innerHTML = "Completed Orders"
 } else {
@@ -107,6 +124,7 @@ if (cancel.style.display = "none"){
   slider_row.style.display="none"
   upgrade_text.style.display="none"
   complete.style.display = "none"
+  activeOrderShow.style.display = "none"
   activeBtn.innerHTML = "Canceled Orders"
   activeText.innerHTML = "Canceled Orders"
 } else {

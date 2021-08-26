@@ -1,8 +1,11 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.db.models import Avg, Max, Min
 from django.contrib import messages
 from .models import Offer
 import time
+import os
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -10,6 +13,9 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from sslcommerz_lib import SSLCOMMERZ
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from datetime import date
+from datetime import datetime
 
 
 def get_landing_page(request):
@@ -28,7 +34,6 @@ def get_landing_page(request):
         return render(request, 'landingview/landingPage.html', args)
     else:
         return redirect("buying_view")
-
 
 
 def service_wise_offers(request, id):
@@ -63,8 +68,6 @@ def buying_view(request):
     pop_offers = Offer.objects.filter(is_popular=True)
     pop_web_offers = Offer.objects.filter(pop_web=True)
     pro_offers = Offer.objects.filter(is_pro=True)
-    
-    
 
     args = {
         'offers': offers,
@@ -86,7 +89,6 @@ def offer_details(request, id):
     for image in offers.extra_images.all():
         print(image)
 
-
     def get_ip(request):
         address = request.META.get('HTTP_X_FORWARDED_FOR')
         if address:
@@ -96,9 +98,9 @@ def offer_details(request, id):
         return ip
 
     ip = get_ip(request)
-    
+
     print(ip)
-    
+
     u = DummyUser(user=ip)
 
     result = DummyUser.objects.filter(Q(user__icontains=ip))
@@ -112,7 +114,7 @@ def offer_details(request, id):
     #     offers.save()
     c = DummyUser.objects.all().count()
     related_offers = Offer.objects.all()
-    
+
     # ISSUE ##
 
     # print(packages)
@@ -194,8 +196,8 @@ def categoryWisePage(requrest):
 # Order page
 @login_required(login_url='user_login')
 def manageOrder(request):
-    orders = Checkout.objects.filter(seller=request.user).order_by("-id")
-    active_orders, late_orders, delivered_orders, completed_orders, cancelled_orders, review_orders  = [], [], [], [], [], []
+    orders = Checkout.objects.filter(seller=request.user).filter(paid=True).order_by("-id")
+    active_orders, late_orders, delivered_orders, completed_orders, cancelled_orders, review_orders = [], [], [], [], [], []
 
     for order in orders:
         if order.is_complete:
@@ -210,7 +212,7 @@ def manageOrder(request):
             delivered_orders.append(order)
         elif order.order_status == "CANCELLED":
             cancelled_orders.append(order)
-    
+
     print(review_orders)
     # print(cancelled_orders)
 
@@ -285,7 +287,7 @@ def seller_dashboard(request):
     users = User.objects.all()
     active_orders, completed_orders, cancelled_orders = [], [], []
 
-    orders = Checkout.objects.filter(seller=request.user).order_by("-id")
+    orders = Checkout.objects.filter(seller=request.user).filter(paid=True).order_by("-id")
 
     for order in orders:
         if order.is_complete:
@@ -431,36 +433,34 @@ def checkout(request):
         request.session['cart'] = {}
     ids = list(request.session.get('cart').keys())
     cart_products = OfferManager.get_offer(ids)
-    
-    
-    
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        due_date = request.POST.get('due_date')
         user = request.user
         # seller work
-        
-        
+
         packages = OfferManager.get_offer(list(cart.keys()))
-     
 
         for package in packages:
             checkout = Checkout(
                 first_name=first_name,
                 last_name=last_name,
+                due_date=due_date,
                 user=user,
                 package=package,
                 price=package.price,
                 quantity=cart.get(str(package.id)),
-                
+                seller = package.offer.user
             )
-
+            
+            # checkout.order_status = ""
+            
             checkout.save()
             request.session['cart'] = {}
             return redirect('BuyerOrders')
 
-        
     args = {
         'cart_products': cart_products
     }
@@ -516,7 +516,7 @@ def get_become_a_seller_page(request):
     return render(request, 'landingview/become_a_seller.html')
 
 
-# Order Details Page & SSLCOMMERZ 
+# Order Details Page & SSLCOMMERZ
 @login_required(login_url='user_login')
 def get_order_details_url(request, id, *args, **kwargs):
     order = Checkout.objects.get(pk=id)
@@ -536,6 +536,7 @@ def get_order_details_url(request, id, *args, **kwargs):
         last_name = order.last_name
         quantity = order.quantity
         total = order.grand_total
+        transaction_id = order.id
 
         # Checkout.objects.filter(pk=kwargs['id'])
         Checkout.objects.filter(pk=id)
@@ -544,7 +545,7 @@ def get_order_details_url(request, id, *args, **kwargs):
         post_body = {}
         post_body['total_amount'] = total
         post_body['currency'] = "BDT"
-        post_body['tran_id'] = "123sdf5xxxxx234asf2321"
+        post_body['tran_id'] = transaction_id
         # post_body['tran_id'] = transaction_id
         post_body['success_url'] = "http://127.0.0.1:8000/success/"
         post_body['fail_url'] = "http://127.0.0.1:8000/failed/"
@@ -575,11 +576,19 @@ def get_order_details_url(request, id, *args, **kwargs):
 
 @csrf_exempt
 def successView(request):
+    if request.POST.get('status') == "VALID":
+        tran_id = request.POST['tran_id']
+        order = Checkout.objects.filter(id=tran_id)
+        if order.exists():
+            order.update(paid = True)
+        
     return render(request, "responseview/success.html")
+
 
 @csrf_exempt
 def failedView(request):
     return render(request, "responseview/failed.html")
+
 
 @csrf_exempt
 def cancelledView(request):
@@ -604,9 +613,9 @@ def extendedUserView(request):
             except:
                 return redirect("extended-user")
             else:
-                ExtendedUser.objects.create(user=request.user, email=email,
-                                            contact_no=contact_no, profile_picture=profile_picture,
-                                            country=country, city=city)
+                SellerAccount.objects.create(user=request.user, email=email,
+                                             contact_no=contact_no, profile_picture=profile_picture,
+                                             country=country, city=city)
                 return redirect('buying_view')
     else:
         return redirect("user_registration")
@@ -615,6 +624,7 @@ def extendedUserView(request):
         'form': form,
     }
     return render(request, "wasekPart/extendedForm.html", args)
+
 
 @login_required(login_url='user_login')
 def sellerSubmitView(request, pk):
@@ -628,41 +638,12 @@ def sellerSubmitView(request, pk):
         except:
             return redirect("manage-order")
         else:
-            SellerSubmit.objects.create(checkout=checkout, file_field=file_field)
-            checkout.order_status ="DELIVERED"
-            
-            chk = checkout.is_complete = True
-            
-            # SELLER LEVEL UP ALGORITHM
-            l = Checkout.objects.filter(is_complete = True).filter(seller=request.user).count()
-            print("Count:" + str(l))
+            SellerSubmit.objects.create(
+                checkout=checkout, file_field=file_field)
+            checkout.order_status = "DELIVERED"
 
-            if l > 15:
-                us = checkout.seller.username
-                
-                print("SEller:" + us)
-                print("Working")
-                checkout.seller.extendeduser.level = "LEVEL1"
-                checkout.seller.extendeduser.save()
-                # print(out)
-                checkout.save()
-            
-            elif l > 25:
-                checkout.seller.extendeduser.level = "LEVEL 2"
-                checkout.seller.extendeduser.save()
-                checkout.save()
-            elif l > 30:
-                checkout.seller.extendeduser.level = "LEVEL 3"
-                checkout.seller.extendeduser.save()
-                checkout.save()
-            elif l > 40:
-                checkout.seller.extendeduser.level = "MARKETAGE PRO"
-            
-            # SELLER LEVEL DOWN ALGORITHM
-            
-            
-            
-            print(chk)
+            # chk = checkout.is_complete = True
+
             checkout.save()
             return redirect("manage-order")
 
@@ -671,38 +652,34 @@ def sellerSubmitView(request, pk):
         "checkout_id": pk,
     }
     return render(request, "wasekPart/sellerSubmit.html", args)
-    
 
 
-
-        
-
-## Level up sellers (FOR TESTING)
+# Level up sellers (FOR TESTING)
 
 def level_up_seller(request):
-    
+
     offs = Offer.objects.all()
-    
+
     args = {
         'offs': offs
     }
-    
+
     return render(request, 'testpart/test.html', args)
+
 
 def level_up_function(request, id):
     count_clicks = Offer.objects.filter(id=id).first()
     info = count_clicks.user.extendeduser.level
-    
+
     lvl = Checkout.objects.filter(seller=request.user).first()
 
-   
     # if count_clicks > 10:
     #     level  = "Hello"
-    #     lvl.save()        
-        
+    #     lvl.save()
+
     # else:
     #     level = "New Freelancer"
-    
+
     print(count_clicks)
 
     args = {
@@ -710,20 +687,17 @@ def level_up_function(request, id):
         'info': info,
         # 'lvl': lvl
     }
-    
+
     return render(request, 'testpart/test_details.html', args)
 
 
-
-## Rating Sellers
-
+# Rating Sellers
 
 
-## Top Offers
+# Top Offers
 
 
-
-## 
+##
 
 def aboutusView(request):
     return render(request, "azimpart/aboutus.html")
@@ -733,23 +707,133 @@ def createOfferView(request):
     return render(request, "sellingview/create_offer.html")
 
 
-def seller_order_details(request):
-    return render(request, 'sellingview/seller_order_details.html')
+def seller_order_details(request, id):
+    order = Checkout.objects.get(pk=id)
+    today_date = date.today()
+    duration = str(order.due_date - today_date).split(",")[0]
+
+    print(duration)
+    print(type(duration))
+    
+    args = {
+        'order': order,
+        "duration": duration,
+    }
+    return render(request, 'sellingview/seller_order_details.html', args)
+
 
 def buyerGigFormView(request, pk):
-    args = {}
+    try:
+        order = Checkout.objects.get(id=pk)
+        # print(f"{order=}")
+        seller = order.seller
+        # print(seller)
+        seller_submit = SellerSubmit.objects.get(checkout=order)
+        print(seller_submit.id)
+    except:
+        messages.error(request, "Error while submitting!")
+    else:
+        if request.method == "POST":
+            order_status = request.POST.get("order_status")
+            l = Checkout.objects.filter(is_complete=True).filter(
+                 seller=request.user).count()
+            print(l)
+            cancel_amount = Checkout.objects.filter(is_cancel=True).filter(
+                seller=request.user
+            ).count()
+            
+            if order_status == "complete" or l > 15:
+                order.order_status = "COMPLETED"
+                order.is_complete = True
+                order.seller.selleraccount.level = 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+            
+            elif order_status == "complete" or l > 25:
+                order.order_status = "COMPLETED"
+                order.is_complete = True
+                order.seller.selleraccount.level += 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+            
+            elif order_status == "complete" or l > 35:
+                order.order_status = "COMPLETED"
+                order.order_status = True
+                order.seller.selleraccount.level += 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+            
+            elif order_status == "complete" or l > 50:
+                order.order_status = "COMPLETED"
+                order.order_status = True
+                order.seller.selleraccount.level += 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+                
+            # Leveling Down ALgorithm
+            
+            elif order_status == "cancel" or cancel_amount > 5:
+                order.order_status = "CANCELLED"
+                order.is_cancel = True
+                order.seller.selleraccount.level -= 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+            
+            elif order_status == "cancel" or cancel_amount > 8:
+                order.order_status == "CANCELLED"
+                order.is_cancel = True
+                order.seller.selleraccount.level -= 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashbaord")
+            
+            elif order_status == "cancel" or cancel_amount > 15:
+                order.order_status == "CANCELLED"
+                order.is_cancel = True
+                order.seller.selleraccount.level -= 1
+                order.seller.selleraccount.save()
+                order.save()
+                return redirect("buyer-dashboard")
+            
+            elif order_status == "review":
+                order.order_status = "ON REVIEW"
+                order.on_review = True
+                order.save()
+                return redirect("buyer-dashboard")
+            else:
+                messages.error(request, "Error while submitting!")
+
+    args = {
+        "seller_submit": seller_submit,
+        "order": order
+    }
     return render(request, "wasekPart/buyer_gigForm.html", args)
 
 
 def buyerDashboardFormView(request):
-    orders = Checkout.objects.filter(user=request.user, order_status="DELIVERED").order_by("-id")
-    seller_submit = SellerSubmit.objects.all()
-    for order in orders:
-        print(order.id)
-    # for item in sellter
+    orders = Checkout.objects.filter(
+        user=request.user, order_status="DELIVERED", is_complete=False).order_by("-id")
 
     args = {
         "orders": orders,
     }
 
     return render(request, "wasekPart/buyer_dashboard.html", args)
+
+# Download Function
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    print(file_path)
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as fh:
+            response = HttpResponse(
+                fh.read(), content_type="application/file_field")
+            response["Content-Disposition"] = "inline;filename=" + \
+                os.path.basename(file_path)
+            return response
+    raise Http404

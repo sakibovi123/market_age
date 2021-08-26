@@ -127,6 +127,9 @@
 .nav-logo {
     margin-right: 4rem;
 }
+.nav-link{
+    margin-right: 0px !important;
+}
 
 /* ====================================
            Mobile nav-bar menu
@@ -148,7 +151,6 @@
 .catagory-selection{
     width: 100%;
 }
-
 .catagory-name{
     width: 100%;
     display: flex;
@@ -166,7 +168,7 @@
     font-weight: 500;
     font-size: 17px;
 }
-.catagory-name li:hover::before{
+.catagory-name li a:hover::before{
     content: "";
     background-color: #19A463;
     width: 100%;

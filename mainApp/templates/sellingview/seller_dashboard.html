@@ -204,6 +204,41 @@
             </ul>
           </div><br>
 
+          <!-- active order display -->
+          <div id="active_order_show" class="complete__order__table table-responsive">
+            <table class="table">
+              <tbody>
+                {% for order in active_orders %}
+                <tr>
+                  <td scope="row">
+                    <div class="seller-name">
+                      <img src="{{ order.package.offer.image.url }}" alt="" class="rounded-circle">
+                      <p class="ms-2">{{ order.user }}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="price">
+                      <p class="text-muted">Price</p>
+                      <p>${{ order.total }}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="status">
+                      <p class="text-muted">Status</p>
+                      <p><span class="badge bg-secondary">Active</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="view">
+                      <p><a href="{% url 'SellerOrderDetails' order.id %}">View</a></p>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
           <!-- complete order section -->
 
             <div id="complete_order_show" class="complete__order__table table-responsive">
@@ -231,7 +266,7 @@
                     </td>
                     <td>
                       <div class="view">
-                        <p><a href="#">View</a></p>
+                        <p><a href="{% url 'SellerOrderDetails' order.id %}">View</a></p>
                       </div>
                     </td>
                   </tr>
@@ -266,7 +301,7 @@
                     </td>
                     <td>
                       <div class="view">
-                        <p><a href="#">View</a></p>
+                        <p><a href="{% url 'SellerOrderDetails' order.id %}">View</a></p>
                       </div>
                     </td>
                   </tr>
@@ -274,54 +309,6 @@
                 </tbody>
               </table>
             </div>
-
-
-          <!-- Completed Order section starts -->
-          <!-- <div id="complete_order_show" class="complete-order">
-            {% for order in completed_orders %}
-            <div class="seller-detail">
-              <div class="seller-name">
-                <img src="{{ order.package.offer.image.url }}" alt="" class="rounded-circle">
-                <p class="ms-2">{{ order.user }}</p>
-              </div>
-              <div class="price">
-                <p class="text-muted">Price</p>
-                <p>${{ order.total }}</p>
-              </div>
-              <div class="status">
-                <p class="text-muted">Status</p>
-                <p><span class="badge bg-secondary">Completed</span></p>
-              </div>
-              <div class="view">
-                <p><a href="#">View</a></p>
-              </div>
-            </div>
-            {% endfor %}
-          </div> -->
-          <!-- Completed Order section ends -->
-
-          <!-- Cancelled order section starts -->
-          <!-- <div id="cancel_order" class=" ">
-            <div class="seller-detail">
-              <div class="seller-name">
-                <img class="complete-order-firstimage" src="images/goku.png" alt="goku">
-                <img src="images/goku.png" alt="" class="rounded-circle">
-                <p>Seller Name</p>
-              </div>
-              <div class="price">
-                <p class="text-muted">Price</p>
-                <p>$100000</p>
-              </div>
-              <div class="status">
-                <p class="text-muted">Status</p>
-                <p><span class="badge bg-secondary">Cancel</span></p>
-              </div>
-              <div class="view">
-                <p><a href="#">View</a></p>
-              </div>
-            </div>
-          </div> -->
-          <!-- Cancelled order section ends -->
           <br><br><br>
 
           <div id="upgrade_text" class="upgradeText">

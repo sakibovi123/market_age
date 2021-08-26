@@ -107,8 +107,6 @@ galleryImg.addEventListener('mouseleave', function () {
 
 
 
-
-
 hoverDiv.addEventListener('mouseenter', function () {
     hiddingDiv.style.display = 'none';
 })
@@ -166,14 +164,10 @@ innerDes.addEventListener('mouseleave', function () {
   desRightDiv.style.display = 'block';
 })
 
-
-
-
-
 // Select the file input and use create() to turn it into a pond
-FilePond.create(
-	document.querySelector('input')
-);
+// FilePond.create(
+// 	document.querySelector('input')
+// );
 
 
 

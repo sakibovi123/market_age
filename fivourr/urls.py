@@ -138,7 +138,7 @@ urlpatterns = [
     # Buyer dashboard page
     path("buyer-dashboard/", views.buyerDashboardFormView, name="buyer-dashboard"),
     # Seller ORder Details
-    path('seller_order_details/', views.seller_order_details, name="SellerOrderDetails"),
+    path('seller_order_details/<int:id>/', views.seller_order_details, name="SellerOrderDetails"),
 
 
     # Test URL
