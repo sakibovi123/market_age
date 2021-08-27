@@ -1,4 +1,5 @@
 {% load static %}
+<link rel="shortcut icon" href="{% static 'images/market_fav.png' %}">
 
 <link rel="stylesheet" href="{% static 'css/wasek_header.css' %}">
 
@@ -48,7 +49,7 @@
             <li class="avatar__img dropdown">
                 <!-- User profile image -->
                 <img class="dropdown-toggle" type="button" id="user__alternateOption" data-bs-toggle="dropdown"
-                    aria-expanded="false" src="{% static 'images/user_img.jpg' %}" alt="">
+                    aria-expanded="false" src="{{ request.user.selleraccount.profile_picture.url }}" alt="">
                 <!-- User login icon show -->
                 <div class="online__dot"></div>
                 <!-- User alternate options section starts -->
@@ -137,10 +138,7 @@
                     <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
                 </li>
                 <li class="fivourr__pro">
-                    <a href="#">Fivourr Pro</a>
-                </li>
-                <li class="fivourr__business">
-                    <a href="#">Fiverr Busines</a>
+                    <a href="#">Marketage Pro</a>
                 </li>
             </ul>
 

@@ -514,12 +514,35 @@ body{
     left: -5%;
     top: 55%;
 }
-
+.input-for-details{
+    width: 100%;
+    height: 100px !important;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+.input-padding{
+    padding: 0px !important;
+}
+.for-price input{
+    border: none;
+    outline: none;
+    width: 95%;
+}
+.input-for-price{
+    border: none;
+    text-align: right;
+}
 
 
 @media screen and (max-width: 991px) {
     .right-div, .for-hiding{
         display: none;
+    }
+    .for-price input{
+        border: none;
+        outline: none;
+        width: 90%;
     }
 }
 @media screen and (max-width: 576px) {

@@ -32,6 +32,9 @@
 </head>
 <body>
 <!-- oveview -->
+<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         <div id="create-a-gig">
         <div class="inner-create-gig container mt-5">
 
@@ -46,7 +49,7 @@
 
                         <div class="gig-title mb-4">
                             <p>OFFER TITLE</p>
-                            <textarea placeholder="I will"></textarea>
+                            <textarea name="offer_title" placeholder="I will"></textarea>
                         </div>
 
 
@@ -54,7 +57,7 @@
                     <!-- seo title     -->
                         <div class="seo-title mb-4">
                             <p>SEO TITLE</p>
-                            <textarea> </textarea>
+                            <textarea name="seo_title"> </textarea>
                         </div>
 
                     <!-- category -->
@@ -66,22 +69,12 @@
 
                             <div class="select-area">
                                 <div>
-                            <select class="for-size" name="" id="">
-                                <option value="">Web Design</option>
-                                <option value="">Graphic Design</option>
-                                <option value="">Logo Design</option>
+                            <select class="for-size" name="category" id="">
+                                {% for category in categories %}
+                                <option value="{{ category.title }}">{{ category.title }}</option>
+                                {% endfor %}
                             </select>
-                                </div>
-
-
-                                <div>
-                            <select class="for-size" name="" id="">
-                                <option value="">Web Design</option>
-                                <option value="">Graphic Design</option>
-                                <option value="">Logo Design</option>
-                            </select>
-                                </div>
-                            
+                                </div>                            
                             
                             </div>
                         </div>
@@ -96,155 +89,14 @@
                         </div>
 
                         <div>
-                            <select class="select-input" name="" id="">
-                                <option value="">Web programming</option>
-                                <option value="">E-commerce</option>
+                            <select class="select-input" name="service" id="">
+                                {% for service in services %}
+                                    <option value="{{service.title}}">{{service.title}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         </div>
 
-
-
-                    <!-- gig metadata -->
-<!-- 
-                        <div class="gig-metadata mb-4">
-                            <div class="left-title">
-                                <p>Gig Metadata</p>
-                            </div>
-
-                            <div class="select-option">
-                                <div class="meta-data-box">
-
-
-                                    <div class="first-div-for-click">
-                                        <p class="pro-lan">PROGRAMMING LANGUAGE</p>
-
-                                        <p class="expertise">EXPERTISE</p>
-
-                                    </div>
-
-                                    
-
-
-                                    <div class="second-div-for-click">
-                                        <p>Select the language you provide services for</p>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Not Defined</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Not Defined</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Not Defined</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Not Defined</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Not Defined</span>
-                                        </div>
-
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>ASP.NET</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>HTML & CSS</span>
-                                        </div>
-
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>JavaScript</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="radio">
-                                            <span>Perl</span>
-                                        </div>
-
-
-
-                                    
-                                    </div>
-
-                                    
-                                    <div class="second-div-for-click-next">
-                                        <p>Select up to 3 areas you are an expert in</p>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>PSD to HTML</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>Cross Browser Compatibility</span>
-                                        </div>                                                              
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>W3C Validation</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>Performance</span>
-                                        </div>                                                              
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>PSD to HTML</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>Cross Browser Compatibility</span>
-                                        </div>                                                              
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>W3C Validation</span>
-                                        </div>
-
-                                        
-                                        <div class="select-for-radio mb-3">
-                                            <input class="for-radio" type="checkbox">
-                                            <span>Performance</span>
-                                        </div>                                                              
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                     -->
                     <!-- search tag -->
                     <div class="search-tag mb-5">
                             <div class="service-title">
@@ -254,13 +106,11 @@
                             <div class="multi-tag">
                                 
                                  <multi-input>
-                                    <input list="speakers" class="input">
+                                    <input list="speakers" name="tag" class="input">
                                     <datalist id="speakers">
-                                      <option value="CSS"></option>
-                                      <option value="HTML"></option>
-                                      <option value="Bootstrap"></option>
-                                      <option value="javascript"></option>
-                                      
+                                        {% for tag in tags %}
+                                        <option value="{{tag.title}}"></option>
+                                        {% endfor %}
                                     </datalist>
                                   </multi-input>                            
                         
@@ -394,132 +244,211 @@
 
                           <tr>
                             <td scope="row"></td>
-                            <td class="col-3">I will convert psd to html (1 page) </td>
-                            <td class="col-3">I will convert psd to html (5 page) </td>
-                            <td class="col-3">I will convert psd to html (7 page) I will convert psd to html</td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
                           </tr>
-                                              
+                                
+
+                          <tr>
+                            <td scope="row"></td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                          </tr>
+                                
+                          
+
+
                           <tr class="table table-for-row">
                             
                             <td></td>
                             
                             <td scope="row">
-                                <select name="" id="">
+                                <select name="delivery_time_basic" id="">
                                     <option value="">Select Delivery Time</option>
-                                    <option value="">1 Days</option>
-                                    <option value="">3 Days</option>
-                                    <option value="">7 Days</option>
-                                    <option value="">15 Days</option>
-                                    <option value="">30 Days</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             
                             
 
                             <td scope="row">
-                                <select name="" id="">
+                                <select name="delivery_time_standard" id="">
                                     <option value="">Select Delivery Time</option>
-                                    <option value="">1 Days</option>
-                                    <option value="">3 Days</option>
-                                    <option value="">7 Days</option>
-                                    <option value="">15 Days</option>
-                                    <option value="">30 Days</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             
                             
 
                             <td scope="row">
-                                <select name="" id="">
+                                <select name="delivery_time_premium" id="">
                                     <option value="">Select Delivery Time</option>
-                                    <option value="">1 Days</option>
-                                    <option value="">3 Days</option>
-                                    <option value="">7 Days</option>
-                                    <option value="">15 Days</option>
-                                    <option value="">30 Days</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             
                             
                           </tr>
-                                              
+                               
+<!-- number of pages -->
                           <tr class="table table-for-row">
-                            
-                            <td scope="row" class="for-padding">Responsive Design</td>
+
+                            <td scope="row" class="for-padding align-middle">Number of Pages</td>
 
                             
                             <td scope="row">
-                                <select name="" id="">
+                                <select name="num_pages_basic" id="">
                                     <option value="">Select</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             
                             
                             <td scope="row">
-                                <select name="" id="">
+                                <select name="num_pages_standard" id="">
                                     <option value="">Select</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             
                             
                             <td scope="row">
-                                <select name="" id="">
-                                    <option value="">Select</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
+                                <select name="num_pages_premium" id="">
+                                    <option class= value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
                                 </select>
                             </td> 
 
                           </tr>
 
-                          
+<!-- responsive design        -->
                           <tr class="for-table-data-center">
-                            <td scope="row">Responsive Design</td>
+                            <td scope="row" class="align-middle">Responsive Design</td>
 
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            <td class="col-3 align-middle">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_basic" id="res1" onchange="checkResponsive1()">
+                            </td>
                             
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            <td class="col-3 align-middle">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_standard" id="res2" onchange="checkResponsive2()">
+                            </td>
                             
-                            <td class="col-3 align-middle p-3"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            <td class="col-3 align-middle p-3">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_premimum" id="res3" onchange="checkResponsive3()">
+                            </td>
 
                             
                           </tr>
+<!-- for revision -->
+                        <tr class="table table-for-row">
+                                                    
+                            <td scope="row" class="for-padding align-middle">Revisions</td>
+
+                            
+                            <td scope="row">
+                                <select name="revision_basic" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="revision_standard" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="revision_premimum" id="">
+                                    <option class= value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td> 
+
+                        </tr>
+
                         
-                          
+<!-- price  -->
                           <tr class="for-table-data-center">
-                            <td scope="row">Responsive Design</td>
 
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
-                            
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
-                            
-                            <td class="col-3 align-middle p-3"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            <td scope="row">Price</td>
 
-                            
-                          </tr>
-                        
-                          
-                          <tr class="for-table-data-center">
-                            <td scope="row">Responsive Design</td>
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_basic" id="" aria-describedby="helpId" placeholder="Price">$
 
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            </td>
+
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_standard" id="" aria-describedby="helpId" placeholder="Price">$
+
+                            </td>
                             
-                            <td class="col-3 align-middle"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_premium" id="" aria-describedby="helpId" placeholder="Price">$
+                            </td>
                             
-                            <td class="col-3 align-middle p-3"><input type="checkbox" class="text-center w-100" align-self-center></td>
+                            
 
                             
                           </tr>
@@ -627,11 +556,11 @@
 
             <input type="file" 
                     class="filepond"
-                    name="filepond"
+                    name="extra_images"
                     multiple
                     data-max-file-size="3MB"
                     data-max-files="3" />
-        </div>   
+        </div>
 <hr>
 
 
@@ -642,8 +571,7 @@
 
             <input type="file" 
                     class="filepond"
-                    name="filepond"
-                    multiple
+                    name="offer_video"
                     data-max-file-size="25MB"
                     data-max-files="1" />
 
@@ -654,14 +582,13 @@
 
 
         <div class="for-doc mt-5">
-            <h4>Documents (up to 2)</h4>
+            <h4>Documents (only one)</h4>
             <p>Show some of the best work you created in a document (PDFs only).</p>
         
 
             <input type="file" 
                     class="filepond"
-                    name="filepond"
-                    multiple
+                    name="document"
                     data-max-file-size="25MB"
                     data-max-files="1" />
 
@@ -760,15 +687,15 @@
         <section class="for-button-lowwer container">
         <div class="row">
             <div class="col-md-9 for-button">
-                <button class="button-cancle">Cancel</button>
-                <button class="button-save">Save</button>
+                    <button class="button-cancle">Cancel</button>
+                <button class="button-save" type="submit">Save</button>
             </div>
         </div>
         </section>
 
 
-
-
+        <form>
+            <div>
 
 
     <script src="{% static 'js/ckeditor.js' %}"></script>
@@ -791,6 +718,39 @@
     <script src="{% static 'js/multi-input.js' %}"></script>
     <script src="{% static 'js/create_offer.js' %}"></script>
 
+    <script>
+        function checkResponsive1() {
+            let res1 = document.getElementById("res1");
 
+            if (res1.value === "off")
+                res1.value = "on"
+            else
+                res1.value = "off"
+
+            // console.log(res1.value);
+        }
+
+        function checkResponsive2() {
+            let res2 = document.getElementById("res2");
+
+            if (res2.value === "off")
+                res2.value = "on"
+            else
+                res2.value = "off"
+
+            // console.log(res2.value);
+        }
+
+        function checkResponsive3() {
+            let res3 = document.getElementById("res3");
+
+            if (res3.value === "off")
+                res3.value = "on"
+            else
+                res3.value = "off"
+
+            // console.log(res3.value);
+        }
+    </script>
 </body>
 </html>

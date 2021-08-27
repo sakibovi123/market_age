@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
+from datetime import datetime
 
 
 class RoleModel(models.Model):
@@ -40,6 +41,7 @@ class City(models.Model):
 
 
 class SellerAccount(models.Model):
+    joined_at = models.DateField(default=datetime.now, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(null=True, unique=True)
     contact_no = models.CharField(max_length=15, null=True)
@@ -111,17 +113,93 @@ class Tag(models.Model):
 
 
 class DeliveryTime(models.Model):
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120, unique=True)
 
     def __str__(self):
         return self.title
 
+class Revision(models.Model):
+    title = models.CharField(max_length=120, null=True, unique=True)
+
+    def __str__(self):
+        return self.title
+
+class NumberOfPage(models.Model):
+    title = models.CharField(max_length=120, unique=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+class NumberOfPlugins(models.Model):
+    title = models.CharField(max_length=120, null=True)
+    
+    def __str__(self):
+        return self.title
+
+class FileFormats(models.Model):
+    format_title = models.CharField(max_length=120)
+    
+    
+    def __str__(self):
+        return self.format_title
+
+
 
 class Package(models.Model):
+    
+    management_duration_choices = (
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+        ("5", "5"),
+        ("6", "6"),
+        ("7", "7"),
+        ("8", "8"),
+        ("9", "9"),
+        ("10", "10"),
+        ("11", "11"),
+        ("12", "12"),
+        ("13", "13"),
+        ("14", "14"),
+        ("15", "15")
+    )
+    
     title = models.CharField(max_length=120)
     delivery_time = models.ForeignKey(
         DeliveryTime, on_delete=models.CASCADE, null=True)
-
+    package_desc = models.TextField(null=True)
+    revision = models.ForeignKey(Revision, on_delete=models.SET_NULL, null=True, related_name="revision")
+    num_of_pages = models.ForeignKey(NumberOfPage, on_delete=models.SET_NULL, null=True, related_name="num_of_pages", blank=True)
+    is_responsive = models.BooleanField(default=False, null=True, blank=True)
+    setup_payment = models.BooleanField(default=False, null=True, blank=True)
+    will_deploy = models.BooleanField(default=False, null=True, blank=True)
+    is_compitable = models.BooleanField(default=False, null=True, blank=True)
+    supported_formats = models.ManyToManyField(FileFormats, null=True, blank=True)
+    # For Logo Design
+    provide_vector = models.BooleanField(default=False, null=True, blank=True)
+    is_3dmockup = models.BooleanField(default=False, null=True, blank=True)
+    is_high_res = models.BooleanField(default=False, null=True, blank=True)
+    will_sourcefile = models.BooleanField(default=False, null=True, blank=True)
+    # For Digital Marketing
+    is_campaign_optimization = models.BooleanField(default=False, null=True, blank=True)
+    management_duration = models.CharField(max_length=120, choices=management_duration_choices, null=True, blank=True)
+    
+    # For Video editor
+    
+    video_length = models.PositiveBigIntegerField(default=0, null=True, blank=True)
+    will_embedded_sub = models.BooleanField(default=False, null=True, blank=True)
+    is_transcription = models.BooleanField(default=False, null=True, blank=True)
+    is_translated = models.BooleanField(default=False, null=True, blank=True)
+    will_srt_logo = models.BooleanField(default=False, null=True, blank=True)
+    will_add_logo = models.BooleanField(default=False, null=True, blank=True)
+    
+    # For Data Entry
+    
+    provide_pdf = models.BooleanField(null=True, default=False, blank=True)
+    max_data = models.CharField(max_length=450, null=True, blank=True)
+    provide_excel = models.BooleanField(default=False, null=True, blank=True)
+    
     def __str__(self):
         return self.title
 
@@ -144,6 +222,7 @@ class Offer(models.Model):
     slug = models.SlugField(unique=True, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     offer_title = models.CharField(max_length=240)
+    seo_title = models.CharField(max_length=50, null=True)
     image = models.ImageField(upload_to='images/')
     extra_images = models.ManyToManyField(ExtraImage)
     offer_video = models.FileField(upload_to="images/")
@@ -155,7 +234,6 @@ class Offer(models.Model):
     is_popular = models.BooleanField(default=False, null=True)
     pop_web = models.BooleanField(default=False, null=True, blank=True)
     is_pro = models.BooleanField(default=False, null=True)
-    short_desc = models.TextField(null=True)
     click = models.PositiveIntegerField(null=True, blank=True, default=0)
     impressions = models.PositiveIntegerField(default=0, null=True, blank=True)
     order_count = models.PositiveIntegerField(default=0, null=True, blank=True)
@@ -164,7 +242,7 @@ class Offer(models.Model):
     # is_complete = models.BooleanField(null=True, default=False)
 
     def __str__(self):
-        return self.offer_title
+        return self.slug
 
 
 

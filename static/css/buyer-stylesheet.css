@@ -9,7 +9,9 @@
     text-decoration: none;
     color: #82858C;
 }
-
+body{
+    background-color: #f5f5f5 !important;
+}
 
 /* Header  */
 #home-page{
@@ -265,7 +267,6 @@
 }
 .slick-slide {
     padding: 0px 10px !important;
-
 }
 
 .left-post{
@@ -290,7 +291,9 @@
     text-align: center;
     color: #000;
 }
-
+.for-card-hover h5:hover{
+    color: #3675eb;
+}
 
 /*
 ========================================
@@ -311,6 +314,59 @@ Continue browsing for every card
 }
 .for-right{
     float: right;
+}
+
+/*
+========================================
+        for new card
+======================================== */
+.card-title{
+    color: #000;
+}
+.category-tag{
+    display: flex;
+    justify-content: space-between;
+}
+.category-for-right{
+    display: flex;
+}
+.for-seller-level-star i{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.click-on-offer{
+    display: flex;
+}
+.click-on-offer p{
+    margin-left: 3px;
+}
+.yellow-star{
+    color: #FFD700 !important;
+}
+.black-star{
+    color: #000;
+}
+.offer-price{
+    display: flex;
+    justify-content: space-between;
+}
+.card-body a h5{
+    font-size: 17px !important;
+}
+.category-tag p, .click-on-offer p{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.card-body{
+    background-color: #fff !!important;
+}
+.popular-gig-title h2{
+    font-size: 35px;
+    color: #000;
+    margin-bottom: 30px;
+}
+.for-card-inner-img-slider{
+    padding: 0 !important;
 }
 
 /*

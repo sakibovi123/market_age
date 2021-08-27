@@ -14,7 +14,9 @@
     <!-- Iconify -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/cartdesign.css' %}">
-    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="shortcut icon" href="{% static 'images/market_fav.png' %}">
+
     <title>Cart</title>
   </head>
   <body>
@@ -135,7 +137,7 @@
     <header class="container">
         <div class="headerLogo">
         <a href="{% url 'seller_dashboard' %}">
-            <img src="{% static 'images/logo.png' %}">
+            <img src="{% static 'images/marketage.png' %}">
         </a>
             <span class="orderText1"><a href="{% url 'cartView' %}"><strong>Order Details</strong></a> <i class="fas fa-chevron-right"></i></span>
             <span class="orderText"> <a href="{% url 'checkout' %}"><strong>Confirm  & pay</strong></a> <i class="fas fa-chevron-right"></i></span>

@@ -70,19 +70,16 @@
                             Continue Browsing section
 ============================================================================= -->
 
-
+{% comment %}
 <section id="continue-browsing">
     <div class="innerbrowsing container">
+
         <div class="headline">
         <h1>Continue Browsing</h1>
         </div>
 
     <div class="service-card">
     <div class="row inner-service-card">
-
-
-
-
 
 {% for g in offers %}
 
@@ -92,7 +89,10 @@
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
+
+                    <a class="for-card-hover" href="">
                     <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
 
                     <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
 
@@ -121,6 +121,224 @@
     </div>
     </div>
 </section>
+{% endcomment %}
+
+
+
+
+
+<!--
+=============================================================================
+                            Popular Offer section
+============================================================================= -->
+
+<section class="for-popular-section container mt-5"> 
+<!-- new card design -->
+<div class="container new-card mt-3">
+    <div class="popular-gig-title">
+        <h2>Popular Offers</h2>
+    </div>
+<div class="row">
+
+
+
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+            
+            
+        <div class= "for-card-inner-img-slider no-gutter">
+            
+            <div>
+                <img src= "{% static 'images/bg-2.jpg' %}" class="card-img-top" alt="...">
+            </div>
+        
+            
+            <div>
+                <img src= "{% static 'images/bg-2.jpg' %}" class="card-img-top" alt="...">
+            </div>
+        
+            
+            <div>
+                <img src= "{% static 'images/bg-2.jpg' %}" class="card-img-top" alt="...">
+            </div>
+        
+            
+            <div>
+                <img src= "{% static 'images/bg-2.jpg' %}" class="card-img-top" alt="...">
+            </div>
+        
+        
+        </div>
+
+
+            <div class="card-body">
+            <a href=""> 
+                <h5 class="card-title">I will convert psd to html responsive website</h5>  
+            </a>
+
+            <div class="category-tag">
+
+                <p>Web Design</p>
+
+                <div class="category-for-right">                  
+                    <div class= "click-on-offer">
+                        <p>2,595</p>
+                        <p>Clicks</p>                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class= "for-seller-level-star">
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star black-star"></i>
+            </div>
+            <hr>
+
+            <div class="offer-price">
+                <p>Starting At</p>
+                <p>$ <span>15748</span> </p>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+            <img src= "{% static 'images/bg-5.jpg' %}" class="card-img-top" alt="...">
+
+            <div class="card-body">
+            <a href=""> 
+                <h5 class="card-title">I will convert psd to html responsive website</h5>  
+            </a>
+
+            <div class="category-tag">
+
+                <p>Web Design</p>
+
+                <div class="category-for-right">                  
+                    <div class= "click-on-offer">
+                        <p>2,595</p>
+                        <p>Clicks</p>                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class= "for-seller-level-star">
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star black-star"></i>
+            </div>
+            <hr>
+
+            <div class="offer-price">
+                <p>Starting At</p>
+                <p>$ <span>15748</span> </p>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+            <img src= "{% static 'images/bg-5.jpg' %}" class="card-img-top" alt="...">
+
+            <div class="card-body">
+            <a href=""> 
+                <h5 class="card-title">I will convert psd to html responsive website</h5>  
+            </a>
+
+            <div class="category-tag">
+
+                <p>Web Design</p>
+
+                <div class="category-for-right">                  
+                    <div class= "click-on-offer">
+                        <p>2,595</p>
+                        <p>Clicks</p>                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class= "for-seller-level-star">
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star black-star"></i>
+            </div>
+            <hr>
+
+            <div class="offer-price">
+                <p>Starting At</p>
+                <p>$ <span>15748</span> </p>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+            <img src= "{% static 'images/bg-6.jpg' %}" class="card-img-top" alt="...">
+
+            <div class="card-body">
+            <a href=""> 
+                <h5 class="card-title">I will convert psd to html responsive website</h5>  
+            </a>
+
+            <div class="category-tag">
+
+                <p>Web Design</p>
+
+                <div class="category-for-right">                  
+                    <div class= "click-on-offer">
+                        <p>2,595</p>
+                        <p>Clicks</p>                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class= "for-seller-level-star">
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star yellow-star"></i>
+                <i class="fas fa-star black-star"></i>
+            </div>
+            <hr>
+
+            <div class="offer-price">
+                <p>Starting At</p>
+                <p>$ <span>15748</span> </p>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
 
 <!--
 =============================================================================
@@ -145,8 +363,9 @@
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ g.gig_title }}</h5>
-
+                    <a class="for-card-hover" href="">
+                    <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
                     <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
 
                     <div class="level">
@@ -200,8 +419,9 @@
                     <img src="{{ g.image.url }}" class="card-img-top" alt="...">
                     </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ g.gig_title }}</h5>
-
+                    <a class="for-card-hover" href="">
+                    <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
                     <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
 
                     <div class="level">
@@ -259,7 +479,10 @@
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <a class="for-card-hover" href="">
+                        <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
 
                    <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
 
@@ -327,7 +550,10 @@
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <a class="for-card-hover" href="">
+                    <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
 
                     <p class="card-text">{{ g.short_desc|truncatechars:50 }}</p>
 
@@ -447,7 +673,10 @@
                     <img class="img-size-for-tab-view" src="{{ g.image.url }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ g.gig_title }}</h5>
+
+                    <a class="for-card-hover" href="">
+                    <h5 class="card-title">{{ g.offer_title }}</h5>
+                    </a>
 
                     <p class="card-text">Some quick example text to build on the card title.</p>
 
@@ -585,18 +814,19 @@
     <h2>Continue browsing</h2>
 
     <div>
-
+{% for g in offers %}
+<a href="{% url 'offer_details' g.id %}">
     <div class="mob-card">
         <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
+            <img src="{{ g.image.url }}" alt="">
         </div>
 
         <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
+            <h4>{{ g.offer_title }}</h4>
         <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
+            {% comment %} <span><i class="fas fa-star"></i></span> {% endcomment %}
+            
+            <span>({{ g.click }})</i></span>
         </div>
 
         </div>
@@ -604,150 +834,18 @@
 
 
     <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
+        <img src="{{ g.user.selleraccount.profile_picture.url }}" alt="">
+        <span >Buyer name {{ g.user }}</span>
 
         <p>STARTING AT</p>
-        <strong>$120</strong>
+        <strong>$ {{ g.offermanager_set.all|offer_price_start }}</strong>
     </div>
 
 
     <div class="liner"></div>
     </div>
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-
+    </a>
+{% endfor %}
 
 </div>
 
@@ -765,17 +863,19 @@
 
     <div>
 
+    {% for g in offers %}
+    <a href="{% url 'offer_details' g.id %}">
     <div class="mob-card">
         <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
+            <img src="{{ g.image.url }}" alt="">
         </div>
 
         <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
+            <h4>{{ g.offer_title }}</h4>
         <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
+            {% comment %} <span><i class="fas fa-star"></i></span> {% endcomment %}
+            {% comment %} <span>5.0</i></span> {% endcomment %}
+            <span>({{ g.click }})</i></span>
         </div>
 
         </div>
@@ -783,152 +883,24 @@
 
 
     <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
+        <img src="{{ g.user.selleraccount.profile_picture.url }}" alt="">
+        <span >Buyer name {{ g.user }}</span>
 
         <p>STARTING AT</p>
-        <strong>$120</strong>
+        <strong>$ {{ g.offermanager_set.all|offer_price_start }}</strong>
     </div>
 
 
     <div class="liner"></div>
     </div>
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
+    </a>
+    {% endfor %}
     </div>
 
 
 
 
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-
-    <div>
-    <div class="mob-card">
-        <div class="mob-card-img">
-            <img src="img/bg-1.jpg" alt="">
-        </div>
-
-        <div class="mob-card-title">
-            <h4>The title of the gigs with some of word</h4>
-        <div class="seller-status">
-            <span><i class="fas fa-star"></i></span>
-            <span>5.0</i></span>
-            <span>(12)</i></span>
-        </div>
-
-        </div>
-    </div>
-
-
-    <div class="mob-card-footer">
-        <img src="img/bg.jpg" alt="">
-        <span >Buyer name</span>
-
-        <p>STARTING AT</p>
-        <strong>$120</strong>
-    </div>
-
-
-    <div class="liner"></div>
-    </div>
-
-
-
-
-
-</div>
+    
 
 
 

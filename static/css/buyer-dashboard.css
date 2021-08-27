@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500&display=swap');
-/* Order table section starts */  
+
 .manage__orderTable thead th {
     text-transform: uppercase;
     font-size: 0.9rem;
@@ -38,7 +37,6 @@
 .view p:hover{
     background-color: #2770df;
 }
-.for-width{
-}
+
 
   /* Order table section ends */

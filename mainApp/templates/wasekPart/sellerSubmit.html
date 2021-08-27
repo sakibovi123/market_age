@@ -28,24 +28,31 @@
         </div>
     </div> -->
 <!-- </div> -->
-
     <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="seller__sub__form">
-            <p>Select the file you want to upload for "sadasd/sadas/sada".</p>
+            <p>Select the file you want to upload for "Checkout id: {{ checkout_id }}".</p>
             <div class="maximum____file___to__upload">
                 <p>Maximum file size allowed for upload: <span class="iconify" data-icon="akar-icons:infinity"></span></p>
             </div>
-            <div class="upload____option">
-                <p>Upload Files</p>
-                <p>or</p>
-                <div class="choose___file">
-                    <label for="formFileLg" class="form-label text-white"><span class="iconify go__back__icon text-white" data-icon="ant-design:cloud-upload-outlined"></span></label>
-                    <input class="form-control form-control" id="formFileLg" name="file_field" type="file">
-                  </div>
+                {% csrf_token %}
+                <div class="upload____option">
+                    <p>Upload Files</p>
+                    <p>or</p>
+                    <div class="choose___file">
+                        <label for="formFileLg" class="form-label text-white"><span class="iconify go__back__icon text-white" data-icon="ant-design:cloud-upload-outlined"></span></label>
+                        <input class="form-control" id="formFileLg" name="file_field" type="file">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center seller__submitBtn mt-3">
+                    <button class="btn btn-primary text-uppercase">Post</button>
+                </div>
             </div>
-            <div class="go__back__option">
-                <p><span class="iconify goback__icon" data-icon="akar-icons:triangle-left"></span> <a href="#">Go Back to "asds/sda"</a></p>
-            </div>
+        </form>
+
+        <div class="go__back__option">
+            <p><span class="iconify goback__icon" data-icon="akar-icons:triangle-left"></span> <a href="/">Go Back to "Home"</a></p>
         </div>
     </div>
 

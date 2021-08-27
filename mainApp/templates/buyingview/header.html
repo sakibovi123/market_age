@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fivvour</title>
+    <title>Marketage</title>
 
 
     <!-- Slick slider -->
@@ -33,18 +33,15 @@
     <link rel="stylesheet" href=" {% static 'css/gigsviewstyle.css' %}" >
     <link rel="stylesheet" href=" {% static 'css/responsiveGigsviewArko.css' %}" >
     <link rel="stylesheet" href=" {% static 'css/buyer_view_footer.css' %}" >
-    <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="shortcut icon" href="{% static 'images/market_fav.png' %}">
 
 
     <!--main css for become a seller -->
     <link rel="stylesheet" href=  "{% static 'css/become-a-seller.css' %}" />
 
-
     <!--main css for buyer order -->
     <link rel="stylesheet" href=  "{% static 'css/buyer-order.css' %}" />
-
-
-    
 
     <link rel="stylesheet" href=  "{% static 'css/make-payment-for-buyer.css' %}" />
 
@@ -82,28 +79,32 @@
       <i class="fas fa-times nav__close"></i>
 
       <div class="buyer_profile_img">
-        <img src="img/bg-3.jpg" alt="">
-        <span>Buyer Name</span>
+        <img src="{{ request.user.selleraccount.profile_picture.url }}" alt="">
+        <span>{{ request.user }}</span>
       </div>
 
 <div class="details">
       <ul>
 
         <li>
-          <a href="#">Home</a>
+          <a href="{% url 'buying_view' %}">Home</a>
         </li>
 
-        <li>
+        {% comment %} <li>
           <a href="#">Inbox</a>
+        </li> {% endcomment %}
+
+        <li>
+          <a href="{% url 'buyer-dashboard' %}">Buyer Dashboard</a>
         </li>
 
         <li>
-          <a href="#">Dashboard</a>
+          <a href="{% url 'seller_dashboard' %}">Seller Dashboard</a>
         </li>
 
-        <li>
+        {% comment %} <li>
           <a href="#">List</a>
-        </li>
+        </li> {% endcomment %}
 
 
         <li class="browse__cat">
@@ -111,18 +112,18 @@
             <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
         </li>
 
-        <li class="browse__cat">
+        {% comment %} <li class="browse__cat">
           <div>Explore</div>
           <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
-        </li>
+        </li> {% endcomment %}
 
         <li class="fivourr__pro">
-          <a href="#">Fivourr Pro</a>
+          <a href="#">MARKETAGE Pro</a>
         </li>
 
-        <li class="fivourr__business">
+        {% comment %} <li class="fivourr__business">
           <a href="#">Fiverr Busines</a>
-        </li>
+        </li> {% endcomment %}
       </ul>
 
 
@@ -231,7 +232,7 @@
                 <ul class="navbar-nav ms-auto mb-lg-0">
 
                   <li class="nav-item">
-                    <a class="nav-link link-page active" aria-current="page" href="#">Fiver Pro</a>
+                    <a class="nav-link link-page active" aria-current="page" href="#">MARKETAGE Pro</a> 
                   </li>
                   <li class="nav-item">
                     <a class="nav-link link-page" href="#">Explore</a>

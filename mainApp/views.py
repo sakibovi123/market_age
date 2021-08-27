@@ -20,6 +20,7 @@ from datetime import datetime
 
 def get_landing_page(request):
     user_session = request.session.get("user", None)
+    print(f"{user_session=}")
 
     if (user_session is None):
         landing_slider = LandingSlider.objects.all().order_by('-id')
@@ -165,6 +166,8 @@ def user_login(request):
                 user_session = username
                 request.session["user"] = user_session
                 login(request, user)
+                # print("USER SESSION:")
+                # print(request.session.get("user"))
                 if new_user is not None:
                     return redirect("extended-user")
                 return redirect('buying_view')
@@ -286,7 +289,7 @@ def chatInbox(requrest):
 def seller_dashboard(request):
     users = User.objects.all()
     active_orders, completed_orders, cancelled_orders = [], [], []
-
+    count_active = Checkout.objects.filter(order_status="ACTIVE").filter(user=request.user).count()
     orders = Checkout.objects.filter(seller=request.user).filter(paid=True).order_by("-id")
 
     for order in orders:
@@ -297,15 +300,12 @@ def seller_dashboard(request):
         elif order.order_status == "CANCELLED" and order.is_cancel:
             cancelled_orders.append(order)
 
-    # print(active_orders)
-    # print(completed_orders)
-    # print(cancelled_orders)
-
     args = {
         'users': users,
         "active_orders": active_orders,
         "completed_orders": completed_orders,
         "cancelled_orders": cancelled_orders,
+        "count_active": count_active
     }
 
     return render(request, 'sellingview/seller_dashboard.html', args)
@@ -628,27 +628,24 @@ def extendedUserView(request):
 
 @login_required(login_url='user_login')
 def sellerSubmitView(request, pk):
-    form = SellerSubmitForm()
-
+    print(pk)
     if request.method == "POST":
         file_field = request.FILES.get("file_field")
         try:
             checkout = Checkout.objects.get(id=pk)
-            # print(file_field)
+            print(f"{checkout=}")
+            print(file_field)
         except:
             return redirect("manage-order")
         else:
             SellerSubmit.objects.create(
                 checkout=checkout, file_field=file_field)
+
             checkout.order_status = "DELIVERED"
-
-            # chk = checkout.is_complete = True
-
             checkout.save()
             return redirect("manage-order")
 
     args = {
-        "form": form,
         "checkout_id": pk,
     }
     return render(request, "wasekPart/sellerSubmit.html", args)
@@ -704,7 +701,49 @@ def aboutusView(request):
 
 
 def createOfferView(request):
-    return render(request, "sellingview/create_offer.html")
+    tags = Tag.objects.all()
+    categories = Category.objects.all()
+    services = Services.objects.all()
+    deliveries = DeliveryTime.objects.all()
+    revisions = Revision.objects.all()
+    num_of_pages = NumberOfPage.objects.all()
+
+    if request.method == "POST":
+        print(request.POST.get("offer_title"))
+        print(request.POST.get("seo_title"))
+        print(request.POST.get("category"))
+        print(request.POST.get("service"))
+        print(request.POST.getlist("tag"))
+        print(request.POST.get("delivery_time_basic"))
+        print(request.POST.get("delivery_time_standard"))
+        print(request.POST.get("delivery_time_premium"))
+        print(request.POST.get("num_pages_basic"))
+        print(request.POST.get("num_pages_standard"))
+        print(request.POST.get("num_pages_premium"))
+        print(request.POST.get("is_responsive_basic"))
+        print(request.POST.get("is_responsive_standard"))
+        print(request.POST.get("is_responsive_premimum"))
+        print(request.POST.get("revision_basic"))
+        print(request.POST.get("revision_standard"))
+        print(request.POST.get("revision_premimum"))
+        print(request.POST.get("price_basic"))
+        print(request.POST.get("price_standard"))
+        print(request.POST.get("price_premium"))
+        print(request.POST.get("content"))
+        print(request.POST.getlist("extra_images"))
+        print(request.POST.get("offer_video"))
+        print(request.POST.get("document"))
+    # print(categories)
+
+    args = {
+        "tags": tags,
+        "categories": categories,
+        "services": services,
+        "deliveries": deliveries,
+        "revisions": revisions,
+        "num_of_pages": num_of_pages,
+    }
+    return render(request, "sellingview/create_offer.html", args)
 
 
 def seller_order_details(request, id):

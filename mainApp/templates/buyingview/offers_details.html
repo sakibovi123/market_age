@@ -10,6 +10,7 @@
 <div id="header">
     <div class="container">
         <nav class="navbar">
+          
             <div class="left-item">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
 
@@ -31,7 +32,7 @@
 
                 </ul>
             </div>
-
+ 
 
 
             <div class="right-item">
@@ -78,12 +79,12 @@
             <!-- Slider upper text (GIGs title) -->
             <div class="gigs-title">
                 <h1 class="gigs-name">{{ offers.gig_title }}</h1>
-                <img class="gigs-sellers-img" src="{{ request.user.extendeduser.profile_picture.url }}" alt="">
+                <img class="gigs-sellers-img" src="{{ offers.user.selleraccount.profile_picture.url }}" alt="">
 
                 <a href="">
                     <p class="seller-name">{{ offers.user }}</p>
                 </a>
-                <span class="seller-level">Seller level: {{ offers.user.extendeduser.level }}</span>
+                <span class="seller-level">Seller level: {{ offers.user.selleraccount.level }}</span>
 
 
                 <span class="seller-star">
@@ -92,7 +93,7 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                    <strong>{{ sellers.user.extendeduser.rating }}</strong>
+                    <strong>{{ sellers.user.selleraccount.rating }}</strong>
                     <strong>({{ c }})</strong>
 
                 </span>
@@ -128,7 +129,7 @@
                 <div class="swiper-wrapper">
                     {% for image in offers.extra_images.all %}
                     <div class="swiper-slide">
-                        <div class="swiper-slide-container">
+                        <div class="swiper-slide-container for-thumbs-slider-size">
                             <img class="resizeing" src="/media/{{ image }}" alt="">
                         </div>
                     </div>
@@ -242,7 +243,7 @@
                         </div>
 
 
-                        {% if request.user %}
+                        {% comment %} {% if request.user %}
                         {% if cart_session is None %}
                         <form action="{% url 'add_to_cart' %}" method="POST">
                         {% csrf_token %}
@@ -258,8 +259,23 @@
                         {% endif %}
                         {% else %}
                         <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %} {% endcomment %}
+                          {% if request.user %}
+                        {% if not request.session.cart %}
+                        <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" value="{{ manager.id }}" name="package_id">
+                            
+                            <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        </form>
+                        {% else %}
+                        <a class="view__cartBtn" href="{% url 'cartView' %}">                        
+                            <button class="pannel-service-button">View Cart</button>
+                        </a>
                         {% endif %}
-
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %}
 
                         <button class="pannel-service-button-lower">Compare Packages</button>
                     </div>
@@ -291,7 +307,7 @@
                         </div>
 
 
-                        {% if request.user %}
+                        {% comment %} {% if request.user %}
                         {% if cart_session is None %}
                         <form action="{% url 'add_to_cart' %}" method="POST">
                         {% csrf_token %}
@@ -305,9 +321,24 @@
                         {% endif %}
                         {% else %}
                         <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %} {% endcomment %}
+
+                        {% if request.user %}
+                        {% if not request.session.cart %}
+                        <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" value="{{ manager.id }}" name="package_id">
+                            
+                            <button class="pannel-service-button">Continue({{ manager.price }} $)</button>
+                        </form>
+                        {% else %}
+                        <a class="view__cartBtn" href="{% url 'cartView' %}">                        
+                            <button class="pannel-service-button">View Cart</button>
+                        </a>
                         {% endif %}
-
-
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn btn-success col-lg-12">Select</a>
+                        {% endif %}
                         <button class="pannel-service-button-lower">Compare Packages</button>
                     </div>
                     {% endif %}
@@ -364,7 +395,7 @@
 
 
                     <div class="inner-seller">
-                        <img class="round" src="{{ offers.user.extendeduser.profile_picture.url }}" alt="">
+                        <img class="round" src="{{ offers.user.selleraccount.profile_picture.url }}" alt="">
                     </div>
 
                     <div class="seller-bio">
@@ -391,9 +422,9 @@
                         <div class="card-left">
                             <div class="inner-card-left">
                                 <span>From</span>
-                                <strong>Bangladesh</strong>
-                                <span class="mt-4">Avg. response time</span>
-                                <strong>1 hour</strong>
+                                <strong>{{ offers.user.selleraccount.country }}</strong>
+                                {% comment %} <span class="mt-4">Avg. response time</span>
+                                <strong>1 hour</strong> {% endcomment %}
                             </div>
                         </div>
 
@@ -401,9 +432,9 @@
                         <div class="card-right">
                             <div class="inner-card-right">
                                 <span>Member since</span>
-                                <strong>Oct 2019</strong>
-                                <span class="mt-4">Last delivery</span>
-                                <strong>1 day</strong>
+                                <strong>{{ offers.user.selleraccount.joined_at }}</strong>
+                                {% comment %} <span class="mt-4">Last delivery</span>
+                                <strong>1 day</strong> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -567,7 +598,7 @@
                                     <i class="fas fa-star"></i>
                                     <strong>4.5</strong>
 
-                                    <span class="for-right">fiver level</span>
+                                    <span class="for-right">Marketage level {{ rg.user.selleraccount.level }}</span>
                                 </div>
                             </div>
                             <div class="card-footer">

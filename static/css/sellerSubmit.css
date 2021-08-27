@@ -33,6 +33,10 @@ body {
     border-radius: 3px;
 }
 
+.seller__submitBtn > button {
+    width: 10rem;
+}
+
 
 /* new design */
 .seller__sub__form p{

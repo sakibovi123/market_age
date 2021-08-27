@@ -17,12 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+  
+  <link rel="shortcut icon" href="{% static 'images/market_fav.png' %}">
 
   <!--category wise view-->
   <link rel="stylesheet" href="{% static 'css/catagory-wise-view.css' %}">
-
-
 
   <!-- Iconify -->
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
@@ -113,7 +112,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'user_login' %}">Sign In</a>
           </li>
-          <a type="button" class="btn btn-outline-light text-white join-button" href="{% url 'user_registration' %}">Join</a>
+          <a type="button" class="btn fw-bold btn-outline-light text-white join___button" href="{% url 'user_registration' %}">Join</a>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'buying_view' %}">Swtich To Buying View</a>
@@ -168,10 +167,10 @@
           <div><span class="iconify" data-icon="dashicons:arrow-down-alt2" data-inline="false"></span></div>
         </li>
         <li class="fivourr__pro">
-          <a href="#">Fivourr Pro</a>
+          <a href="#">Marketage Pro</a>
         </li>
         <li class="fivourr__business">
-          <a href="#">Fiverr Busines</a>
+          <a href="#">Marketage Busines</a>
         </li>
       </ul>
 

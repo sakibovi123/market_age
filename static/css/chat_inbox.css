@@ -224,6 +224,7 @@
   position: relative;
   height: 60vh;
   padding-left: 0.5rem;
+  border-right: 1px solid rgb(209, 199, 199);
 }
 
 /* User typing message section starts */
@@ -259,7 +260,7 @@
 }
 
 .send__icon > .iconify {
-  color: #198754;
+  color: #619CEC;
 }
 
 /* User typing message section ends */
