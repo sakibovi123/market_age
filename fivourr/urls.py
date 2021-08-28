@@ -53,6 +53,8 @@ urlpatterns = [
     path("manage-order/", views.manageOrder, name="manage-order"),
     # offers page url
     path("manage-offers/", views.manageOffers, name="manage-offers"),
+    # Add to pause offer
+    path("add-to-pause/", views.add_to_pause_offer, name="add-to-pause"),
     # Chat inbox url
     path("inbox", views.chatInbox, name="inbox"),
     # Seller Dashboard

@@ -50,7 +50,11 @@
 }
 
 @media screen and (max-width: 991px) {
-
+/* for sllider button */
+    .slick-prev, .slick-next {
+        display: block !important;
+        
+    }
     .on-mobile{
         display: block;
     }
@@ -354,7 +358,7 @@
     }
     .card img{
         height: 100%;
-        max-height: 125px ;
+        max-height: 220px ;
     }
     .resizing .card img{
         height: 100%;
@@ -387,7 +391,20 @@
     margin-right: 0px !important;
     margin-left: 0px !important;
     }
-
+    /* for hidding div */
+    #verified-service{
+        display: none;
+    }
+    
+    .mob-card-img img {
+        height: 160px;
+    }
+    .mob-card-footer p {
+        margin-left: 26%;
+        margin-right: 8px;
+        margin-bottom: 0px !important;
+    }
+    
 }
 
 

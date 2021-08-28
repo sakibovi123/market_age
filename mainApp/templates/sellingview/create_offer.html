@@ -103,17 +103,31 @@
                                 <p>SEARCH Tag</p>
                             </div>
 
+
+
+
+
+
+
+
+
+
+
                             <div class="multi-tag">
                                 
-                                 <multi-input>
-                                    <input list="speakers" name="tag" class="input">
-                                    <datalist id="speakers">
-                                        {% for tag in tags %}
-                                        <option value="{{tag.title}}"></option>
-                                        {% endfor %}
-                                    </datalist>
-                                  </multi-input>                            
+
+                          
+                            <select data-placeholder="Select your tags" class="chosen-select" multiple tabindex="1">
+                                <option value=""></option>
+                                <option value="">CSS</option>
+                                <option value="">HTML</option>
+                                <option value="">Java Script</option>
+                                <option value="">asp.net</option>
+                                <option value="">react</option>
+                            </select>
+
                         
+
                                   <p class="point"> <span><i class="fas fa-info-circle"></i> Please note: </span>
                                     Some categories require that sellers verify their skills.</p>
                             </div>
@@ -554,12 +568,15 @@
             <h4>Images (up to 3)</h4>
             <p>Get noticed by the right buyers with visual examples of your services.</p>
 
-            <input type="file" 
-                    class="filepond"
-                    name="extra_images"
-                    multiple
-                    data-max-file-size="3MB"
-                    data-max-files="3" />
+
+                    <label for="file-upload" class="for-file-upload mt-3">
+                        <i class="fas fa-images"></i>
+                         <p>  Upload your photo</p>
+                    </label>
+                    
+                    <input id="file-upload" style="visibility: hidden;" type="file"/>   
+
+
         </div>
 <hr>
 
@@ -569,12 +586,12 @@
             <p>Capture buyers' attention with a video that showcases your service.</p>
         
 
-            <input type="file" 
-                    class="filepond"
-                    name="offer_video"
-                    data-max-file-size="25MB"
-                    data-max-files="1" />
-
+            <label for="file-upload" class="for-file-upload mt-3">
+                <i class="fas fa-video"></i>
+                 <p>  Upload your video</p>
+            </label>
+            
+            <input id="file-upload" style="visibility: hidden;" type="file"/>   
 
         </div>
 <hr>
@@ -586,12 +603,12 @@
             <p>Show some of the best work you created in a document (PDFs only).</p>
         
 
-            <input type="file" 
-                    class="filepond"
-                    name="document"
-                    data-max-file-size="25MB"
-                    data-max-files="1" />
-
+            <label for="file-upload" class="for-file-upload mt-3">
+                <i class="fas fa-file-download"></i>
+                 <p>  Upload your Document</p>
+            </label>
+            
+            <input id="file-upload" style="visibility: hidden;" type="file"/>   
 
         </div>
 <hr>
@@ -708,6 +725,12 @@
 
     <!-- Load FilePond library -->
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    
+    
+    
+    <!-- multi selector -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 
     <!-- Turn all file input elements into ponds -->
     <script>
@@ -718,39 +741,5 @@
     <script src="{% static 'js/multi-input.js' %}"></script>
     <script src="{% static 'js/create_offer.js' %}"></script>
 
-    <script>
-        function checkResponsive1() {
-            let res1 = document.getElementById("res1");
-
-            if (res1.value === "off")
-                res1.value = "on"
-            else
-                res1.value = "off"
-
-            // console.log(res1.value);
-        }
-
-        function checkResponsive2() {
-            let res2 = document.getElementById("res2");
-
-            if (res2.value === "off")
-                res2.value = "on"
-            else
-                res2.value = "off"
-
-            // console.log(res2.value);
-        }
-
-        function checkResponsive3() {
-            let res3 = document.getElementById("res3");
-
-            if (res3.value === "off")
-                res3.value = "on"
-            else
-                res3.value = "off"
-
-            // console.log(res3.value);
-        }
-    </script>
 </body>
 </html>

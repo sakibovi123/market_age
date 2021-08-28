@@ -266,12 +266,20 @@ body{
     margin: 0px !important;
 }
 .slick-slide {
-    padding: 0px 10px !important;
+    padding: 0px 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .left-post{
    width: 40%;
 }
+.slick-slider {
+    margin: 0px 0px !important; 
+}
+/* for-card-inner-img-slider slick-initialized slick-slider{
+
+} */
 .right-slider{
     width: 60%;
 }
@@ -318,7 +326,7 @@ Continue browsing for every card
 
 /*
 ========================================
-        for new card
+        for new card on popular offer section
 ======================================== */
 .card-title{
     color: #000;
@@ -350,6 +358,9 @@ Continue browsing for every card
     display: flex;
     justify-content: space-between;
 }
+.offer-price p{
+    margin-bottom: 0px !important;
+}
 .card-body a h5{
     font-size: 17px !important;
 }
@@ -363,7 +374,10 @@ Continue browsing for every card
 .popular-gig-title h2{
     font-size: 35px;
     color: #000;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+}
+.popular-gig-title p{
+    margin-bottom: 20px;
 }
 .for-card-inner-img-slider{
     padding: 0 !important;
@@ -385,64 +399,49 @@ Continue browsing for every card
     margin-right: 5px;
 }
 /*
+
 ========================================
                 Slider btn
 ======================================== */
-
-
-.slick-prev:before, .slick-next:before {
-    font-family: 'slick';
-    font-size: 50px;
-    line-height: 1;
-    opacity: .75;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    z-index: 100;
+.main-card-for-offer:hover  .slick-prev{
+    display: block !important;
 }
-
-.slick-next:before {
-    color: #000 !important ;
-}
-
-.slick-next {
-    right: 3px;
+.main-card-for-offer:hover  .slick-next{
+    display: block !important;
 }
 .slick-prev, .slick-next {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    outline: none;
-    background: transparent;
+    display: none !important;
     z-index: 1;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.726);
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 20%);
+    border-radius: 50%;
 }
-.slick-prev::before, .slick-next::before {
-    font-family: slick;
-    font-size: 50px;
+.slick-prev:before, .slick-next:before {
+    content: '\276F';
+    color: black !important;
+    font-family: 'slick';
+    font-size: 17px;
     line-height: 1;
-    opacity: 0.75;
-    color: rgb(0, 0, 0);
-    -webkit-font-smoothing: antialiased;
-
+    opacity: 1;
 }
-.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
-    display: none;
+.slick-prev:before {
+    content: '\276E';
 }
-.slick-dots {
-    bottom: 24px;
-    left: -388px;
-    width: 100%;
+.slick-next:before {
+    content: '\276F';
 }
-/* Verified Pro services in Web Programming  */
-
-.verified{
-    margin-bottom: 5px !important ;
+.slick-next:focus, .slick-next:hover, .slick-prev:focus, .slick-prev:hover {
+    color: #fff !important;
+    outline: 0;
+    background: #fff !important;
 }
-.short{
-    color: #000 ;
-    margin-bottom: 40px;
+.slick-next {
+    right: 0px;
 }
-.resizing{
-    margin-bottom: 30px;
+.slick-prev {
+    left: 0px;
 }
 
 /*
@@ -613,8 +612,12 @@ Continue browsing for every card
     display: flex;
     flex-direction: row;
     margin-left: 8%;
+    align-items: center;
 }
 
+.mob-card-footer{
+    width: 100%;
+}
 .mob-card-footer img{
     width: 40px;
     height: 40px;
@@ -624,13 +627,17 @@ Continue browsing for every card
 }
 
 .mob-card-footer span{
+    width: 30%;
     font-weight: 700;
-    margin-top: 5px;
 }
 
 .mob-card-footer p{
    margin-left: 30%;
    margin-right: 8px;
+   width: 25%;
+}
+.mob-card-footer strong{
+    width: 10%;
 }
 .liner{
     width: 100%;

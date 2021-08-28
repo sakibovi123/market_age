@@ -164,12 +164,47 @@ innerDes.addEventListener('mouseleave', function () {
   desRightDiv.style.display = 'block';
 })
 
-// Select the file input and use create() to turn it into a pond
-// FilePond.create(
-// 	document.querySelector('input')
-// );
+function checkResponsive1() {
+  let res1 = document.getElementById("res1");
+
+  if (res1.value === "off")
+      res1.value = "on"
+  else
+      res1.value = "off"
+
+  console.log(res1.value);
+}
+
+function checkResponsive2() {
+  let res2 = document.getElementById("res2");
+
+  if (res2.value === "off")
+      res2.value = "on"
+  else
+      res2.value = "off"
+
+  console.log(res2.value);
+}
+
+function checkResponsive3() {
+  let res3 = document.getElementById("res3");
+
+  if (res3.value === "off")
+      res3.value = "on"
+  else
+      res3.value = "off"
+
+  console.log(res3.value);
+}
+
+let document_element = document.getElementById("document");
+
+document_element.addEventListener("change", () => {
+  console.log(CKEDITOR.instances.document_element.getData());
+});
 
 
-
-
-
+$(function() {
+  $('.chosen-select').chosen();
+  $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+});

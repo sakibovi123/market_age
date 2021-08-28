@@ -1,6 +1,6 @@
-from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.db.models import Avg, Max, Min
 from django.contrib import messages
 from .models import Offer
@@ -108,11 +108,6 @@ def offer_details(request, id):
 
     if result is None:
         u.save()
-        # offers.offer_click_count = offers.offer_click_count + 1
-        # offers.save()
-    # if request.user:
-    #     offers.offer_click_count = offers.offer_click_count + 1
-    #     offers.save()
     c = DummyUser.objects.all().count()
     related_offers = Offer.objects.all()
 
@@ -231,6 +226,35 @@ def manageOrder(request):
     return render(request, "wasekPart/manage_order.html", args)
 
 
+def add_to_pause_offer(request):
+    if request.method == "POST":
+        offer_id = request.POST.get("offer_id", None)
+        print(f"{offer_id=}")
+
+        if offer_id is not None:
+            try:
+                offer_id = int(offer_id)
+            except:
+                return redirect("manage-offers")
+            else:
+                try:
+                    offer = Offer.objects.get(id=offer_id)
+                    offer.offer_status = "PAUSED"
+                    offer.save()
+
+                    if request.is_ajax():
+                        data = {
+                            "message": "Successfull!",
+                            "offer_id": str(offer_id),
+                        }
+                        return JsonResponse(data)
+                    else:
+                        return redirect("manage-offers")
+                except:
+                    return redirect("manage-offers")
+        else:
+            return redirect("manage-offers")
+
 # offers page
 @login_required(login_url='user_login')
 def manageOffers(request):
@@ -249,22 +273,33 @@ def manageOffers(request):
         elif offer.offer_status == "PAUSED":
             pauseds.append(offer)
 
-    if request.method == "POST":
-        offer_id = request.POST.get("offer_id", None)
+    # if request.method == "POST":
+    #     offer_id = request.POST.get("offer_id", None)
+    #     print(f"{offer_id=}")
 
-        if offer_id is not None:
-            try:
-                offer_id = int(offer_id)
-            except:
-                return redirect("manage-offers")
-            else:
-                try:
-                    offer = Offer.objects.get(id=offer_id)
-                    offer.offer_status = "PAUSED"
-                    offer.save()
-                    return redirect("manage-offers")
-                except:
-                    return redirect("manage-offers")
+    #     if offer_id is not None:
+    #         try:
+    #             offer_id = int(offer_id)
+    #         except:
+    #             return redirect("manage-offers")
+    #         else:
+    #             try:
+    #                 offer = Offer.objects.get(id=offer_id)
+    #                 offer.offer_status = "PAUSED"
+    #                 offer.save()
+
+    #                 if request.is_ajax():
+    #                     data = {
+    #                         "message": "Successfull!",
+    #                         "offer_id": str(offer_id),
+    #                     }
+    #                     return JsonResponse(data)
+    #                 else:
+    #                     return redirect("manage-offers")
+    #             except:
+    #                 return redirect("manage-offers")
+    #     else:
+    #         return redirect("manage-offers")
 
     args = {
         "active_offers": active_offers,
@@ -733,7 +768,6 @@ def createOfferView(request):
         print(request.POST.getlist("extra_images"))
         print(request.POST.get("offer_video"))
         print(request.POST.get("document"))
-    # print(categories)
 
     args = {
         "tags": tags,

@@ -5,13 +5,16 @@
     <link rel="stylesheet" href="{% static 'css/post_a_req.css' %}" >
 
 
-<div class="container"> 
+<div class="container mt-4 mb-4"> 
+    <div class="card main-div-for-form">
+    
 
    <form action="" method="POST" enctype="multipart/form-data" class="form">
     {% csrf_token %}
         {{ post_form|crispy }}
-        <button type="submit" class="btn btn-success col-lg-7 mt-3">Submit Request</button>
+        <button type="submit" class="btn button mt-4 ">Submit Request</button>
    </form>
+    </div>
 </div>
 
 {% include 'buyingview/buying_footer.html' %}

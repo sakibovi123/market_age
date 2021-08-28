@@ -3,6 +3,12 @@
 {% load static %}
 
 {% block content %}
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+  defer
+></script>
 
 <link rel="stylesheet" href="{% static 'css/manage_order.css' %}">
 <link rel="stylesheet" href="{% static 'css/manage_offers.css' %}">
@@ -123,7 +129,7 @@
             <tbody>
                 {% if active_offers|length > 0 %}
                     {% for offer in active_offers %}
-                        <tr>
+                        <tr class="offer{{offer.id}}">
                             <td class="ps-3" colspan="2">
                                 <a href="#">
                                     <img src="{{ offer.image.url }}" />
@@ -142,10 +148,10 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item" href="#">Preview</a></li>
                                         <li><a class="dropdown-item" href="#">Edit</a></li>
-                                        <form method="POST">
+                                        <form method="POST" action="{% url 'add-to-pause' %}" class="offer-paused-form">
                                             {% csrf_token %}
-                                            <input type="hidden" value="{{offer.id}}" name="offer_id" />
-                                            <li><button class="dropdown-item ps-3 py-1" type="submit">Paused</button></li>
+                                            <input type="hidden" class="offer_id_hidden" value="" name="offer_id" />
+                                            <li><button class="dropdown-item ps-3 py-1 offer__btn" data-content="{{ offer.id }}" type="submit">Paused</button></li>
                                         </form>
                                             <li><a class="dropdown-item" href="#">Share</a></li>
                                             <li><a class="dropdown-item" href="#">Delete</a></li>
@@ -391,7 +397,7 @@
             <tbody>
                 {% if pauseds|length > 0 %}
                     {% for offer in pauseds %}
-                        <tr>
+                        <tr class="paused_offer">
                             <td class="ps-3" colspan="2">
                                 <a href="#">
                                     <img src="{{ offer.image.url }}" />
@@ -446,5 +452,4 @@
     <a class="gig__statusMean" href="#">What does your Offer<span>&reg;</span> status mean?</a>
     <!-- Order table section ends -->
 </div>
-
 {% endblock %}

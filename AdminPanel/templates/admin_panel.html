@@ -2,7 +2,7 @@
 {% include 'base.html' %}
 
 
-<body>
+
     <div class="d-flex" id="wrapper">
         {% include 'sidebar.html' %}
 
@@ -59,7 +59,7 @@
                    <div class="search__bar__container">
                     <form class="main__search__bar">
                         <div class="mb-3">
-                          <input type="search" class="form-control" placeholder=" Search ID here.." aria-describedby="emailHelp">
+                          <input type="search" class="form-control" placeholder=" Search ID here.." aria-describedby="emailHelp" required>
                         </div>
                     </form>
 
@@ -115,11 +115,71 @@
                                     <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
                                     
                                         <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                             <div class="modal-dialog">
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                              <div class="modal-content">
                             <div class="modal-body">
-                                 ...
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
                                   </div>
                                 </div>
                                </div>
@@ -135,7 +195,82 @@
                                     <td>$750</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                   
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -145,7 +280,82 @@
                                     <td>$600</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -155,7 +365,82 @@
                                     <td>$300</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -165,7 +450,82 @@
                                     <td>$120</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -175,7 +535,82 @@
                                     <td>$1800</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -185,7 +620,82 @@
                                     <td>$75</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -195,7 +705,82 @@
                                     <td>$36</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -205,7 +790,82 @@
                                     <td>$255</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -215,7 +875,82 @@
                                     <td>$434</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                 
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -225,7 +960,82 @@
                                     <td>$1236</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                   
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                                 <tr>
@@ -235,7 +1045,82 @@
                                     <td>$422</td>
                                     <th>12</th>
                                     <td>Food</td>
-                                    <td><a href="#">View</a></td>
+                                    
+                                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
+                                    
+                                        <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                            <div class="modal-body">
+                                 
+                                <div class="main__content">
+
+                                    <div class="order____details">
+                                      <div class="order__first__colum">
+                                        <p class="star">Star</p>
+                                        <p><span class="order__info fw-bold">Order #{{order.id}}
+                          
+                                        <!-- </span> view gig</p> -->
+                                          <p>BUYER  <span class="second__star"> {{order.user}}</span> (view history) | {{order.created_at}}</p>
+                                      </div>
+                                      <div class="order__second__colum">
+                                        <p class="erned____amount">${{order.total}}</p>
+                                        <p><span class="badge bg-success">{{order.order_status}} Order</span><p>
+                                    </div>
+                                  </div>
+                                  <hr>
+                          
+                                  <div class="order___description">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum praesentium esse sequi dolor et veritatis ea possimus qui, natus sed exercitationem quae dignissimos delectus est corporis porro molestias ipsum voluptatem quibusdam! Recusandae perspiciatis dolores voluptatem tenetur adipisci tempora iure cupiditate aut. Libero veniam quia dolorem porro odio exercitationem deleniti impedit, commodi provident laboriosam, eaque sequi debitis vitae accusamus et soluta reprehenderit voluptatibus nobis ipsam ipsa voluptas! Voluptatum voluptatem quis error, laborum temporibus ipsum, minus ea nam facilis repellendus quam accusamus laboriosam deleniti voluptate, tenetur aspernatur distinctio quia id. Repellat nihil quas sit fuga in mollitia cum velit et laborum tenetur.</p>
+                                    <hr>
+                                  </div>
+                          
+                                  <!-- order table -->
+                          
+                                  <div class="order___table table-responsive">
+                                    <table class="table">
+                                      <thead class="bg-light">
+                                        <tr>
+                                          <th scope="col">Item</th>
+                                          <th scope="col">Quantity</th>
+                                          <th scope="col">Duration</th>
+                                          <th scope="col">Amount</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><p>{{ order.package }}</p>
+                                            <p><span class="iconify" data-icon="akar-icons:check" style="color: #1dde7d;"></span> 20 Revisions</p>
+                                          </td>
+                                          <td>{{ order.quantity }}</td>
+                                          <td>{{ duration }}</td>
+                                          <td>${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Total</td>
+                                          <td></td>
+                                          <td></td>
+                                          <td class="fw-bold">${{ order.total }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="fw-bold">Grand Total<span class="include__service">(included service fee)</span></td>
+                                          <td></td>
+                                          <td></td>
+                                        <td class="fw-bold">${{ order.grand_total }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+
+                                  </div>
+                                </div>
+                               </div>
+                                  </div>
+
+                                    </td>
+
                                     <td>$422</td>
                                 </tr>
                             </tbody>
@@ -254,11 +1139,9 @@
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
-
+    
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
     </script>
-</body>
-
-</html>
+    
