@@ -18,25 +18,24 @@
         <div class="two-colum">
             <div class="first_column">
                 <h3>CONTACT INFO</h3><br>
-                <p><i class="fas fa-mobile-alt"></i><a href="#">&nbsp; Sales and SUpport (+88)01713429001</a></p>
-                <p><i class="far fa-envelope-open"></i></span><a href="#">&nbsp; support@marketage.io</a></p>
-                <p><i class="fas fa-map-marker-alt"></i><a href="#"><a href="#">&nbsp; Nikunja 02, Khilkhet, Dhaka 1229</a></p>
-                <p><i class="far fa-calendar-minus"></i>&nbsp; Monday-Saturday 24/7</a></p><br>
+                <p><span class="iconify" data-icon="ant-design:phone-filled" style="color: red;"></span><a href="#">&nbsp; Sales and SUpport (+88)01713429001</a></p>
+                <p><span class="iconify" data-icon="ant-design:mail-outlined" style="color: red;"></span></span><a href="#">&nbsp; support@marketage.io</a></p>
+                <p><span class="iconify" data-icon="fa-solid:address-book" style="color: red;"></span><a href="#"><a href="#">&nbsp; Nikunja 02, Khilkhet, Dhaka 1229</a></p>
+                <p><span class="iconify" data-icon="uil:calender" style="color: red;"></span></i>&nbsp; Monday-Saturday 24/7</a></p><br>
 
-                <p class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:facebook" style="color: #ff0a95;"></span> <a href="#">&nbsp; <span class="social-textfb">FACEBOOK</span></a></p>
-                <p><i class="fab fa-instagram fb-icon inatagram"></i> <a href="#">&nbsp; <span class="social-textin">INSTAGRAM</span></a></p>
+                <p class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:facebook" style="color: #ff0a95;"></span> <a href="https://www.facebook.com/marketagebd/">&nbsp; <span class="social-textfb">FACEBOOK</span></a></p>
+                <p><span class="iconify" data-icon="akar-icons:instagram-fill" style="color: #f716bf !important;"></span> <a href="#">&nbsp; <span class="social-textin">INSTAGRAM</span></a></p>
                 <P class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:twitter" style="color: #ff0a95;"></span><a href="#">&nbsp; <span class="social-texttw">TWITTER</span></a></P>
                 <p class="fb-with-text"><span class="iconify fb-icon" data-icon="logos:linkedin-icon" style="color: #ff0a95;"></span><a href="#">&nbsp; <span class="social-textln">LINKEDIN</span></a></p>
                 
             </div>
             <div class="first_column">
                 <h3>CATEGORIES</h3><br>
-                <p><a href="#">Keyboards</a></p>
-                <p><a href="#">About Us</a></p>
+                <p><a href="{% url 'about-us' %}">About Us</a></p>
                 <p><a href="#">Help & Support</a></p>
-                <p><a href="#">Trust & Saftety</a></p>
-                <p><a href="#">Term of Services</a></p>
-                <p><a href="#">Privacy Policy</a></p>
+                <p><a href="{% url 'trustSafety' %}">Trust & Saftety</a></p>
+                <p><a href="{% url 'termOfservices' %}">Term of Services</a></p>
+                <p><a href="{% url 'privacypolicy' %}">Privacy Policy</a></p>
             </div>
           </div>
             <div class="third-colum">
@@ -44,10 +43,10 @@
                     <h3>STAY INFORMED BY NEWSSLETTER</h3><br>
                     <p>*Subscribe to our newsteller to receive early discount offers. <br> updates and new products info.</p>
                    <div class="colum-input">
-                    <input type="email" name="search" placeholder="&nbsp; Your email here....">
+                    <input type="email" name="search" placeholder="&nbsp; Your email here...." required>
                    </div>
                     <div class="colum-img">
-                        <a href="#"><img src="{% static 'images/marketage.png' %}" alt="logo"></a>
+                        <a href="{% url 'buying_view' %}"><img src="{% static 'images/marketage.png' %}" alt="logo"></a>
                     </div>
                 </div>
             </div>

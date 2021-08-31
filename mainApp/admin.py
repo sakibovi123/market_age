@@ -11,7 +11,7 @@ class OfferAdmin(admin.ModelAdmin):
         OfferManagerInline
     ]
 
-
+admin.site.register(OfferManager)
 admin.site.register(Country)
 admin.site.register(City)
 admin.site.register(Package)

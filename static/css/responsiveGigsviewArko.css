@@ -27,7 +27,6 @@
     }
     .panels{
         width: 100%;
-        max-width: 634px;
     }
     .panel-title h3, .panel-title span{
         font-size: 30px;
@@ -37,8 +36,7 @@
         font-size: 15px;
     }
     .tabs{
-        margin-top: 20px;
-        width: 90%;
+        width: 103%;
     }
     .inner-panel i{
        margin-right: 20px;

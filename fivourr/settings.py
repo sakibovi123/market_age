@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'API',
     'AdminPanel',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'ChatApp'
 ]
 
 MIDDLEWARE = [

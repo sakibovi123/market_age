@@ -224,8 +224,8 @@ a:hover{
 }
 
 /* complete order table */
-.complete__order__table{
-    background-color: #fff;
+tr:last-child td{
+    border-bottom:0;
 }
 /* complete order button */
 .seller-detail{

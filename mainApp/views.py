@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -16,6 +17,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from datetime import date
 from datetime import datetime
+import string    
+import random
 
 
 def get_landing_page(request):
@@ -226,35 +229,6 @@ def manageOrder(request):
     return render(request, "wasekPart/manage_order.html", args)
 
 
-def add_to_pause_offer(request):
-    if request.method == "POST":
-        offer_id = request.POST.get("offer_id", None)
-        print(f"{offer_id=}")
-
-        if offer_id is not None:
-            try:
-                offer_id = int(offer_id)
-            except:
-                return redirect("manage-offers")
-            else:
-                try:
-                    offer = Offer.objects.get(id=offer_id)
-                    offer.offer_status = "PAUSED"
-                    offer.save()
-
-                    if request.is_ajax():
-                        data = {
-                            "message": "Successfull!",
-                            "offer_id": str(offer_id),
-                        }
-                        return JsonResponse(data)
-                    else:
-                        return redirect("manage-offers")
-                except:
-                    return redirect("manage-offers")
-        else:
-            return redirect("manage-offers")
-
 # offers page
 @login_required(login_url='user_login')
 def manageOffers(request):
@@ -273,33 +247,25 @@ def manageOffers(request):
         elif offer.offer_status == "PAUSED":
             pauseds.append(offer)
 
-    # if request.method == "POST":
-    #     offer_id = request.POST.get("offer_id", None)
-    #     print(f"{offer_id=}")
+    if request.method == "POST":
+        offer_id = request.POST.get("offer_id", None)
+        print(f"{offer_id=}")
 
-    #     if offer_id is not None:
-    #         try:
-    #             offer_id = int(offer_id)
-    #         except:
-    #             return redirect("manage-offers")
-    #         else:
-    #             try:
-    #                 offer = Offer.objects.get(id=offer_id)
-    #                 offer.offer_status = "PAUSED"
-    #                 offer.save()
-
-    #                 if request.is_ajax():
-    #                     data = {
-    #                         "message": "Successfull!",
-    #                         "offer_id": str(offer_id),
-    #                     }
-    #                     return JsonResponse(data)
-    #                 else:
-    #                     return redirect("manage-offers")
-    #             except:
-    #                 return redirect("manage-offers")
-    #     else:
-    #         return redirect("manage-offers")
+        if offer_id is not None:
+            try:
+                offer_id = int(offer_id)
+            except:
+                return redirect("manage-offers")
+            else:
+                try:
+                    offer = Offer.objects.get(id=offer_id)
+                    offer.offer_status = "PAUSED"
+                    offer.save()
+                    return redirect("manage-offers")
+                except:
+                    return redirect("manage-offers")
+        else:
+            return redirect("manage-offers")
 
     args = {
         "active_offers": active_offers,
@@ -729,14 +695,39 @@ def level_up_function(request, id):
 # Top Offers
 
 
-##
+## Footer Part ---------- >>>>>
 
 def aboutusView(request):
     return render(request, "azimpart/aboutus.html")
 
+def privacypolicyView(request):
+    return render(request, "azimpart/privacy-policy.html")
 
+
+def helpSupportView(request):
+    return render(request, "azimpart/help-support.html")
+
+
+def trustSafetyView(request):
+    return render(request, "azimpart/trust-safety.html")
+
+def termOfservicesView(request):
+    return render(request, "azimpart/term-services.html")
+
+
+## Footer Aprt ENd ------->>>
+
+
+def create_offer_random_slug(str_len):
+    rand_slug = ''.join(random.choices(string.ascii_uppercase + string.digits, k = str_len))
+    offer = Offer.objects.filter(slug=rand_slug)
+    if offer.exists():
+        create_offer_random_slug(str_len)
+    return rand_slug
+
+
+@login_required(login_url='user_login')
 def createOfferView(request):
-    tags = Tag.objects.all()
     categories = Category.objects.all()
     services = Services.objects.all()
     deliveries = DeliveryTime.objects.all()
@@ -748,7 +739,13 @@ def createOfferView(request):
         print(request.POST.get("seo_title"))
         print(request.POST.get("category"))
         print(request.POST.get("service"))
-        print(request.POST.getlist("tag"))
+        # print(request.POST.getlist("tag"))
+        # print(request.POST.get("basic_title"))
+        # print(request.POST.get("standard_title"))
+        # print(request.POST.get("premium_title"))
+        print(request.POST.get("basic_shortDesc"))
+        print(request.POST.get("standard_shortDesc"))
+        print(request.POST.get("premium_shortDesc"))
         print(request.POST.get("delivery_time_basic"))
         print(request.POST.get("delivery_time_standard"))
         print(request.POST.get("delivery_time_premium"))
@@ -765,12 +762,70 @@ def createOfferView(request):
         print(request.POST.get("price_standard"))
         print(request.POST.get("price_premium"))
         print(request.POST.get("content"))
-        print(request.POST.getlist("extra_images"))
-        print(request.POST.get("offer_video"))
-        print(request.POST.get("document"))
+        print(request.FILES.get("offer_main_image"))
+        print(request.FILES.getlist("uploaded_photo"))
+        print(request.FILES.get("uploaded_video"))
+        print(request.FILES.get("document"))
+
+        # Data section
+        slug = create_offer_random_slug(20)
+        offer_title = request.POST.get("offer_title")
+        seo_title = request.POST.get("seo_title")
+        category = request.POST.get("category")
+        service = request.POST.get("service")
+        # basic_title = request.POST.get("basic_title")
+        # standard_title = request.POST.get("standard_title")
+        # premium_title = request.POST.get("premium_title")
+        basic_shortDesc = request.POST.get("basic_shortDesc")
+        standard_shortDesc = request.POST.get("standard_shortDesc")
+        premium_shortDesc = request.POST.get("premium_shortDesc")
+        delivery_time_basic = request.POST.get("delivery_time_basic")
+        delivery_time_standard = request.POST.get("delivery_time_standard")
+        delivery_time_premium = request.POST.get("delivery_time_premium")
+        num_pages_basic = request.POST.get("num_pages_basic")
+        num_pages_standard = request.POST.get("num_pages_standard")
+        num_pages_premium = request.POST.get("num_pages_premium")
+        is_responsive_basic = request.POST.get("is_responsive_basic")
+        is_responsive_standard = request.POST.get("is_responsive_standard")
+        is_responsive_premimum = request.POST.get("is_responsive_premimum")
+        revision_basic = request.POST.get("revision_basic")
+        revision_standard = request.POST.get("revision_standard")
+        revision_premimum = request.POST.get("revision_premimum")
+        price_basic = request.POST.get("price_basic")
+        price_standard = request.POST.get("price_standard")
+        price_premium = request.POST.get("price_premium")
+        content = request.POST.get("content")
+        main_image = request.FILES.get("offer_main_image")
+        uploaded_photo = request.FILES.getlist("uploaded_photo")
+        uploaded_video = request.FILES.get("uploaded_video")
+        document = request.FILES.get("document")
+
+        service = Services.objects.get(title=service)
+        category = Category.objects.get(title=category)
+        offer = Offer(slug=slug, user=request.user, offer_title=offer_title, seo_title=seo_title, 
+                    image=main_image, offer_video=uploaded_video, document=document, 
+                    service=service, category=category, description=content)
+        if basic_shortDesc is not None:
+            dt_basic = DeliveryTime.objects.get(title=delivery_time_basic)
+            re_basic = Revision.objects.get(title=revision_basic)
+            num_page_basic = NumberOfPage.objects.get(title=num_pages_basic)
+
+            if is_responsive_basic == "on":
+                is_responsive_basic = True
+            else:
+                is_responsive_basic = False
+            package = Package(title="Basic", delivery_time=dt_basic, package_desc=basic_shortDesc, 
+                            revision_basic=re_basic, num_of_pages_for_basic=num_page_basic, is_responsive_basic=is_responsive_basic,
+                            )
+            offer.save()
+            for item in uploaded_photo:
+                image_obj = ExtraImage(image=item)
+                image_obj.save()
+                offer.extra_images.add(image_obj.id)
+            package.save()
+            OfferManager.objects.create(offer=offer, package=package, price=price_basic)
 
     args = {
-        "tags": tags,
         "categories": categories,
         "services": services,
         "deliveries": deliveries,
@@ -778,6 +833,11 @@ def createOfferView(request):
         "num_of_pages": num_of_pages,
     }
     return render(request, "sellingview/create_offer.html", args)
+
+
+def edit_offer(request):
+    return render(request, 'azimpart/edit_offer.html')
+
 
 
 def seller_order_details(request, id):
@@ -910,3 +970,11 @@ def download(request, path):
                 os.path.basename(file_path)
             return response
     raise Http404
+
+def searchPageView(request):
+    query = request.GET.get("search")
+
+    args = {
+
+    }
+    return render(request, "buyingview/search-box-Result.html", args)

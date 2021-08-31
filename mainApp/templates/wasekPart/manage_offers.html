@@ -148,10 +148,10 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item" href="#">Preview</a></li>
                                         <li><a class="dropdown-item" href="#">Edit</a></li>
-                                        <form method="POST" action="{% url 'add-to-pause' %}" class="offer-paused-form">
+                                        <form method="POST">
                                             {% csrf_token %}
-                                            <input type="hidden" class="offer_id_hidden" value="" name="offer_id" />
-                                            <li><button class="dropdown-item ps-3 py-1 offer__btn" data-content="{{ offer.id }}" type="submit">Paused</button></li>
+                                            <input type="hidden" value="{{ offer.id }}" name="offer_id" />
+                                            <li><button class="dropdown-item ps-3 py-1" type="submit">Paused</button></li>
                                         </form>
                                             <li><a class="dropdown-item" href="#">Share</a></li>
                                             <li><a class="dropdown-item" href="#">Delete</a></li>

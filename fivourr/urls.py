@@ -23,6 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('adminpanel/', include('AdminPanel.urls')),
 
+    # Chat App URLS
+    
+    path('chat/', include('ChatApp.urls')),
+    
     # API PATH
 
     path('api/', include('API.urls')),
@@ -53,8 +57,6 @@ urlpatterns = [
     path("manage-order/", views.manageOrder, name="manage-order"),
     # offers page url
     path("manage-offers/", views.manageOffers, name="manage-offers"),
-    # Add to pause offer
-    path("add-to-pause/", views.add_to_pause_offer, name="add-to-pause"),
     # Chat inbox url
     path("inbox", views.chatInbox, name="inbox"),
     # Seller Dashboard
@@ -134,14 +136,27 @@ urlpatterns = [
     path("seller-submit/<int:pk>/", views.sellerSubmitView, name="seller-submit"),
     # About us page
     path("about-us/", views.aboutusView, name="about-us"),
+    
+    path("privacypolicy/", views.privacypolicyView, name="privacypolicy"),
+    
+    path("helpSupport/", views.helpSupportView, name="helpSupport"),
+    
+    path("trustSafety/", views.trustSafetyView, name="trustSafety"),
+    
+    path("termOfservices/", views.termOfservicesView, name="termOfservices"),
+
     # Create offer page
     path("create-offer/", views.createOfferView, name="create-offer"),
+    # Edit Offer Page
+    path('edit_offer/', views.edit_offer, name="EditOffer"),
     # Buyer orders page
     path("buyer-orders/<int:pk>/", views.buyerGigFormView, name="buyer-orders"),
     # Buyer dashboard page
     path("buyer-dashboard/", views.buyerDashboardFormView, name="buyer-dashboard"),
     # Seller ORder Details
     path('seller_order_details/<int:id>/', views.seller_order_details, name="SellerOrderDetails"),
+    # Search page
+    path("search/", views.searchPageView, name="search"),
 
 
     # Test URL

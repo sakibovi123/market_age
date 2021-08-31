@@ -56,9 +56,16 @@ body{
 .first_column P, .colum-input, .colum-img{
     padding: 8PX;
 }
-
+.colum-input input{
+    padding-left: 10px;
+}
+.colum-input input{
+    padding-right: 10px;
+}
 .fb-icon{
     font-size: 20px;
+    color: red !important;
+
 }
 .first_column p i{
     color: #e645c3 !important;

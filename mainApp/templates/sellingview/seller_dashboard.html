@@ -173,7 +173,7 @@
           <div class="activeOrders">
             <ul>
               <li>
-                <h6 id="active_text">Active Orders - {{ count_active }} ($0)</h6>
+                <h6 id="active_text">Active Orders - {{ count_active }}</h6>
               </li>
               <li>
                 <div class="dropdown">
@@ -195,7 +195,8 @@
 
           <!-- active order display -->
           <div id="active_order_show" class="complete__order__table table-responsive">
-            <table class="table">
+            {% if active_orders|length > 0 %}
+            <table class="table bg-white">
               <tbody>
                 {% for order in active_orders %}
                 <tr>
@@ -226,12 +227,15 @@
                 {% endfor %}
               </tbody>
             </table>
+            {% else %}
+              <p class="bg-white p-3 text-center text-danger fw-bold">No order to show!</p>
+            {% endif %}
           </div>
 
           <!-- complete order section -->
-
-            <div id="complete_order_show" class="complete__order__table table-responsive">
-              <table class="table">
+          <div id="complete_order_show" class="complete__order__table table-responsive">
+              {% if completed_orders|length > 0 %}
+              <table class="table bg-white">
                 <tbody>
                   {% for order in completed_orders %}
                   <tr>
@@ -262,11 +266,15 @@
                   {% endfor %}
                 </tbody>
               </table>
+              {% else %}
+                <p class="bg-white p-3 text-center text-danger fw-bold">No order to show!</p>
+              {% endif %}
             </div>
 
             <!-- cancel order options -->
             <div id="cancel_order" class="complete__order__table table-responsive">
-              <table class="table">
+              {% if cancelled_orders|length > 0 %}
+              <table class="table bg-white">
                 <tbody>
                   {% for order in cancelled_orders %}
                   <tr>
@@ -297,6 +305,9 @@
                   {% endfor %}
                 </tbody>
               </table>
+              {% else %}
+                <p class="bg-white p-3 text-center text-danger fw-bold">No order to show!</p>
+              {% endif %}
             </div>
           <br><br><br>
 
@@ -400,8 +411,10 @@
     </div>
   </div>
 
+  {% include 'buyingview/buying_footer.html' %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
   <script src="{% static 'js/sellerdashboard.js' %}"></script>
+
 {% endblock %}

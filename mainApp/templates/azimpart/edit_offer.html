@@ -1,0 +1,784 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Offer</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+    
+    <script src="https://cdn.ckeditor.com/4.16.2/basic/ckeditor.js"></script>
+
+
+    <!-- add to document <head> -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" /><link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"/>
+    
+    
+    <link rel="stylesheet" href="{% static 'css/create_offer.css' %}">
+
+</head>
+<body>
+<!-- oveview -->
+<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="create-a-gig">
+        <div class="inner-create-gig container mt-5">
+
+<!-- for overview -->
+            <div class="row for-overview">
+
+                <div class="col-md-9 hover-function">
+
+
+                    <!-- gig title -->
+                    <div class="gig-card">
+
+                        <div class="gig-title mb-4">
+                            <p>OFFER TITLE</p>
+                            <textarea name="offer_title" placeholder="I will"></textarea>
+                        </div>
+
+
+
+                    <!-- seo title     -->
+                        <div class="seo-title mb-4">
+                            <p>SEO TITLE</p>
+                            <textarea name="seo_title"> </textarea>
+                        </div>
+
+                    <!-- category -->
+                        <div class="category mb-4">
+                            
+                            <div class="category-title">
+                                <p>Category</p>
+                            </div>
+
+                            <div class="select-area">
+                                <div>
+                            <select class="for-size" name="category" id="">
+                                {% for category in categories %}
+                                <option value="{{ category.title }}">{{ category.title }}</option>
+                                {% endfor %}
+                            </select>
+                                </div>                            
+                            
+                            </div>
+                        </div>
+
+
+                    <!-- service type-->
+                       
+                        <div class="service-type mb-4">
+                            
+                        <div class="service-title">
+                            <p>SERVICE TYPE</p>
+                        </div>
+
+                        <div>
+                            <select class="select-input" name="service" id="">
+                                {% for service in services %}
+                                    <option value="{{service.title}}">{{service.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        </div>
+
+                    <!-- search tag -->
+                    <div class="search-tag mb-5">
+                            <div class="service-title">
+                                <p>SEARCH Tag</p>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="multi-tag">
+                                
+
+                          
+                            <select data-placeholder="Select your tags" class="chosen-select" multiple tabindex="1">
+                                <option value=""></option>
+                                <option value="">CSS</option>
+                                <option value="">HTML</option>
+                                <option value="">Java Script</option>
+                                <option value="">asp.net</option>
+                                <option value="">react</option>
+                            </select>
+
+                        
+
+                                  <p class="point"> <span><i class="fas fa-info-circle"></i> Please note: </span>
+                                    Some categories require that sellers verify their skills.</p>
+                            </div>
+                            
+                    </div>
+
+
+                    </div>
+                </div>
+
+                
+                <div class="col-md-3 right-div">
+
+                <!--fixed div -->
+                    <div class="defining-gig">
+                        <div class="inner-defining-gig">
+                            
+                            <div class="icon">
+                            <i class="fas fa-lightbulb light"></i>
+                            </div>
+                            
+                            <h5 class="text-center">Start Defining Your offer</h5>
+                            <ul>
+
+                                <li>Make a title that will capture people's attention.</li>
+
+                                <li>Select a category that best describes your offer.</li>
+
+                                <li>Add meta data to your offer to help customers learn more about it.</li>
+
+                                <li>Select a category that best describes your offer.    
+                                </li>                            
+                                
+                            </ul>
+                            <a href=""><i class="fas fa-play-circle"></i> General offer Policy </a>
+                            
+                            
+                        </div>
+                    </div>
+                
+
+                <!-- gig title -->
+                    <div class="discribe-gig">
+                        <h4 class="text-center">Describe Your offer</h4>
+                        <p>This is your offer title. CHoose wisely, this will be helping for rank your offer</p>
+                    </div>
+
+
+                <!-- seo title -->
+                    <div class="seo-title-hover">
+                        <h4 class="text-center">SEO Titile</h4>
+                        <p>The most crucial on-page SEO component to handle on any web page is the Title Tag. Well-written page titles can HELP your pages rank higher in Search Engine Results Pages (SERPs) by including clever, natural, and extremely precise keywords.</p>
+                        <h6>For example</h6>
+                        <ul>
+                            <li>I will design an exclusive Business Card</li>
+                            <li>I will draw you one RORSCHACH-like ink blot</li>
+                            <li>I will design a modern business logo</li>
+                        </ul>
+                    </div>
+
+
+                <!-- category  -->
+                    <div class="category-hover">
+                        <h5 class="text-center">Where will your offer end up?</h5>
+                        <p>Please choose the category and sub-category most suitable for your offer.</p>
+                    </div>
+
+                    <!-- service type -->
+                    <div class="service-type-hover">
+                        <h5 class="text-center">Buyers search by service types</h5>
+                        <p>Choose a service type to ensure you appear in their search results, and get the right pricing features for your offer.</p>
+                    </div>
+
+
+                <!-- search-taq -->
+                    <div class="search-tag-hover">
+                        <h5>Let Buyers Know How to find offer</h5>
+                        <p>Enter search terms, which you feel buyers will use when looking for your service.</p>
+                        <p>The terms you enter here are very important and will have an impact on your overrall exposure on Fiverr.When adding your search terms, please keep in mind the following:</p>
+                        <ul>
+                            <li>Spectal character and duplicated terms will be ignored</li>
+                            <li>It doesnot matter if you use upper case, lower case letters, or plural forms of words.</li>
+                        </ul>
+                    </div>
+                
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+
+
+<!-- scope and pricing  -->
+
+        <section id="#scope_&_price">
+            <div class="inner-priceandscope container mt-4">
+                
+            <div class="title">
+                <div class="inner-title">
+                    <h3>Scope & Pricing</h3>
+                </div>
+
+                <div class="info-box">
+                    <p> <i class="fas fa-info-circle"></i> You can now offer buyers delivery options for up to 90 days. Go ahead and update your offer!</p>
+                </div>
+            </div>
+                <hr>
+
+            <div class="package">
+                <h5>Packages</h5>
+
+                <div class="package-table ">
+                    
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col" class="text-center">BASIC</th>
+                            <th scope="col" class="text-center">STANDARD</th>
+                            <th scope="col" class="text-center">PREMIUM</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+
+                          <tr>
+                            <td scope="row"></td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                          </tr>
+                                
+
+                          <tr>
+                            <td scope="row"></td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                            <td class="col-3 input-padding">
+                                
+                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                                               
+                            </td>
+
+                          </tr>
+                                
+                          
+
+
+                          <tr class="table table-for-row">
+                            
+                            <td></td>
+                            
+                            <td scope="row">
+                                <select name="delivery_time_basic" id="">
+                                    <option value="">Select Delivery Time</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+
+                            <td scope="row">
+                                <select name="delivery_time_standard" id="">
+                                    <option value="">Select Delivery Time</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+
+                            <td scope="row">
+                                <select name="delivery_time_premium" id="">
+                                    <option value="">Select Delivery Time</option>
+                                    {% for delivery in deliveries %}
+                                        <option value="{{delivery}}">{{ delivery }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                          </tr>
+                               
+<!-- number of pages -->
+                          <tr class="table table-for-row">
+
+                            <td scope="row" class="for-padding align-middle">Number of Pages</td>
+
+                            
+                            <td scope="row">
+                                <select name="num_pages_basic" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="num_pages_standard" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="num_pages_premium" id="">
+                                    <option class= value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td> 
+
+                          </tr>
+
+<!-- responsive design        -->
+                          <tr class="for-table-data-center">
+                            <td scope="row" class="align-middle">Responsive Design</td>
+
+                            <td class="col-3 align-middle">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_basic" id="res1" onchange="checkResponsive1()">
+                            </td>
+                            
+                            <td class="col-3 align-middle">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_standard" id="res2" onchange="checkResponsive2()">
+                            </td>
+                            
+                            <td class="col-3 align-middle p-3">
+                                <input type="checkbox" class="text-center w-100" align-self-center value="off" name="is_responsive_premimum" id="res3" onchange="checkResponsive3()">
+                            </td>
+
+                            
+                          </tr>
+<!-- for revision -->
+                        <tr class="table table-for-row">
+                                                    
+                            <td scope="row" class="for-padding align-middle">Revisions</td>
+
+                            
+                            <td scope="row">
+                                <select name="revision_basic" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="revision_standard" id="">
+                                    <option value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            
+                            
+                            <td scope="row">
+                                <select name="revision_premimum" id="">
+                                    <option class= value="">Select</option>
+                                    {% for page in num_of_pages %}
+                                        <option value="{{page}}">{{ page }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td> 
+
+                        </tr>
+
+                        
+<!-- price  -->
+                          <tr class="for-table-data-center">
+
+                            <td scope="row">Price</td>
+
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_basic" id="" aria-describedby="helpId" placeholder="Price">$
+
+                            </td>
+
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_standard" id="" aria-describedby="helpId" placeholder="Price">$
+
+                            </td>
+                            
+                            <td class="col-3 align-middle for-price">
+                                
+                                <input type="number"
+                                class="input-for-price" name="price_premium" id="" aria-describedby="helpId" placeholder="Price">$
+                            </td>
+                            
+                            
+
+                            
+                          </tr>
+                        
+                          
+                        </tbody>
+                      </table>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+        </section>   
+
+
+
+<!-- for description -->
+
+        <section id="description-for" class="container mt-4">
+            <div class="row">
+            <div class="inner-des col-md-9">
+
+                <div class="des-title">
+                    <h3>Description</h3>
+                </div>
+<hr>
+
+                <p>Briefly Describe Your offer</p>
+
+                <div class="for-textarea">
+                    <textarea name="content" id="" cols="30" rows="10"></textarea>
+                </div>
+
+            </div>
+
+            <div class="col-md-3 for-hiding">
+
+                <div class="right-div-for-description">                 
+                    <div class="icon">
+                        <i class="fas fa-lightbulb light"></i>
+                    </div>
+                    <h5>Write Your Description & FAQ
+                    </h5>
+                    
+
+                    <ul>
+                        <li>Include the most important information for your offer.</li>
+                        <li>Add frequently asked questions and answers to the most commonly asked questions.</li>
+                    </ul>
+                </div>
+<!-- description hover div -->
+                <div class="description-hover-div">
+                    <div class="icon">
+                        <i class="fas fa-lightbulb light"></i>
+                    </div>
+                    <h5>This is your chance to be creative. Explain your offer</h5>
+                    
+
+                    <ul>
+                        <li>Include the most important information for your offer.</li>
+                        <li>Add frequently asked questions and answers to the most commonly asked questions.</li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        </section>
+
+
+<!-- Gallery -->
+
+        <section class="for-gallery container mt-4">
+        <div class="row">
+        <div class="col-md-9 inner-gallery">
+
+            
+                <div class="gallery-title">
+                    <h3>Showcase Your Services In A Gig Gallery</h3>
+                    <p>Encourage buyers to choose your Gig by featuring a variety of your work.</p>
+                </div>
+                <div class="gallery-info">
+                    <i class="fas fa-info-circle"></i>
+                    <p>To comply with Fiverr’s terms of service, make sure to upload only content you either own or you have the permission or license to use.</p>
+                </div>
+<hr>
+
+        <div class="gallery-img mt-5">
+            <h4>Images (up to 3)</h4>
+            <p>Get noticed by the right buyers with visual examples of your services.</p>
+
+            <div class="offer__img__grid row">
+                <div class="col-lg-3 m-2">
+                    <div class="gig__first__img">
+                        <img src="{% static 'images/goku.png' %}" alt="">
+                        <div class="gig__edit__icon">
+                            <a href="#"><span class="iconify" data-icon="fluent:delete-28-regular"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 m-2">
+                    <div class="gig__first__img">
+                        <img src="{% static 'images/goku.png' %}" alt="">
+                        <div class="gig__edit__icon">
+                            <a href="#"><span class="iconify" data-icon="fluent:delete-28-regular"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 m-2">
+                    <div class="gig__first__img1">
+                        <p class="text-muted">Drag & Drop a photo or</p>
+                        <div class="text-center">
+                            <label class="form-label choose__file text-center w-100 mx-auto d-block" for="customFile">Browse</label>
+                        <input type="file" style="visibility: hidden;"  class="form-control" id="customFile" required/>
+                        </div>
+                       <p> <span class="iconify drag__icon" data-icon="bi:image"></span></p>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- <label for="file-upload" class="for-file-upload mt-3">
+                        <i class="fas fa-images"></i>
+                         <p>  Upload your photo</p>
+                    </label>
+                    
+                    <input id="file-upload" style="visibility: hidden;" type="file"/>    -->
+
+
+        </div>
+<hr>
+
+
+        <div class="for-video mt-5">
+            <h4>Video (one only)</h4>
+            <p>Capture buyers' attention with a video that showcases your service.</p>
+            <p class="text-muted">Please choose a video shorter than 75 seconds and smaller than 50MB</p>
+        
+
+        <div class="video__upload__option">
+            sdasdsdsa
+            <div class="video__edit__icon">
+                <a href="#"><span class="iconify video__icon" data-icon="fluent:delete-28-regular"></span></a>
+                <a href="#"><span class="iconify video__icon" data-icon="akar-icons:edit"></span></a>
+            </div>
+        </div>
+
+            <!-- <label for="file-upload" class="for-file-upload mt-3">
+                <i class="fas fa-video"></i>
+                 <p>  Upload your video</p>
+            </label>
+            
+            <input id="file-upload" style="visibility: hidden;" type="file"/>    -->
+
+        </div>
+<hr>
+
+
+
+        <div class="for-doc mt-5">
+            <h4>Documents (only one)</h4>
+            <p>Show some of the best work you created in a document (PDFs only).</p>
+        
+
+            <label for="file-upload" class="for-file-upload mt-3">
+                <i class="fas fa-file-download"></i>
+                 <p>  Upload your Document</p>
+            </label>
+            
+            <input id="file-upload" style="visibility: hidden;" type="file"/>   
+
+        </div>
+<hr>
+
+
+
+
+
+
+        </div>
+
+        <div class="col-md-3 for-hiding">
+            <div class="showcase-talent">                 
+                <div class="icon">
+                    <i class="fas fa-lightbulb light"></i>
+                </div>
+                <h5 class="text-center">Showcase Your Talent</h5>
+                
+
+                <ul>
+                    <li>Add images, an introduction video, or PDF files that best represent your service</li>
+                </ul>
+
+                
+
+            </div>
+<!-- image section -->
+
+            <div class="for-image-hover">
+                <div class="inner-img-hover">                 
+                    <div class="icon">
+                        <i class="fas fa-lightbulb light"></i>
+                    </div>
+                    <h5 class="text-center">Images</h5>
+                    
+                    <p>Upload images in JPEG, JPG, PNG and ensure they’re at least 550 pixels width x 370 pixels height.</p>
+
+                    <p>We suggest uploading them in landscape format to make better use of the space.</p>
+
+                    <p>Lastly, put your best foot forward! Stand out on Fiverr with your favorite images.</p>
+
+                    <p>Need help? Check out Fiverr’s expert photoshop talent</p>
+
+                    <a href=""><i class="fas fa-play-circle"></i> General offer Policy </a>
+    
+                </div>
+            </div>
+
+
+<!-- video section -->
+
+            <div class="for-video-hover">
+                <div class="inner-video-hover">
+                    <div class="icon">
+                        <i class="fas fa-lightbulb light"></i>
+                    </div>
+                    <h5 class="text-center">Video</h5>
+                    
+                    <p>Videos can increase user engagement by 40%..</p>
+
+                    <p>Ensure the production quality is representative of your deliveries.</p>
+
+                    <p>Need help with your video? Check out our Fiverr expert audio/video talent here.</p>
+
+                    <a href=""><i class="fas fa-play-circle"></i> General offer Policy </a>
+                </div>
+            </div>
+
+<!-- for document section -->
+            <div class="for-document">
+                <div class="inner-doc">
+                    <div class="inner-doc-hover">
+                        <div class="icon">
+                            <i class="fas fa-lightbulb light"></i>
+                        </div>
+                        <h5 class="text-center">Documents (up to 2)</h5>
+                        
+                        <p>The quality of the content in your PDFs will influence potential customers.</p>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+        </section>
+
+
+        <!-- save button -->
+
+        <section class="for-button-lowwer container">
+        <div class="row">
+            <div class="col-md-9 for-button">
+                    <button class="button-cancle">Cancel</button>
+                <button class="button-save" type="submit">Save</button>
+            </div>
+        </div>
+        </section>
+
+
+        <form>
+            <div>
+
+
+    <script src="{% static 'js/ckeditor.js' %}"></script>
+
+
+    <script>
+        CKEDITOR.replace('content');
+    </script>
+
+
+    <!-- Load FilePond library -->
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    
+    
+    
+    <!-- multi selector -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
+    <!-- Turn all file input elements into ponds -->
+    <script>
+    FilePond.parse(document.body);
+    </script>
+
+
+    <script src="{% static 'js/multi-input.js' %}"></script>
+    <script src="{% static 'js/create_offer.js' %}"></script>
+
+</body>
+</html>

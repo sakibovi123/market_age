@@ -26,7 +26,7 @@ galleryThumbs.controller.control = galleryTop;
 $('.for-slider').slick({
   dots: false,
   infinite: true,
-  autoplay:true,
+  autoplay:false,
   autoplaySpeed: 1500,
   slidesToShow: 2,
   slidesToScroll: 2,
@@ -43,10 +43,10 @@ $('.for-slider').slick({
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 768,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToShow: 1,
+        slidesToScroll: 1,
       }
     },
     {

@@ -17,16 +17,28 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+
+
+    <!-- ckeditor -->
     
     <script src="https://cdn.ckeditor.com/4.16.2/basic/ckeditor.js"></script>
 
+    <script src="{% static 'js/ckeditor.js' %}"></script>
+    
+    <!-- chosen  -->
 
-    <!-- add to document <head> -->
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" /><link
-    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-    rel="stylesheet"/>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+    <link src="{% static 'css/chosen.css' %}"></link>
+    <script src="{% static 'js/chosen.js' %}"defer></script>
+   
+
     
     
+
     <link rel="stylesheet" href="{% static 'css/create_offer.css' %}">
 
 </head>
@@ -98,41 +110,24 @@
                         </div>
 
                     <!-- search tag -->
-                    <div class="search-tag mb-5">
+                    <!-- <div class="search-tag mb-5">
                             <div class="service-title">
                                 <p>SEARCH Tag</p>
                             </div>
 
 
+                            <select class="multipleChosen" multiple="true" style="width:200px">
+                                <option value="1">Excellent</option>
+                                <option value="2">Very Good</option>
+                                <option value="3">Good</option>
+                                <option value="4">Not Bad</option>
+                                <option value="5">Bad</option>
+                                <option value="6">Very Bad</option>
+                            </select>	
+                       
 
-
-
-
-
-
-
-
-
-                            <div class="multi-tag">
-                                
-
-                          
-                            <select data-placeholder="Select your tags" class="chosen-select" multiple tabindex="1">
-                                <option value=""></option>
-                                <option value="">CSS</option>
-                                <option value="">HTML</option>
-                                <option value="">Java Script</option>
-                                <option value="">asp.net</option>
-                                <option value="">react</option>
-                            </select>
-
-                        
-
-                                  <p class="point"> <span><i class="fas fa-info-circle"></i> Please note: </span>
-                                    Some categories require that sellers verify their skills.</p>
-                            </div>
                             
-                    </div>
+                    </div> -->
 
 
                     </div>
@@ -254,50 +249,26 @@
                           </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody>                               
 
                           <tr>
                             <td scope="row"></td>
 
                             <td class="col-3 input-padding">
                                 
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                  <input type="text" name="basic_shortDesc" class="input-for-details"  placeholder="You can use maximum 100 char">
                                                                
                             </td>
 
                             <td class="col-3 input-padding">
                                 
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                  <input type="text" name="standard_shortDesc" class="input-for-details"  placeholder="You can use maximum 100 char">
                                                                
                             </td>
 
                             <td class="col-3 input-padding">
                                 
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
-                                                               
-                            </td>
-
-                          </tr>
-                                
-
-                          <tr>
-                            <td scope="row"></td>
-
-                            <td class="col-3 input-padding">
-                                
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
-                                                               
-                            </td>
-
-                            <td class="col-3 input-padding">
-                                
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
-                                                               
-                            </td>
-
-                            <td class="col-3 input-padding">
-                                
-                                  <input type="text" class="input-for-details"  placeholder="You can use maximum 100 char">
+                                  <input type="text" name="premium_shortDesc" class="input-for-details"  placeholder="You can use maximum 100 char">
                                                                
                             </td>
 
@@ -562,6 +533,21 @@
                     <i class="fas fa-info-circle"></i>
                     <p>To comply with Fiverr’s terms of service, make sure to upload only content you either own or you have the permission or license to use.</p>
                 </div>
+                <hr />
+                <div class="gallery-img mt-5">
+                    <h4>Offer Main Image</h4>
+                    <p>Get noticed by the right buyers with visual examples of your services.</p>
+        
+        
+                            <label for="main-image" class="for-file-upload mt-3">
+                                <i class="fas fa-images"></i>
+                                 <p>  Upload your photo</p>
+                            </label>
+                            
+                            <input id="main-image" name="offer_main_image" style="visibility: hidden;" type="file" />   
+        
+        
+                </div>
 <hr>
 
         <div class="gallery-img mt-5">
@@ -569,12 +555,12 @@
             <p>Get noticed by the right buyers with visual examples of your services.</p>
 
 
-                    <label for="file-upload" class="for-file-upload mt-3">
+                    <label for="formFileMultiple" class="for-file-upload mt-3">
                         <i class="fas fa-images"></i>
                          <p>  Upload your photo</p>
                     </label>
                     
-                    <input id="file-upload" style="visibility: hidden;" type="file"/>   
+                    <input id="formFileMultiple" name="uploaded_photo" style="visibility: hidden;" type="file" multiple />   
 
 
         </div>
@@ -586,12 +572,12 @@
             <p>Capture buyers' attention with a video that showcases your service.</p>
         
 
-            <label for="file-upload" class="for-file-upload mt-3">
+            <label for="video-upload" class="for-file-upload mt-3">
                 <i class="fas fa-video"></i>
                  <p>  Upload your video</p>
             </label>
             
-            <input id="file-upload" style="visibility: hidden;" type="file"/>   
+            <input id="video-upload" name="uploaded_video" style="visibility: hidden;" type="file"/>   
 
         </div>
 <hr>
@@ -603,12 +589,12 @@
             <p>Show some of the best work you created in a document (PDFs only).</p>
         
 
-            <label for="file-upload" class="for-file-upload mt-3">
+            <label for="document-upload" class="for-file-upload mt-3">
                 <i class="fas fa-file-download"></i>
                  <p>  Upload your Document</p>
             </label>
             
-            <input id="file-upload" style="visibility: hidden;" type="file"/>   
+            <input id="document-upload" name="document" style="visibility: hidden;" type="file"/>   
 
         </div>
 <hr>
@@ -711,7 +697,7 @@
         </section>
 
 
-        <form>
+    </form>
             <div>
 
 
@@ -724,7 +710,7 @@
 
 
     <!-- Load FilePond library -->
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <!-- <script src="https://unpkg.com/filepond/dist/filepond.js"></script> -->
     
     
     
@@ -733,12 +719,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 
     <!-- Turn all file input elements into ponds -->
-    <script>
+    <!-- <script>
     FilePond.parse(document.body);
-    </script>
+    </script> -->
 
 
-    <script src="{% static 'js/multi-input.js' %}"></script>
+    <!-- <script src="{% static 'js/multi-input.js' %}"></script> -->
     <script src="{% static 'js/create_offer.js' %}"></script>
 
 </body>

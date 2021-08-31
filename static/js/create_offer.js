@@ -1,6 +1,9 @@
 
 
 
+
+
+
 const proLan = document.querySelector('.pro-lan');
 const expertise = document.querySelector('.expertise');
 
@@ -197,14 +200,3 @@ function checkResponsive3() {
   console.log(res3.value);
 }
 
-let document_element = document.getElementById("document");
-
-document_element.addEventListener("change", () => {
-  console.log(CKEDITOR.instances.document_element.getData());
-});
-
-
-$(function() {
-  $('.chosen-select').chosen();
-  $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-});

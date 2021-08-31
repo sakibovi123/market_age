@@ -1,5 +1,9 @@
 {% load static %}
 {% include 'buyingview/header.html' %}
+    
+    <!--main css for gigs details -->
+    <link rel="stylesheet" href=" {% static 'css/gigsviewstyle.css' %}" >
+    <link rel="stylesheet" href=" {% static 'css/responsiveGigsviewArko.css' %}" >
 
 <style>
     .view__cartBtn {
@@ -124,7 +128,6 @@
 
 
             <!-- Slider lower img (GIGs thumb img) -->
-
             <div class="swiper-container gallery-thumbs">
                 <div class="swiper-wrapper">
                     {% for image in offers.extra_images.all %}
@@ -360,7 +363,7 @@
     <div class="row">
     
 
-        <div class="col-md-7 left-section">
+        <div class="col-md-7 left-section mt-5">
             <!-- About gigs section -->
             <div class="about-gigs">
                 <h2 class="pb-3">About this Gig</h2>
@@ -452,7 +455,7 @@
             <div class="compare-packages">
                 <div class="inner-compare">
 
-                    <table class="table table-responsive table-bordered table-hover mx-auto w-auto">
+                    <table class="table table-responsive table-bordered table-hover ">
 
                         <thead>
                             <tr>
@@ -460,9 +463,10 @@
                                     <p class="">package</p>
 
                                 </th>
+
                                 {% for manager in offers.offermanager_set.all %}
-                                <th scope="col">
-                                    <span class="">$ {{ manager.price }}</span>
+                                <th scope="col" class="table-size">
+                                    <span class="align-middle text-center">$ {{ manager.price }}</span>
                                     <strong class="d-block col text-left">{{ manager.package }}</strong>
                                     <!--<strong class="d-block text-left">Single Page</strong>-->
                                     <p class="text-left">{{ manager.offer.short_desc|truncatechars:100 }}</p>

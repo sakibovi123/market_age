@@ -50,6 +50,7 @@
 {% endcomment %} 
 
 <!-- Order table section starts -->
+{% if orders|length > 0 %}
 <div class="table-responsive manage__orderTable container mt-5 mb-5">
   <!-- Active table section starts -->
   <table
@@ -57,71 +58,38 @@
   >
     <thead>
       <tr class="align-middle">
-        <th scope="" colspan="2" class="text-muted ps-3 col-2">SELLER NAME</th>
-        <th scope="" class="text-muted col-5">PACKAGE</th>
-        <th scope="" class="text-muted col-2 text-center">TOTAL</th>
-        <th scope="" class="text-muted text-center col-2">status</th>
-        <th scope="" class="text-muted text-center col-2"></th>
+        <th scope="col" colspan="2" class="text-muted ps-3 col-2">SELLER NAME</th>
+        <th scope="col" class="text-muted col-5">PACKAGE</th>
+        <th scope="col" class="text-muted col-2 text-center">TOTAL</th>
+        <th scope="col" class="text-muted text-center col-2">status</th>
+        <th scope="col" class="text-muted text-center col-2"></th>
       </tr>
     </thead>
 
     <tbody>
-    
-     
-     <tr>
-        <td scope="" colspan="2" class="ps-3">rabbith_arko</td>
-        <td scope="" class=" for-width">name of package name of package name of package name of package name of package name of package name of package name of package name of package </td>
-        <td scope="" class="text-center">$ 20.00</td>
-        <td scope="" class="status text-center align-middle">
-            <p>ACTIVE</p>
-        </td>
-        <td scope="" class="text-muted text-center view align-middle">
-            <a href="">
-              <p>VIEW</p>
-            </a>
-        </td>
-      </tr>
-
-     
-     
-     <tr>
-        <td scope="" colspan="2" class="ps-3">rabbith_arko</td>
-        <td scope="" class=" for-width">name of package name of package name of package name of package name of package name of package name of package name of package name of package </td>
-        <td scope="" class="text-center">$ 20.00</td>
-        <td scope="" class="status text-center align-middle">
-            <p>ACTIVE</p>
-        </td>
-        <td scope="" class="text-muted text-center view align-middle">
-            <a href="">
-              <p>VIEW</p>
-            </a>
-        </td>
-      </tr>
-
-     
-     
-     <tr>
-        <td scope="" colspan="2" class="ps-3">rabbith_arko</td>
-        <td scope="" class=" for-width">name of package name of package name of package name of package name of package name of package name of package name of package name of package </td>
-        <td scope="" class="text-center">$ 20.00</td>
-        <td scope="" class="status text-center align-middle">
-            <p>ACTIVE</p>
-        </td>
-        <td scope="" class="text-muted text-center view align-middle">
-            <a href="">
-              <p>VIEW</p>
-            </a>
-        </td>
-      </tr>
-
-     
-     
-
-      </tbody>
-
+      
+        {% for order in orders %}
+        <tr>
+            <td scope="" colspan="2" class="ps-3">{{order.seller}}</td>
+            <td scope="" class=" for-width">{{ order.package }} </td>
+            <td scope="" class="text-center">$ {{order.title}}</td>
+            <td scope="" class="status text-center align-middle">
+                <p>ACTIVE</p>
+            </td>
+            <td scope="" class="text-muted text-center view align-middle">
+                <a href="{% url 'buyer-orders' order.id %}">
+                  <p>VIEW</p>
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 </div>
 <!-- Order table section ends -->
-
+{% else %}
+  <h5 class="fw-bold p-3 my-5 border border-1 text-center text-danger bg-white">No order to show!</h5>
+{% endif %}
 
 
 {% endblock %}

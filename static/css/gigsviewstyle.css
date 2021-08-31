@@ -156,6 +156,9 @@ margin:auto;
     opacity: 1;
 }
 
+.table-size{
+    width: 20% !important;
+}
 /* Slider Button */
 
   .swiper-button-next,
@@ -386,7 +389,6 @@ margin:auto;
     font-size: 22px;
 }
 .button{
-    width: 60%;
     text-align: center;
     margin: 0 auto;
     padding: 3px 0px 6px 0px;
@@ -402,10 +404,6 @@ margin:auto;
 
 /* Slider  */
 
-
-.slick-slider {
-    margin:0 -15px;
-}
 .slick-slide {
     padding: 8px;
     text-align:center;
@@ -415,6 +413,18 @@ margin:auto;
 .recommended{
     margin-top: 40px;
 }
+  /* the slides */
+  .slick-slide {
+    margin-left: 15px !important;
+  }
+
+  /* the parent */
+  .slick-list {
+    margin-left:-27px !important;
+  }
+
+
+
 
 
 
@@ -446,7 +456,6 @@ margin:auto;
     background:#fffffff6;
     min-height:200px;
     width:100%;
-    max-width: 450px;
     border-radius:3px;
     overflow:hidden;
     padding:20px;

@@ -62,18 +62,18 @@ class DummyUser(models.Model):
 
 
 class Services(models.Model):
-    slug = models.SlugField()
-    title = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=120, unique=True)
     sub_title = models.CharField(max_length=120)
     img = models.ImageField(upload_to="images/")
 
     def __str__(self):
-        return self.sub_title
+        return self.title
 
 
 class Category(models.Model):
-    slug = models.SlugField()
-    title = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=120, unique=True)
     icon = models.FileField(upload_to="images/", validators=[
                             FileExtensionValidator(['svg', 'png', 'jpg'])], null=True)
 
@@ -83,7 +83,7 @@ class Category(models.Model):
 
 class Subcategory(models.Model):
     slug = models.SlugField(unique=True)
-    sub_title = models.CharField(max_length=120)
+    sub_title = models.CharField(max_length=120, unique=True)
     sub_img = models.ImageField(upload_to="images/", null=True, blank=True)
     parent_market = models.ForeignKey(
         Category, on_delete=models.CASCADE, null=True)
@@ -134,14 +134,14 @@ class NumberOfPlugins(models.Model):
     title = models.CharField(max_length=120, null=True)
     
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 class FileFormats(models.Model):
     format_title = models.CharField(max_length=120)
     
     
     def __str__(self):
-        return self.format_title
+        return str(self.id)
 
 
 
@@ -169,9 +169,15 @@ class Package(models.Model):
     delivery_time = models.ForeignKey(
         DeliveryTime, on_delete=models.CASCADE, null=True)
     package_desc = models.TextField(null=True)
-    revision = models.ForeignKey(Revision, on_delete=models.SET_NULL, null=True, related_name="revision")
-    num_of_pages = models.ForeignKey(NumberOfPage, on_delete=models.SET_NULL, null=True, related_name="num_of_pages", blank=True)
-    is_responsive = models.BooleanField(default=False, null=True, blank=True)
+    revision_basic = models.ForeignKey(Revision, on_delete=models.SET_NULL, null=True, blank=True, related_name="revision_basic")
+    revision_standard = models.ForeignKey(Revision, on_delete=models.SET_NULL, null=True, blank=True, related_name="revision_standard")
+    revision_premium = models.ForeignKey(Revision, on_delete=models.SET_NULL, null=True, blank=True, related_name="revision_premium")
+    num_of_pages_for_basic = models.ForeignKey(NumberOfPage, on_delete=models.SET_NULL, null=True, related_name="num_of_pages_for_basic", blank=True)
+    num_of_pages_for_standard = models.ForeignKey(NumberOfPage, on_delete=models.SET_NULL, null=True, related_name="num_of_pages_for_standard", blank=True)
+    num_of_pages_for_premium = models.ForeignKey(NumberOfPage, on_delete=models.SET_NULL, null=True, related_name="num_of_pages_for_premium", blank=True)
+    is_responsive_basic = models.BooleanField(default=False, null=True, blank=True)
+    is_responsive_standard = models.BooleanField(default=False, null=True, blank=True)
+    is_responsive_premium = models.BooleanField(default=False, null=True, blank=True)
     setup_payment = models.BooleanField(default=False, null=True, blank=True)
     will_deploy = models.BooleanField(default=False, null=True, blank=True)
     is_compitable = models.BooleanField(default=False, null=True, blank=True)
@@ -179,8 +185,12 @@ class Package(models.Model):
     # For Logo Design
     provide_vector = models.BooleanField(default=False, null=True, blank=True)
     is_3dmockup = models.BooleanField(default=False, null=True, blank=True)
-    is_high_res = models.BooleanField(default=False, null=True, blank=True)
-    will_sourcefile = models.BooleanField(default=False, null=True, blank=True)
+    is_high_res_for_basic = models.BooleanField(default=False, null=True, blank=True)
+    is_high_res_for_standard = models.BooleanField(default=False, null=True, blank=True)
+    is_high_res_for_premium = models.BooleanField(default=False, null=True, blank=True)
+    will_sourcefile_for_basic = models.BooleanField(default=False, null=True, blank=True)
+    will_sourcefile_for_standard = models.BooleanField(default=False, null=True, blank=True)
+    will_sourcefile_for_premium = models.BooleanField(default=False, null=True, blank=True)
     # For Digital Marketing
     is_campaign_optimization = models.BooleanField(default=False, null=True, blank=True)
     management_duration = models.CharField(max_length=120, choices=management_duration_choices, null=True, blank=True)
@@ -201,10 +211,10 @@ class Package(models.Model):
     provide_excel = models.BooleanField(default=False, null=True, blank=True)
     
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 class ExtraImage(models.Model):
-    image = models.ImageField(upload_to="images/", null=True, unique=True)
+    image = models.ImageField(upload_to="images/", null=True)
 
     def __str__(self):
         return str(self.image)
@@ -226,6 +236,7 @@ class Offer(models.Model):
     image = models.ImageField(upload_to='images/')
     extra_images = models.ManyToManyField(ExtraImage)
     offer_video = models.FileField(upload_to="images/")
+    document = models.FileField(upload_to="files/", null=True)
     service = models.ForeignKey(Services, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     packages = models.ManyToManyField(Package, through='OfferManager')
@@ -260,7 +271,7 @@ class OfferManager(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return str(self.offer)
+        return str(self.id)
 
     @staticmethod
     def get_price(self):
